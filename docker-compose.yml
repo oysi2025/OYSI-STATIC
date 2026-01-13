@@ -19,12 +19,20 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
+      # Router für oysi.gmbh (Hauptseite)
       - "traefik.http.routers.oysi-gmbh.rule=Host(`oysi.gmbh`) || Host(`www.oysi.gmbh`)"
       - "traefik.http.routers.oysi-gmbh.entrypoints=websecure"
       - "traefik.http.routers.oysi-gmbh.tls=true"
       - "traefik.http.routers.oysi-gmbh.tls.certresolver=letsencrypt"
       - "traefik.http.services.oysi-gmbh.loadbalancer.server.port=80"
       - "traefik.http.routers.oysi-gmbh.middlewares=default-chain@file"
+      # Router für oysi.tech → Redirect zu oysi.gmbh
+      - "traefik.http.routers.oysi-tech.rule=Host(`oysi.tech`) || Host(`www.oysi.tech`)"
+      - "traefik.http.routers.oysi-tech.entrypoints=websecure"
+      - "traefik.http.routers.oysi-tech.tls=true"
+      - "traefik.http.routers.oysi-tech.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.oysi-tech.middlewares=redirect-oysi-tech-to-gmbh@file"
+      - "traefik.http.routers.oysi-tech.service=oysi-gmbh"
 
   backend:
     build: ./backend
