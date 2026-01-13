@@ -5,8 +5,8 @@ services:
     image: nginx:alpine
     container_name: oysi_static
     restart: always
-    ports:
-      - "127.0.0.1:8090:80"
+    expose:
+      - "80"
     volumes:
       - ./public:/usr/share/nginx/html:ro
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
@@ -15,6 +15,16 @@ services:
     networks:
       - default
       - oysi-net
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.oysi-gmbh.rule=Host(`oysi.gmbh`) || Host(`www.oysi.gmbh`)"
+      - "traefik.http.routers.oysi-gmbh.entrypoints=websecure"
+      - "traefik.http.routers.oysi-gmbh.tls=true"
+      - "traefik.http.routers.oysi-gmbh.tls.certresolver=letsencrypt"
+      - "traefik.http.services.oysi-gmbh.loadbalancer.server.port=80"
+      - "traefik.http.routers.oysi-gmbh.middlewares=default-chain@file"
 
   backend:
     build: ./backend
@@ -24,7 +34,11 @@ services:
       - .env
     expose:
       - "8000"
+    networks:
+      - default
 
 networks:
   oysi-net:
+    external: true
+  proxy:
     external: true
