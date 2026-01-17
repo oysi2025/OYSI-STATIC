@@ -57,14 +57,20 @@ docker-compose up -d --build
 docker-compose logs -f backend | grep SPAM
 ```
 
+### Backend-Logs (strukturiertes Logging)
+
+```bash
+docker-compose logs -f backend
+```
+
 ## Code Style & Architecture
 
 ### Sprachen & Frameworks
 
 - **Frontend**: Vanilla HTML/CSS/JavaScript (keine Build-Tools)
-- **Backend**: Python 3.11 mit FastAPI + Pydantic
+- **Backend**: Python 3.11 mit FastAPI 0.115+ / Pydantic 2.10+ / uvicorn 0.32+
 - **Server**: nginx (Alpine) als Reverse Proxy
-- **Deployment**: Docker Compose
+- **Deployment**: Docker Compose (modernes Format ohne version-Key)
 - **Versionskontrolle**: Git + GitHub
 
 ### Projektstruktur
@@ -74,8 +80,8 @@ oysi-static/
 ├── public/              # Statische Dateien (von nginx ausgeliefert)
 │   └── index.html       # Single-Page Landingpage (DE/FR)
 ├── backend/             # FastAPI Kontaktformular-API
-│   ├── main.py          # API-Endpunkte (/contact, /health) + Spam-Schutz
-│   ├── requirements.txt # Python-Abhängigkeiten
+│   ├── main.py          # API-Endpunkte + Spam-Schutz + XSS-Schutz + Logging
+│   ├── requirements.txt # Python-Abhängigkeiten (>=Versionen)
 │   └── Dockerfile       # Python 3.11-slim Image
 ├── nginx.conf           # Reverse Proxy Config (/ -> static, /api/ -> backend)
 ├── docker-compose.yml   # Service-Orchestrierung
@@ -114,7 +120,7 @@ Das Kontaktformular ist gegen Bots geschützt durch drei Mechanismen:
 ### 3. Rate Limiting
 - Max. **3 Anfragen pro IP** in **10 Minuten**
 - Bei Überschreitung: HTTP 429 Fehler
-- In-Memory Speicherung (Reset bei Container-Neustart)
+- In-Memory Speicherung mit automatischem Cleanup (max. 1000 IPs)
 
 ### Konfiguration (backend/main.py)
 
@@ -122,7 +128,19 @@ Das Kontaktformular ist gegen Bots geschützt durch drei Mechanismen:
 MIN_FORM_TIME_MS = 3000        # Mindestzeit in ms (3 Sek)
 MAX_REQUESTS_PER_IP = 3        # Max Anfragen pro IP
 RATE_LIMIT_WINDOW_SEC = 600    # Zeitfenster in Sekunden (10 Min)
+MAX_IPS_IN_MEMORY = 1000       # Max IPs im Speicher (Memory Leak Prevention)
 ```
+
+## Security
+
+### XSS-Schutz
+- User-Input (E-Mail, Nachricht) wird mit `html.escape()` sanitisiert
+- Verhindert Script-Injection in E-Mail-HTML
+
+### Logging
+- Strukturiertes Logging via Python `logging` Modul
+- Format: `YYYY-MM-DD HH:MM:SS [LEVEL] Message`
+- SPAM-Erkennungen werden als WARNING geloggt
 
 ## Context
 
