@@ -1,0 +1,5 @@
+# robots.txt for oysi.gmbh
+User-agent: *
+Allow: /
+
+Sitemap: https://oysi.gmbh/sitemap.xml
