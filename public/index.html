@@ -10,170 +10,285 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.oysi.tech/oysi/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.oysi.tech/oysi/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.oysi.tech/oysi/apple-touch-icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Typografie: Fraunces (Headlines) + Source Sans 3 (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Palette inspirée Oysi24 / Premium Corporate */
-            --bg-body: #f3f4f6;
+            /* Refined Corporate Palette */
+            --primary: #0a1929;
+            --primary-light: #123f64;
+            --accent: #347295;
+            --accent-light: #9fd4d8;
+            --bg-body: #f7f8fa;
             --card-bg: #ffffff;
-            --primary: #111827; /* Noir charbon */
-            --accent: #2563eb;  /* Bleu royal */
-            --text-main: #1f2937;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
+            --text-primary: #0a1929;
+            --text-secondary: #445267;
+            --border: #e2e6eb;
+            --footer-bg: #0a1929;
+            --footer-text: #b8c4d4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-body);
-            color: var(--text-main);
+            color: var(--text-primary);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
         }
 
-        /* Langue Switcher */
+        /* Fade-In Animationen */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .fade-in-1 { animation-delay: 0.1s; }
+        .fade-in-2 { animation-delay: 0.2s; }
+        .fade-in-3 { animation-delay: 0.3s; }
+        .fade-in-4 { animation-delay: 0.4s; }
+        .fade-in-5 { animation-delay: 0.5s; }
+
+        /* Sprachumschalter */
         .lang-switch {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 24px;
+            right: 24px;
             display: flex;
-            gap: 10px;
+            gap: 8px;
+            z-index: 100;
         }
+
         .lang-btn {
-            background: none;
+            background: transparent;
             border: 1px solid var(--border);
-            padding: 5px 10px;
+            padding: 6px 14px;
             cursor: pointer;
             border-radius: 4px;
-            font-size: 0.85rem;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.8rem;
             font-weight: 600;
-            color: var(--text-muted);
-            transition: all 0.2s;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+            transition: all 0.25s ease;
         }
+
+        .lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
         .lang-btn.active {
             background-color: var(--primary);
             color: white;
             border-color: var(--primary);
         }
 
-        /* Carte Principale */
-        .card {
-            background: var(--card-bg);
-            width: 90%;
-            max-width: 600px;
-            padding: 50px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        /* Hauptbereich */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px 60px;
+        }
+
+        /* Logo & Header */
+        .logo-container {
             text-align: center;
-            margin-top: 40px;
+            margin-bottom: 12px;
+        }
+
+        .logo {
+            height: 72px;
+            width: auto;
         }
 
         h1 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 500;
+            font-size: 2.4rem;
             color: var(--primary);
-            font-weight: 700;
-            font-size: 2.2rem;
-            margin: 0 0 10px 0;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
         }
 
-        .subtitle {
-            display: inline-block;
-            background-color: #f0fdf4; /* Vert très pâle */
-            color: #166534;           /* Vert foncé */
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+        /* Dekorative Linie */
+        .decorative-line {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+            margin: 0 auto 28px;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(52, 114, 149, 0.08);
+            color: var(--accent);
+            padding: 8px 18px;
+            border-radius: 24px;
+            font-size: 0.75rem;
             font-weight: 600;
-            margin-bottom: 30px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1.2px;
+            margin-bottom: 28px;
         }
 
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Intro Text */
         .intro-text {
-            color: var(--text-muted);
+            max-width: 520px;
+            text-align: center;
+            color: var(--text-secondary);
             font-size: 1.05rem;
-            line-height: 1.6;
+            line-height: 1.7;
             margin-bottom: 40px;
         }
 
-        /* Formulaire */
+        /* Karte / Formular Container */
+        .card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 480px;
+            padding: 36px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(10, 25, 41, 0.06), 0 1px 3px rgba(10, 25, 41, 0.04);
+        }
+
+        .card-title {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 500;
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        /* Formular */
         .form-group {
-            text-align: left;
             margin-bottom: 20px;
         }
-        
+
         label {
             display: block;
             font-size: 0.85rem;
             font-weight: 600;
+            color: var(--text-primary);
             margin-bottom: 8px;
-            color: var(--text-main);
         }
 
         input, textarea {
             width: 100%;
-            padding: 14px;
+            padding: 14px 16px;
             border: 1px solid var(--border);
-            border-radius: 8px;
-            font-family: inherit;
+            border-radius: 6px;
+            font-family: 'Source Sans 3', sans-serif;
             font-size: 0.95rem;
-            box-sizing: border-box;
-            background-color: #f9fafb;
-            transition: border-color 0.2s, background-color 0.2s;
+            color: var(--text-primary);
+            background-color: #fafbfc;
+            transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
         }
 
         input:focus, textarea:focus {
             outline: none;
-            border-color: var(--primary);
+            border-color: var(--accent);
             background-color: white;
+            box-shadow: 0 0 0 3px rgba(52, 114, 149, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
         }
 
         button.submit-btn {
             width: 100%;
             background-color: var(--primary);
             color: white;
-            padding: 16px;
+            padding: 14px 24px;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: 6px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s, transform 0.1s;
+            transition: background-color 0.25s, transform 0.15s;
         }
 
         button.submit-btn:hover {
-            background-color: #000;
-            transform: translateY(-1px);
+            background-color: var(--primary-light);
         }
 
-        /* Impressum Footer */
-        .footer-legal {
-            margin-top: 50px;
-            font-size: 0.8rem;
-            color: #9ca3af;
+        button.submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        button.submit-btn:disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+
+        #form-status {
+            margin-top: 16px;
             text-align: center;
-            line-height: 1.5;
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
-            max-width: 600px;
+            font-size: 0.9rem;
         }
-        
-        .footer-legal a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
+
+        .status-success {
+            color: #166534;
+            font-weight: 600;
         }
-        
+
+        .status-error {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
         .hidden {
             display: none;
         }
 
-        /* Honeypot - für Bots unsichtbar versteckt */
+        /* Honeypot - unsichtbar */
         .hp-field {
             opacity: 0;
             position: absolute;
@@ -183,99 +298,211 @@
             width: 0;
             z-index: -1;
         }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-company {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .footer-details {
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .footer-details a {
+            color: var(--accent-light);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-details a:hover {
+            color: white;
+        }
+
+        .footer-legal {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            color: rgba(184, 196, 212, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            main {
+                padding: 100px 20px 40px;
+            }
+
+            h1 {
+                font-size: 1.9rem;
+            }
+
+            .logo {
+                height: 60px;
+            }
+
+            .card {
+                padding: 28px 24px;
+            }
+
+            .intro-text {
+                font-size: 1rem;
+            }
+
+            .lang-switch {
+                top: 16px;
+                right: 16px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="lang-switch">
+    <div class="lang-switch fade-in fade-in-1">
         <button class="lang-btn active" onclick="setLang('de', event)">DE</button>
         <button class="lang-btn" onclick="setLang('fr', event)">FR</button>
     </div>
 
-    <div class="card">
-        <img src="https://cdn.oysi.tech/oysi/Logo_Oysi_RZ.svg" alt="OYSI Logo" style="height: 80px; margin-bottom: 20px;">
-        <h1>OYSI GmbH</h1>
-        
+    <main>
+        <div class="logo-container fade-in fade-in-1">
+            <img src="https://cdn.oysi.tech/oysi/Logo_Oysi_RZ.svg" alt="OYSI Logo" class="logo">
+        </div>
+
+        <h1 class="fade-in fade-in-2">OYSI GmbH</h1>
+        <div class="decorative-line fade-in fade-in-2"></div>
+
         <div id="content-de">
-            <span class="subtitle">In Vorbereitung</span>
-            <p class="intro-text">
+            <div class="status-badge fade-in fade-in-3">
+                <span class="status-dot"></span>
+                In Vorbereitung
+            </div>
+            <p class="intro-text fade-in fade-in-3">
                 Unsere Online-Präsenz wird derzeit überarbeitet.<br>
-                Wir richten uns strategisch neu aus. Für geschäftliche Anfragen oder Kontaktaufnahme nutzen Sie bitte das untenstehende Formular.
+                Wir richten uns strategisch neu aus. Für geschäftliche Anfragen nutzen Sie bitte das untenstehende Formular.
             </p>
         </div>
 
         <div id="content-fr" class="hidden">
-            <span class="subtitle">En construction</span>
-            <p class="intro-text">
+            <div class="status-badge fade-in fade-in-3">
+                <span class="status-dot"></span>
+                En préparation
+            </div>
+            <p class="intro-text fade-in fade-in-3">
                 Notre présence en ligne évolue.<br>
-                Dans le cadre de notre nouvelle orientation stratégique, notre site est en cours de refonte. Pour toute demande professionnelle, veuillez utiliser le formulaire ci-dessous.
+                Dans le cadre de notre nouvelle orientation stratégique, veuillez utiliser le formulaire ci-dessous pour toute demande.
             </p>
         </div>
 
-        <form id="contact-form">
-            <!-- Honeypot-Feld (von Bots ausgefüllt, von Menschen nicht gesehen) -->
-            <div class="hp-field" aria-hidden="true">
-                <label>Website (nicht ausfüllen)</label>
-                <input type="text" name="website" id="input-website" tabindex="-1" autocomplete="off">
-            </div>
-            <!-- Zeitstempel für Bot-Erkennung -->
-            <input type="hidden" name="form_time" id="input-form-time">
+        <div class="card fade-in fade-in-4">
+            <h2 class="card-title" id="card-title">Kontakt aufnehmen</h2>
+            <form id="contact-form">
+                <!-- Honeypot-Feld -->
+                <div class="hp-field" aria-hidden="true">
+                    <label>Website (nicht ausfüllen)</label>
+                    <input type="text" name="website" id="input-website" tabindex="-1" autocomplete="off">
+                </div>
+                <!-- Zeitstempel -->
+                <input type="hidden" name="form_time" id="input-form-time">
 
-            <div class="form-group">
-                <label id="label-email">E-Mail Adresse / Email Professionnel</label>
-                <input type="email" name="email" id="input-email" required>
-            </div>
-            <div class="form-group">
-                <label id="label-message">Nachricht / Message</label>
-                <textarea name="message" id="input-message" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn" id="btn-submit">Senden / Envoyer</button>
-            <div id="form-status" style="margin-top: 15px; text-align: center;"></div>
-        </form>
-    </div>
+                <div class="form-group">
+                    <label id="label-email">Geschäfts-E-Mail</label>
+                    <input type="email" name="email" id="input-email" required placeholder="ihre.email@beispiel.de">
+                </div>
+                <div class="form-group">
+                    <label id="label-message">Ihre Nachricht</label>
+                    <textarea name="message" id="input-message" rows="4" required placeholder="Wie können wir Ihnen helfen?"></textarea>
+                </div>
+                <button type="submit" class="submit-btn" id="btn-submit">Nachricht senden</button>
+                <div id="form-status"></div>
+            </form>
+        </div>
+    </main>
 
-    <div class="footer-legal">
-        <strong>OYSI GmbH</strong><br>
-        Halbergstr. 4 | 66121 Saarbrücken<br>
-        Tel: <a href="tel:+4968130988375">+49 681 / 309 883 75</a> | Mobil: <a href="tel:+4915123430067">+49 151 / 234 300 67</a><br>
-        E-Mail: <a href="mailto:olivier.hoefer@oysi.gmbh">olivier.hoefer@oysi.gmbh</a><br><br>
-        
-        Sitz der Gesellschaft: Saarbrücken | Geschäftsführer: Olivier Höfer<br>
-        Amtsgericht Saarbrücken, HRB 109351 | USt-IdNr.: DE368627554
-    </div>
+    <footer class="fade-in fade-in-5">
+        <div class="footer-content">
+            <div class="footer-company">OYSI GmbH</div>
+            <div class="footer-details">
+                Halbergstr. 4 | 66121 Saarbrücken<br>
+                Tel: <a href="tel:+4968130988375">+49 681 / 309 883 75</a><br>
+                Mobil: <a href="tel:+4915123430067">+49 151 / 234 300 67</a><br>
+                E-Mail: <a href="mailto:olivier.hoefer@oysi.gmbh">olivier.hoefer@oysi.gmbh</a>
+            </div>
+            <div class="footer-legal">
+                Sitz: Saarbrücken | Geschäftsführer: Olivier Höfer<br>
+                Amtsgericht Saarbrücken, HRB 109351 | USt-IdNr.: DE368627554
+            </div>
+        </div>
+    </footer>
 
     <script>
         let currentLang = 'de';
 
-        // Zeitstempel setzen wenn Seite geladen wird
+        // Zeitstempel bei Seitenaufruf setzen
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('input-form-time').value = Date.now();
         });
 
         function setLang(lang, e) {
             currentLang = lang;
-            // Gestion des boutons
+
+            // Button-Status aktualisieren
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             e.target.classList.add('active');
 
-            // Gestion du texte
+            // Inhalte umschalten
             if (lang === 'de') {
                 document.getElementById('content-de').classList.remove('hidden');
                 document.getElementById('content-fr').classList.add('hidden');
 
-                // Labels Formulaire
-                document.getElementById('label-email').innerText = 'Geschäfts-E-Mail';
-                document.getElementById('label-message').innerText = 'Ihre Nachricht';
-                document.getElementById('btn-submit').innerText = 'Senden';
+                // Formular-Labels
+                document.getElementById('card-title').textContent = 'Kontakt aufnehmen';
+                document.getElementById('label-email').textContent = 'Geschäfts-E-Mail';
+                document.getElementById('label-message').textContent = 'Ihre Nachricht';
+                document.getElementById('btn-submit').textContent = 'Nachricht senden';
+                document.getElementById('input-email').placeholder = 'ihre.email@beispiel.de';
+                document.getElementById('input-message').placeholder = 'Wie können wir Ihnen helfen?';
             } else {
                 document.getElementById('content-de').classList.add('hidden');
                 document.getElementById('content-fr').classList.remove('hidden');
 
-                // Labels Formulaire
-                document.getElementById('label-email').innerText = 'Email Professionnel';
-                document.getElementById('label-message').innerText = 'Votre Message';
-                document.getElementById('btn-submit').innerText = 'Envoyer';
+                // Formular-Labels
+                document.getElementById('card-title').textContent = 'Nous contacter';
+                document.getElementById('label-email').textContent = 'Email professionnel';
+                document.getElementById('label-message').textContent = 'Votre message';
+                document.getElementById('btn-submit').textContent = 'Envoyer le message';
+                document.getElementById('input-email').placeholder = 'votre.email@exemple.fr';
+                document.getElementById('input-message').placeholder = 'Comment pouvons-nous vous aider?';
             }
+        }
+
+        // Status-Nachricht anzeigen (sicher, ohne innerHTML)
+        function showStatus(message, isSuccess) {
+            const status = document.getElementById('form-status');
+            status.textContent = '';
+            const span = document.createElement('span');
+            span.className = isSuccess ? 'status-success' : 'status-error';
+            span.textContent = message;
+            status.appendChild(span);
+        }
+
+        function clearStatus() {
+            document.getElementById('form-status').textContent = '';
         }
 
         // Formular-Handler
@@ -283,16 +510,15 @@
             e.preventDefault();
 
             const btn = document.getElementById('btn-submit');
-            const status = document.getElementById('form-status');
             const email = document.getElementById('input-email').value;
             const message = document.getElementById('input-message').value;
-            const website = document.getElementById('input-website').value; // Honeypot
-            const formTime = document.getElementById('input-form-time').value; // Zeitstempel
+            const website = document.getElementById('input-website').value;
+            const formTime = document.getElementById('input-form-time').value;
 
             // Button deaktivieren
             btn.disabled = true;
-            btn.innerText = currentLang === 'de' ? 'Wird gesendet...' : 'Envoi en cours...';
-            status.innerHTML = '';
+            btn.textContent = currentLang === 'de' ? 'Wird gesendet...' : 'Envoi en cours...';
+            clearStatus();
 
             try {
                 const response = await fetch('/api/contact', {
@@ -302,29 +528,30 @@
                 });
 
                 if (response.ok) {
-                    status.innerHTML = '<span style="color: #166534; font-weight: 600;">' +
-                        (currentLang === 'de' ? 'Nachricht erfolgreich gesendet!' : 'Message envoy\u00e9 avec succ\u00e8s!') +
-                        '</span>';
+                    showStatus(
+                        currentLang === 'de' ? 'Nachricht erfolgreich gesendet!' : 'Message envoyé avec succès!',
+                        true
+                    );
                     document.getElementById('contact-form').reset();
-                    // Zeitstempel neu setzen für nächstes Formular
                     document.getElementById('input-form-time').value = Date.now();
                 } else if (response.status === 429) {
-                    // Rate Limit erreicht
-                    status.innerHTML = '<span style="color: #dc2626; font-weight: 600;">' +
-                        (currentLang === 'de' ? 'Zu viele Anfragen. Bitte versuchen Sie es später erneut.' : 'Trop de demandes. Veuillez réessayer plus tard.') +
-                        '</span>';
+                    showStatus(
+                        currentLang === 'de' ? 'Zu viele Anfragen. Bitte versuchen Sie es später erneut.' : 'Trop de demandes. Veuillez réessayer plus tard.',
+                        false
+                    );
                 } else {
                     throw new Error('Server error');
                 }
             } catch (err) {
-                status.innerHTML = '<span style="color: #dc2626; font-weight: 600;">' +
-                    (currentLang === 'de' ? 'Fehler beim Senden. Bitte versuchen Sie es erneut.' : 'Erreur lors de l\'envoi. Veuillez r\u00e9essayer.') +
-                    '</span>';
+                showStatus(
+                    currentLang === 'de' ? 'Fehler beim Senden. Bitte versuchen Sie es erneut.' : "Erreur lors de l'envoi. Veuillez réessayer.",
+                    false
+                );
             }
 
             // Button wieder aktivieren
             btn.disabled = false;
-            btn.innerText = currentLang === 'de' ? 'Senden' : 'Envoyer';
+            btn.textContent = currentLang === 'de' ? 'Nachricht senden' : 'Envoyer le message';
         });
     </script>
 
