@@ -1,5 +1,6 @@
 # robots.txt for oysi.gmbh
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://oysi.gmbh/sitemap.xml
