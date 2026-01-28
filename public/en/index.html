@@ -128,6 +128,8 @@
         },
         "address": {
             "@type": "PostalAddress",
+            "streetAddress": "Halbergstr. 4",
+            "postalCode": "66121",
             "addressLocality": "Saarbrücken",
             "addressRegion": "Saarland",
             "addressCountry": "DE"
@@ -137,22 +139,14 @@
             "latitude": "49.2354",
             "longitude": "6.9983"
         },
-        "contactPoint": [
-            {
-                "@type": "ContactPoint",
-                "telephone": "+49-681-309-883-75",
-                "contactType": "customer service",
-                "availableLanguage": ["German", "French", "English"],
-                "areaServed": ["DE", "FR", "NL", "BE", "LU", "AT", "CH"]
-            },
-            {
-                "@type": "ContactPoint",
-                "telephone": "+49-151-234-300-67",
-                "contactType": "sales",
-                "availableLanguage": ["German", "French", "English"]
-            }
-        ],
-        "email": "info@oysi.gmbh",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-681-309-883-75",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "French", "English"],
+            "areaServed": ["DE", "FR", "NL", "BE", "LU", "AT", "CH"]
+        },
+        "email": "hello@oysi.gmbh",
         "sameAs": [
             "https://oysi.eu",
             "https://dpp.oysi.gmbh",
@@ -201,11 +195,11 @@
                     "@type": "OfferCatalog",
                     "name": "Technische Chemikalien",
                     "itemListElement": [
-                        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Säuren"}},
-                        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Laugen"}},
-                        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Lösemittel"}},
-                        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Spezialchemikalien"}},
-                        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Labor-Chemikalien"}}
+                        {"@type": "Offer", "itemOffered": {"@type": "Thing", "name": "Säuren"}},
+                        {"@type": "Offer", "itemOffered": {"@type": "Thing", "name": "Laugen"}},
+                        {"@type": "Offer", "itemOffered": {"@type": "Thing", "name": "Lösemittel"}},
+                        {"@type": "Offer", "itemOffered": {"@type": "Thing", "name": "Spezialchemikalien"}},
+                        {"@type": "Offer", "itemOffered": {"@type": "Thing", "name": "Labor-Chemikalien"}}
                     ]
                 }
             ]
@@ -305,6 +299,8 @@
         "priceRange": "$$",
         "address": {
             "@type": "PostalAddress",
+            "streetAddress": "Halbergstr. 4",
+            "postalCode": "66121",
             "addressLocality": "Saarbrücken",
             "addressRegion": "Saarland",
             "addressCountry": "DE"
@@ -316,7 +312,7 @@
         },
         "url": "https://oysi.gmbh",
         "telephone": "+49-681-309-883-75",
-        "email": "info@oysi.gmbh",
+        "email": "hello@oysi.gmbh",
         "openingHoursSpecification": [
             {
                 "@type": "OpeningHoursSpecification",
@@ -391,7 +387,7 @@
                 "name": "Wie kontaktiere ich OYSI für eine Anfrage?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "OYSI ist erreichbar per Telefon (+49-681-309-883-75), E-Mail (info@oysi.gmbh) oder über das Kontaktformular auf oysi.gmbh. Die Beratung erfolgt auf Deutsch, Französisch und Englisch. Antwortzeit: in der Regel innerhalb von 24 Stunden."
+                    "text": "OYSI ist erreichbar per Telefon (+49-681-309-883-75), E-Mail (hello@oysi.gmbh) oder über das Kontaktformular auf oysi.gmbh. Die Beratung erfolgt auf Deutsch, Französisch und Englisch. Antwortzeit: in der Regel innerhalb von 24 Stunden."
                 }
             }
         ]
@@ -415,10 +411,10 @@
             "@type": "OfferCatalog",
             "name": "Chemikalien für Industrie & Labor",
             "itemListElement": [
-                {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Säuren und Laugen", "description": "Technische Säuren und Laugen für industrielle Anwendungen"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Lösemittel", "description": "Organische und anorganische Lösemittel"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Spezialchemikalien", "description": "Spezialchemikalien für spezifische Anwendungen"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Labor-Chemikalien", "description": "Chemikalien für Laboranwendungen und Forschung"}}
+                {"@type": "Offer", "itemOffered": {"@type": "Thing", "name": "Säuren und Laugen", "description": "Technische Säuren und Laugen für industrielle Anwendungen"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Thing", "name": "Lösemittel", "description": "Organische und anorganische Lösemittel"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Thing", "name": "Spezialchemikalien", "description": "Spezialchemikalien für spezifische Anwendungen"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Thing", "name": "Labor-Chemikalien", "description": "Chemikalien für Laboranwendungen und Forschung"}}
             ]
         }
     }
@@ -460,8 +456,7 @@
         "nationality": {
             "@type": "Country",
             "name": "Germany"
-        },
-        "sameAs": []
+        }
     }
     </script>
 
@@ -502,17 +497,12 @@
         "name": "Wie bestelle ich technische Chemikalien bei OYSI?",
         "description": "Schritt-für-Schritt Anleitung zur Bestellung von B2B-Chemikalien bei OYSI GmbH mit vollständiger Compliance-Dokumentation.",
         "totalTime": "PT24H",
-        "estimatedCost": {
-            "@type": "MonetaryAmount",
-            "currency": "EUR",
-            "value": "Auf Anfrage"
-        },
         "step": [
             {
                 "@type": "HowToStep",
                 "position": 1,
                 "name": "Anfrage stellen",
-                "text": "Kontaktieren Sie OYSI per E-Mail (info@oysi.gmbh), Telefon (+49-681-309-883-75) oder über das Kontaktformular auf oysi.gmbh.",
+                "text": "Kontaktieren Sie OYSI per E-Mail (hello@oysi.gmbh), Telefon (+49-681-309-883-75) oder über das Kontaktformular auf oysi.gmbh.",
                 "url": "https://oysi.gmbh/#kontakt"
             },
             {
@@ -595,26 +585,40 @@
             {
                 "@type": "ListItem",
                 "position": 1,
-                "name": "Technischer Chemikalienhandel",
-                "description": "B2B-Handel mit Säuren, Laugen, Lösemitteln und Spezialchemikalien für Industrie und Labor seit 1995."
+                "item": {
+                    "@type": "Service",
+                    "name": "Technischer Chemikalienhandel",
+                    "description": "B2B-Handel mit Säuren, Laugen, Lösemitteln und Spezialchemikalien für Industrie und Labor seit 1995."
+                }
             },
             {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "Compliance & Dokumentation",
-                "description": "Vollständige EU-Compliance: REACH-Registrierung, CLP/GHS-Etikettierung, ADR-Gefahrguttransport, Sicherheitsdatenblätter."
+                "item": {
+                    "@type": "Service",
+                    "name": "Compliance & Dokumentation",
+                    "description": "Vollständige EU-Compliance: REACH-Registrierung, CLP/GHS-Etikettierung, ADR-Gefahrguttransport, Sicherheitsdatenblätter."
+                }
             },
             {
                 "@type": "ListItem",
                 "position": 3,
-                "name": "Digital Product Passport",
-                "description": "DPP-Lösungen nach EU-Verordnung 2024/1781 für digitale Produktidentität und Rückverfolgbarkeit."
+                "item": {
+                    "@type": "Service",
+                    "name": "Digital Product Passport",
+                    "description": "DPP-Lösungen nach EU-Verordnung 2024/1781 für digitale Produktidentität und Rückverfolgbarkeit.",
+                    "url": "https://dpp.oysi.gmbh"
+                }
             },
             {
                 "@type": "ListItem",
                 "position": 4,
-                "name": "Chemie-Wissensdatenbank",
-                "description": "Öffentliches Lexikon mit über 3.800 chemischen Substanzen inkl. CAS-Nummern, GHS-Daten und Sicherheitsinformationen."
+                "item": {
+                    "@type": "Service",
+                    "name": "Chemie-Wissensdatenbank",
+                    "description": "Öffentliches Lexikon mit über 3.800 chemischen Substanzen inkl. CAS-Nummern, GHS-Daten und Sicherheitsinformationen.",
+                    "url": "https://oysi.eu"
+                }
             }
         ]
     }
@@ -2995,20 +2999,13 @@
                             </div>
                         </li>
                         <li class="contact-detail-item">
-                            <div class="contact-icon">📱</div>
-                            <div class="contact-detail-content">
-                                <div class="contact-detail-label" data-i18n="contact.mobile">Mobil</div>
-                                <div class="contact-detail-value">
-                                    <a href="tel:+4915123430067">+49 151 / 234 300 67</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="contact-detail-item">
                             <div class="contact-icon">✉️</div>
                             <div class="contact-detail-content">
                                 <div class="contact-detail-label">E-Mail</div>
                                 <div class="contact-detail-value">
-                                    <a href="mailto:info@oysi.gmbh" itemprop="email">info@oysi.gmbh</a>
+                                    <a href="#" class="email-protect" data-u="hello" data-d="oysi.gmbh" itemprop="email">
+                                        <span class="email-part1">hello</span><span class="email-at">[at]</span><span class="email-part2">oysi.gmbh</span>
+                                    </a>
                                 </div>
                             </div>
                         </li>
@@ -3709,6 +3706,17 @@
                     // Otherwise let the <a> tag navigate naturally
                 });
             });
+
+            // Email protection - assemble email at runtime
+            document.querySelectorAll('.email-protect').forEach(function(el) {
+                const u = el.dataset.u;
+                const d = el.dataset.d;
+                if (u && d) {
+                    const email = u + '@' + d;
+                    el.href = 'mai' + 'lto:' + email;
+                    el.textContent = email;
+                }
+            });
         });
 
         // ============================================
@@ -3929,17 +3937,20 @@
                 if (response.ok) {
                     formStatus.textContent = formTexts.success;
                     formStatus.className = 'form-status success';
+                    formStatus.style.display = 'block';
                     contactForm.reset();
                     formTimeInput.value = Date.now();
                 } else if (response.status === 429) {
                     formStatus.textContent = formTexts.rateLimit;
                     formStatus.className = 'form-status error';
+                    formStatus.style.display = 'block';
                 } else {
                     throw new Error('Server error');
                 }
             } catch (err) {
                 formStatus.textContent = formTexts.error;
                 formStatus.className = 'form-status error';
+                formStatus.style.display = 'block';
             }
 
             // Button wieder aktivieren

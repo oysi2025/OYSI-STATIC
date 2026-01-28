@@ -14,6 +14,18 @@ Corporate Landingpage für die OYSI GmbH (https://oysi.gmbh) mit Kontaktformular
 | **CDN** | https://cdn.oysi.tech (Logos, Favicons, OG-Images) |
 | **Reverse Proxy** | Traefik (kein direkter Port-Zugriff) |
 
+## Kontaktdaten
+
+| Feld | Wert |
+|------|------|
+| **Adresse** | Halbergstr. 4, 66121 Saarbrücken |
+| **Telefon** | +49 681 / 309 883 75 |
+| **E-Mail** | hello@oysi.gmbh |
+| **HRB** | 109351 (AG Saarbrücken) |
+| **USt-IdNr** | DE368627554 |
+
+**Hinweis:** Keine Mobilnummer auf der Website (Datenschutz).
+
 ## WICHTIG: Wettbewerbsverbot
 
 **Keine Inhalte zu Pool- & Wasserpflege oder Brennstoffen!**
@@ -268,6 +280,20 @@ Die Firmengeschichte wird als auto-scrollende Timeline mit Zwei-Zeilen-Layout da
 | `DefinedTermSet` | **NEU 2026:** Chemie-Glossar als Entity (DPP, REACH, GHS) |
 | `ItemList` | **NEU 2026:** Strukturierte Kernkompetenzen für AI-Zitierung |
 
+### Schema.org Validator-Konformität
+
+Folgende Anpassungen wurden für Google Rich Results gemacht:
+
+| Problem | Lösung |
+|---------|--------|
+| `PostalAddress` unvollständig | `streetAddress` + `postalCode` hinzugefügt |
+| `Product` ohne offers/review | `@type: Thing` statt `Product` in OfferCatalogs |
+| `ItemList` ohne item-Property | `ListItem.item` mit `@type: Service` |
+| `Person.sameAs` leer | Leeres Array entfernt |
+| `HowTo.estimatedCost` nicht-numerisch | Feld entfernt |
+
+Validierung: https://validator.schema.org/ und https://search.google.com/test/rich-results
+
 ### GEO 2026 (Generative Engine Optimization)
 
 | Feature | Implementierung |
@@ -310,6 +336,18 @@ Das Kontaktformular ist gegen Bots geschützt:
 | **Honeypot** | Verstecktes `website`-Feld, Fake-Erfolg bei Ausfüllung |
 | **Zeitprüfung** | Mindestens 3 Sekunden Formularladezeit |
 | **Rate Limiting** | Max. 3 Anfragen/IP in 10 Minuten |
+
+### E-Mail Anti-Scraping
+
+Die E-Mail-Adresse ist vor Bots geschützt:
+
+```html
+<a href="#" class="email-protect" data-u="hello" data-d="oysi.gmbh">
+    hello[at]oysi.gmbh
+</a>
+```
+
+JavaScript baut zur Laufzeit die echte E-Mail und den `mailto:`-Link zusammen. Bots ohne JS sehen nur `hello[at]oysi.gmbh`.
 
 ## API-Endpunkte
 
