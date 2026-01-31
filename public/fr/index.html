@@ -671,7 +671,7 @@
             --accent-glow-strong: rgba(23, 172, 186, 0.4);
 
             /* Borders */
-            --border-subtle: rgba(148, 163, 184, 0.2);
+            --border-subtle: rgba(138, 148, 155, 0.2);
             --border-accent: rgba(23, 172, 186, 0.5);
 
             /* Industrial/Chemical accent colors */
@@ -687,6 +687,17 @@
             --nav-height: 80px;
             --section-padding: 120px;
             --container-width: 1200px;
+        }
+
+        /* iOS Safari: Disable backdrop-filter (causes rendering issues) */
+        @supports (-webkit-touch-callout: none) {
+            * {
+                -webkit-backdrop-filter: none !important;
+                backdrop-filter: none !important;
+            }
+            .nav.scrolled {
+                background: rgba(9, 90, 125, 0.98) !important;
+            }
         }
 
         /* ============================================
@@ -783,130 +794,6 @@
             }
         }
 
-        /* ============================================
-           PASSWORT-SCHUTZ - START
-           (Zum Entfernen: Lösche diesen Block bis "PASSWORT-SCHUTZ - ENDE"
-           und das entsprechende JavaScript am Ende der Datei)
-        ============================================ */
-        .password-gate {
-            position: fixed;
-            inset: 0;
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(15, 23, 42, 0.97);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            opacity: 1;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .password-gate.unlocked {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .password-box {
-            background: rgba(30, 41, 59, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            padding: 48px;
-            max-width: 420px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
-        }
-
-        .password-box .logo-small {
-            height: 48px;
-            margin-bottom: 24px;
-            /* Brighten password box logo */
-            filter: brightness(1.8) contrast(1.1);
-            opacity: 0.95;
-        }
-
-        .password-box h2 {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-        }
-
-        .password-box p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 24px;
-        }
-
-        .password-input-group {
-            position: relative;
-        }
-
-        .password-input-group input {
-            width: 100%;
-            padding: 16px 20px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-family: var(--font-mono);
-            font-size: 1rem;
-            letter-spacing: 2px;
-            text-align: center;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .password-input-group input:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px var(--accent-glow);
-        }
-
-        .password-input-group input.error {
-            border-color: #ff4444;
-            animation: shake 0.4s ease;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-8px); }
-            40%, 80% { transform: translateX(8px); }
-        }
-
-        .password-hint {
-            margin-top: 16px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            opacity: 0.6;
-        }
-
-        .password-submit {
-            width: 100%;
-            margin-top: 16px;
-            padding: 14px 24px;
-            background: var(--oysi-highlight);
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            font-family: var(--font-heading);
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 15px rgba(239, 101, 94, 0.3);
-        }
-
-        .password-submit:hover {
-            background: #F07D77;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(239, 101, 94, 0.4);
-        }
-        /* PASSWORT-SCHUTZ - ENDE */
 
         /* ============================================
            LAYOUT UTILITIES
@@ -1019,7 +906,7 @@
         }
 
         .nav.scrolled {
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(9, 90, 125, 0.95);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             box-shadow: 0 1px 0 var(--border-subtle);
@@ -1427,7 +1314,7 @@
         .btn-secondary {
             background: transparent;
             color: var(--text-secondary);
-            border: 1px solid rgba(148, 163, 184, 0.3);
+            border: 1px solid rgba(138, 148, 155, 0.3);
         }
 
         .btn-secondary:hover {
@@ -1487,7 +1374,7 @@
         }
 
         .quote-block {
-            background: rgba(30, 41, 59, 0.6);
+            background: rgba(2, 120, 151, 0.6);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-left: 4px solid var(--oysi-accent);
@@ -1568,7 +1455,7 @@
         }
 
         .about-image-frame {
-            background: rgba(30, 41, 59, 0.6);
+            background: rgba(2, 120, 151, 0.6);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border-subtle);
@@ -1762,7 +1649,7 @@
         }
 
         .service-card {
-            background: rgba(30, 41, 59, 0.6);
+            background: rgba(2, 120, 151, 0.6);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border-subtle);
@@ -1900,7 +1787,7 @@
         }
 
         .digital-card {
-            background: rgba(30, 41, 59, 0.6);
+            background: rgba(2, 120, 151, 0.6);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border-subtle);
@@ -1916,7 +1803,7 @@
         }
 
         .browser-frame {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(9, 90, 125, 0.8);
             padding: 12px 16px;
             display: flex;
             align-items: center;
@@ -1942,7 +1829,7 @@
 
         .browser-url {
             flex: 1;
-            background: rgba(30, 41, 59, 0.6);
+            background: rgba(2, 120, 151, 0.6);
             padding: 6px 12px;
             border-radius: 4px;
             font-family: var(--font-mono);
@@ -1959,7 +1846,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(30, 41, 59, 0.8) 100%);
+            background: linear-gradient(180deg, rgba(2, 120, 151, 0.4) 0%, rgba(2, 120, 151, 0.8) 100%);
         }
 
         .platform-icon {
@@ -2014,7 +1901,7 @@
         }
 
         .industry-item {
-            background: rgba(30, 41, 59, 0.6);
+            background: rgba(2, 120, 151, 0.6);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border-subtle);
@@ -2132,7 +2019,7 @@
         }
 
         .usp-card {
-            background: rgba(30, 41, 59, 0.6);
+            background: rgba(2, 120, 151, 0.6);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border-subtle);
@@ -2246,7 +2133,7 @@
 
         /* Contact Form */
         .contact-form-wrapper {
-            background: rgba(30, 41, 59, 0.6);
+            background: rgba(2, 120, 151, 0.6);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border-subtle);
@@ -2493,24 +2380,6 @@
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/WebPage">
-    <!-- ============================================
-         PASSWORT-SCHUTZ - START
-         (Zum Entfernen: Lösche diesen Block und das entsprechende JavaScript)
-    ============================================ -->
-    <div class="password-gate" id="passwordGate">
-        <div class="password-box">
-            <img src="https://cdn.oysi.tech/oysi/Logo_Oysi_RZ.svg" alt="OYSI" class="logo-small" width="100" height="40">
-            <h2 data-i18n="password.title">Preview-Zugang</h2>
-            <p data-i18n="password.text">Bitte geben Sie das Passwort ein, um die Seite anzuzeigen.</p>
-            <div class="password-input-group">
-                <input type="password" id="passwordInput" data-i18n-placeholder="password.placeholder" placeholder="Passwort eingeben" autocomplete="off">
-                <button type="button" id="passwordSubmit" class="password-submit" data-i18n="password.submit">Zugang</button>
-            </div>
-            <p class="password-hint" data-i18n="password.hint">Tipp: Das Passwort wurde Ihnen mitgeteilt.</p>
-        </div>
-    </div>
-    <!-- PASSWORT-SCHUTZ - ENDE -->
-
     <!-- Skip to main content (Accessibility) -->
     <a href="#main-content" class="skip-link" aria-label="Zum Hauptinhalt springen">Zum Inhalt springen</a>
 
@@ -3748,52 +3617,6 @@
         });
 
         // ============================================
-        // PASSWORT-SCHUTZ - START
-        // (Zum Entfernen: Lösche diesen Block bis "PASSWORT-SCHUTZ - ENDE")
-        // ============================================
-        (function() {
-            const PASSWORD = 'oysi2026';
-            const STORAGE_KEY = 'oysi_preview_unlocked';
-
-            const gate = document.getElementById('passwordGate');
-            const input = document.getElementById('passwordInput');
-            const submitBtn = document.getElementById('passwordSubmit');
-
-            // Prüfe ob bereits entsperrt
-            if (sessionStorage.getItem(STORAGE_KEY) === 'true') {
-                gate.classList.add('unlocked');
-            }
-
-            // Passwort-Prüfung
-            function checkPassword() {
-                if (input.value === PASSWORD) {
-                    sessionStorage.setItem(STORAGE_KEY, 'true');
-                    gate.classList.add('unlocked');
-                } else {
-                    input.classList.add('error');
-                    input.value = '';
-                    setTimeout(() => input.classList.remove('error'), 400);
-                }
-            }
-
-            // Enter-Taste
-            input.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    checkPassword();
-                }
-            });
-
-            // Button-Klick
-            submitBtn.addEventListener('click', checkPassword);
-
-            // Fokus auf Input setzen
-            if (!sessionStorage.getItem(STORAGE_KEY)) {
-                setTimeout(() => input.focus(), 100);
-            }
-        })();
-        // PASSWORT-SCHUTZ - ENDE
-
-        // ============================================
         // NAVIGATION
         // ============================================
         const nav = document.getElementById('nav');
@@ -4092,34 +3915,33 @@
         ============================================ */
         .cookie-banner {
             position: fixed;
-            inset: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
             z-index: 99999;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
+            display: block;
             padding: 16px;
             font-family: 'Source Sans 3', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         .cookie-banner-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            display: none;
         }
 
         .cookie-banner-container {
             position: relative;
             width: 100%;
             max-width: 580px;
-            background: linear-gradient(145deg, var(--oysi-secondary) 0%, var(--oysi-primary) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            background: #095A7D;
+            background: linear-gradient(145deg, #027897 0%, #095A7D 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 16px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
                         0 0 0 1px rgba(23, 172, 186, 0.1);
             overflow: hidden;
             animation: cookieSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            margin: 0 auto;
         }
 
         @keyframes cookieSlideUp {
@@ -4170,14 +3992,14 @@
         .cookie-settings-panel {
             margin-bottom: 20px;
             padding: 16px;
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(148, 163, 184, 0.15);
+            background: rgba(9, 90, 125, 0.5);
+            border: 1px solid rgba(138, 148, 155, 0.15);
             border-radius: 12px;
         }
 
         .cookie-category {
             padding: 12px 0;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            border-bottom: 1px solid rgba(138, 148, 155, 0.1);
         }
 
         .cookie-category:last-child {
@@ -4216,7 +4038,7 @@
             letter-spacing: 0.05em;
             padding: 3px 8px;
             border-radius: 4px;
-            background: rgba(148, 163, 184, 0.2);
+            background: rgba(138, 148, 155, 0.2);
             color: #94a3b8;
         }
 
@@ -4331,24 +4153,24 @@
         }
 
         .cookie-btn-secondary {
-            background: rgba(148, 163, 184, 0.15);
+            background: rgba(138, 148, 155, 0.15);
             color: #e2e8f0;
-            border: 1px solid rgba(148, 163, 184, 0.3);
+            border: 1px solid rgba(138, 148, 155, 0.3);
         }
 
         .cookie-btn-secondary:hover {
-            background: rgba(148, 163, 184, 0.25);
-            border-color: rgba(148, 163, 184, 0.5);
+            background: rgba(138, 148, 155, 0.25);
+            border-color: rgba(138, 148, 155, 0.5);
         }
 
         .cookie-btn-tertiary {
             background: transparent;
             color: #94a3b8;
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            border: 1px solid rgba(138, 148, 155, 0.2);
         }
 
         .cookie-btn-tertiary:hover {
-            background: rgba(148, 163, 184, 0.1);
+            background: rgba(138, 148, 155, 0.1);
             color: #e2e8f0;
         }
 
@@ -4360,7 +4182,7 @@
             gap: 12px;
             margin-top: 16px;
             padding-top: 16px;
-            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            border-top: 1px solid rgba(138, 148, 155, 0.1);
         }
 
         .cookie-link {
@@ -4598,8 +4420,7 @@
         function showBanner() {
             const banner = document.getElementById('cookie-consent-banner');
             if (banner) {
-                banner.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
+                banner.style.display = 'block';
 
                 // Focus management for accessibility
                 const acceptBtn = document.getElementById('cookie-accept');
@@ -4649,7 +4470,8 @@
             }
 
             // Show banner if no valid consent
-            showBanner();
+            // TEMPORARILY DISABLED FOR iOS DEBUG
+            // showBanner();
 
             // Event Listeners
             document.getElementById('cookie-accept').addEventListener('click', function() {
