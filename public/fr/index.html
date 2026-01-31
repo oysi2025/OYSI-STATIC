@@ -46,9 +46,9 @@
     <!-- ============================================
          PRIMARY META TAGS (SEO 2025/2026)
     ============================================ -->
-    <title>OYSI GmbH – Technische Chemie seit 1995 | B2B Partner für Industrie & Labor</title>
-    <meta name="description" content="30 Jahre Expertise in technischer Chemie. REACH, CLP/GHS & ADR konform. Digital Product Passport (DPP) nach EU 2024/1781. 3.800+ dokumentierte Substanzen. Europaweit lieferbar.">
-    <meta name="keywords" content="technische Chemie, Chemikalien B2B, REACH konform, GHS Etikettierung, Digital Product Passport, DPP, Sicherheitsdatenblätter, Labor Chemikalien, Industriechemie, Spezialchemikalien">
+    <title>Acides, bases & solvants | OYSI GmbH – Négoce chimique B2B</title>
+    <meta name="description" content="Produits chimiques conformes REACH pour l'industrie & laboratoire. Acides, bases, solvants, alcools & produits chimiques spéciaux. 30 ans d'expertise, 3.800+ substances, livraison européenne. Digital Product Passport (DPP) inclus.">
+    <meta name="keywords" content="acheter acides, acheter bases, solvants B2B, produits chimiques REACH, chimie technique, produits chimiques industriels, produits chimiques laboratoire, alcools techniques, produits chimiques spéciaux, Digital Product Passport, étiquetage GHS, fiches de données de sécurité">
     <meta name="author" content="OYSI GmbH">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -63,10 +63,10 @@
     <meta name="geo.placename" content="Saarbrücken">
     <meta name="geo.position" content="49.2354;6.9983">
     <meta name="ICBM" content="49.2354, 6.9983">
-    <meta name="DC.title" content="OYSI GmbH – Technische Chemie">
+    <meta name="DC.title" content="Acides, bases & solvants | OYSI GmbH">
     <meta name="DC.creator" content="OYSI GmbH">
-    <meta name="DC.subject" content="Technische Chemie, B2B Chemikalienhandel">
-    <meta name="DC.description" content="B2B-Händler für technische Chemikalien seit 1995">
+    <meta name="DC.subject" content="Acides, bases, solvants, produits chimiques REACH">
+    <meta name="DC.description" content="Négociant B2B de produits chimiques industriels - acides, bases, solvants & spécialités">
     <meta name="DC.publisher" content="OYSI GmbH">
     <meta name="DC.language" content="fr">
 
@@ -84,8 +84,8 @@
     ============================================ -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://oysi.gmbh/fr/">
-    <meta property="og:title" content="OYSI GmbH – Technische Chemie seit 1995">
-    <meta property="og:description" content="30 Jahre Expertise in technischer Chemie. REACH, CLP/GHS & ADR konform. Digital Product Passport nach EU 2024/1781. Europaweit lieferbar.">
+    <meta property="og:title" content="Acides, bases & solvants | OYSI GmbH">
+    <meta property="og:description" content="Produits chimiques conformes REACH pour l'industrie & laboratoire. Acides, bases, solvants, alcools & spécialités. 30 ans d'expertise, livraison européenne.">
     <meta property="og:image" content="https://cdn.oysi.tech/oysi/og-image.jpg">
     <meta property="og:image:secure_url" content="https://cdn.oysi.tech/oysi/og-image.jpg">
     <meta property="og:image:type" content="image/jpeg">
@@ -103,8 +103,8 @@
     ============================================ -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://oysi.gmbh/fr/">
-    <meta name="twitter:title" content="OYSI GmbH – Technische Chemie seit 1995">
-    <meta name="twitter:description" content="30 Jahre Expertise in technischer Chemie. REACH, CLP/GHS & ADR konform. Europaweit lieferbar.">
+    <meta name="twitter:title" content="Acides, bases & solvants | OYSI GmbH">
+    <meta name="twitter:description" content="Produits chimiques conformes REACH pour l'industrie & laboratoire. Acides, bases, solvants, alcools & spécialités. Livraison européenne.">
     <meta name="twitter:image" content="https://cdn.oysi.tech/oysi/og-image.jpg">
     <meta name="twitter:image:alt" content="OYSI GmbH - Technische Chemie seit 1995">
 
@@ -1925,9 +1925,147 @@
             box-shadow: 0 4px 15px rgba(23, 172, 186, 0.3);
         }
 
+        /* DPP Visual Flow */
+        .dpp-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px 0;
+            padding: 16px;
+            background: rgba(9, 90, 125, 0.05);
+            border-radius: 12px;
+        }
+
+        .dpp-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dpp-step-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(23, 172, 186, 0.1);
+            border-radius: 12px;
+            color: var(--oysi-accent);
+        }
+
+        .dpp-step-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .dpp-step-icon.dpp-step-success {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+
+        .dpp-step-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--oysi-text-body);
+        }
+
+        .dpp-arrow {
+            color: var(--oysi-text-muted);
+            opacity: 0.5;
+        }
+
+        .dpp-arrow svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Lexikon Search */
+        .lexikon-search {
+            display: flex;
+            gap: 8px;
+            margin: 16px 0 8px;
+            width: 100%;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            flex: 1;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            color: var(--oysi-text-muted);
+        }
+
+        .lexikon-search-input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 1px solid rgba(9, 90, 125, 0.2);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: #ffffff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .lexikon-search-input:focus {
+            outline: none;
+            border-color: var(--oysi-accent);
+            box-shadow: 0 0 0 3px rgba(23, 172, 186, 0.1);
+        }
+
+        .lexikon-search-input::placeholder {
+            color: var(--oysi-text-muted);
+        }
+
+        .lexikon-search-btn {
+            padding: 12px 20px;
+            background: var(--oysi-accent);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .lexikon-search-btn:hover {
+            background: var(--oysi-accent-light);
+            transform: translateY(-1px);
+        }
+
+        .search-hint {
+            font-size: 0.75rem;
+            color: var(--oysi-text-muted);
+            margin-bottom: 16px;
+        }
+
         @media (max-width: 768px) {
             .digital-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .dpp-flow {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .dpp-arrow {
+                display: none;
+            }
+
+            .lexikon-search {
+                flex-direction: column;
+            }
+
+            .lexikon-search-btn {
+                width: 100%;
             }
         }
 
@@ -2537,12 +2675,12 @@
             </div>
 
             <h1 class="hero-title" id="hero-title" itemprop="headline">
-                <span data-i18n="hero.title1">Technische Chemie.</span><br>
-                <span class="accent" data-i18n="hero.title2">Digital gedacht.</span>
+                <span data-i18n="hero.title1">Moins de risques de conformité.</span><br>
+                <span class="accent" data-i18n="hero.title2">Mise sur le marché plus rapide.</span>
             </h1>
 
             <p class="hero-subtitle" data-i18n="hero.subtitle">
-                Seit 30 Jahren Ihr Partner für Industrie & Labor – mit modernster digitaler Infrastruktur.
+                Produits chimiques certifiés REACH avec documentation automatisée (DPP). 30 ans d'expertise, livraison européenne.
             </p>
 
             <div class="hero-stats" id="heroStats">
@@ -2561,12 +2699,12 @@
             </div>
 
             <div class="hero-ctas">
-                <a href="#contact" class="btn btn-primary">
-                    <span data-i18n="hero.cta1">Nous contacter</span>
+                <a href="#kontakt" class="btn btn-primary">
+                    <span data-i18n="hero.cta1">Demander le catalogue</span>
                     <span class="btn-arrow">→</span>
                 </a>
-                <a href="#kontakt" class="btn btn-secondary" data-i18n="hero.cta2">
-                    Kontakt aufnehmen
+                <a href="#leistungen" class="btn btn-secondary" data-i18n="hero.cta2">
+                    Découvrir nos services
                 </a>
             </div>
         </div>
@@ -2578,7 +2716,7 @@
             <div class="about-grid">
                 <div class="about-content reveal">
                     <span class="section-label" data-i18n="about.label">Über OYSI</span>
-                    <h2 id="about-title" data-i18n="about.title" itemprop="name">Von der Garage zum europäischen Chemie-Partner</h2>
+                    <h2 id="about-title" data-i18n="about.title" itemprop="name">30 ans de négoce chimique B2B en Europe</h2>
                     <p data-i18n="about.text1">
                         1995 gründete Olivier Höfer sein erstes Unternehmen in einer Saarbrücker Garage. Aus diesen ersten Schritten entwickelte er die Höfer Chemie GmbH zu einem der führenden Chemiedistributoren Deutschlands – mit 70 Mitarbeitern und über 11.000m² Produktions- und Logistikfläche.
                     </p>
@@ -2703,7 +2841,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label" data-i18n="services.label">Leistungen</span>
-                <h2 class="section-title" id="services-title" data-i18n="services.title">Unsere Kernkompetenzen</h2>
+                <h2 class="section-title" id="services-title" data-i18n="services.title">Services de conformité pour produits chimiques</h2>
             </div>
 
             <div class="services-grid" role="list">
@@ -2801,7 +2939,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label" data-i18n="digital.label">Digital Solutions</span>
-                <h2 class="section-title" id="digital-title" data-i18n="digital.title">Unsere digitalen Plattformen</h2>
+                <h2 class="section-title" id="digital-title" data-i18n="digital.title">Digital Product Passport (DPP) & Base de données chimique</h2>
             </div>
 
             <p class="digital-intro reveal" data-i18n="digital.intro" itemprop="description">
@@ -2809,6 +2947,7 @@
             </p>
 
             <div class="digital-grid">
+                <!-- DPP Card with Visual Flow -->
                 <div class="digital-card reveal">
                     <div class="browser-frame">
                         <div class="browser-dots">
@@ -2819,13 +2958,55 @@
                         <div class="browser-url">https://dpp.oysi.gmbh</div>
                     </div>
                     <div class="browser-content">
-                        <div class="platform-icon">📱</div>
                         <h3 class="platform-name">Digital Product Passport</h3>
-                        <p class="platform-desc" data-i18n="digital.dpp.desc">EU-konforme Produktdokumentation mit QR-Code-Tracking für vollständige Chargen-Rückverfolgbarkeit.</p>
-                        <a href="https://dpp.oysi.gmbh" target="_blank" rel="noopener noreferrer" class="platform-link"><span data-i18n="digital.dpp.link">Plattform öffnen</span> →</a>
+                        <p class="platform-desc" data-i18n="digital.dpp.desc">Documentation produit conforme UE avec suivi QR code pour traçabilité complète des lots.</p>
+
+                        <!-- DPP Visual Flow -->
+                        <div class="dpp-flow">
+                            <div class="dpp-step">
+                                <div class="dpp-step-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="4" y="4" width="16" height="16" rx="2"/>
+                                        <path d="M8 8h2v2H8zM14 8h2v2h-2zM8 14h2v2H8zM14 14h2v2h-2zM11 11h2v2h-2z"/>
+                                    </svg>
+                                </div>
+                                <span class="dpp-step-label">Scanner QR</span>
+                            </div>
+                            <div class="dpp-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M13 6l6 6-6 6"/>
+                                </svg>
+                            </div>
+                            <div class="dpp-step">
+                                <div class="dpp-step-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                                    </svg>
+                                </div>
+                                <span class="dpp-step-label">Obtenir FDS</span>
+                            </div>
+                            <div class="dpp-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M13 6l6 6-6 6"/>
+                                </svg>
+                            </div>
+                            <div class="dpp-step">
+                                <div class="dpp-step-icon dpp-step-success">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                        <path d="M22 4L12 14.01l-3-3"/>
+                                    </svg>
+                                </div>
+                                <span class="dpp-step-label">Conformité</span>
+                            </div>
+                        </div>
+
+                        <a href="https://dpp.oysi.gmbh" target="_blank" rel="noopener noreferrer" class="platform-link"><span data-i18n="digital.dpp.link">Ouvrir la plateforme</span> →</a>
                     </div>
                 </div>
 
+                <!-- Lexikon Card with Search -->
                 <div class="digital-card reveal reveal-delay-1">
                     <div class="browser-frame">
                         <div class="browser-dots">
@@ -2836,10 +3017,23 @@
                         <div class="browser-url">https://oysi.eu</div>
                     </div>
                     <div class="browser-content">
-                        <div class="platform-icon">📚</div>
-                        <h3 class="platform-name" data-i18n="digital.lexikon.title">Chemie-Lexikon</h3>
-                        <p class="platform-desc" data-i18n="digital.lexikon.desc">Umfassende Wissensdatenbank mit über 3.800 Substanzen, CAS-Nummern und Sicherheitsinformationen.</p>
-                        <a href="https://oysi.eu" target="_blank" rel="noopener noreferrer" class="platform-link"><span data-i18n="digital.lexikon.link">Lexikon öffnen</span> →</a>
+                        <h3 class="platform-name" data-i18n="digital.lexikon.title">Lexique Chimie</h3>
+                        <p class="platform-desc" data-i18n="digital.lexikon.desc">Base de données complète avec plus de 3.800 substances, numéros CAS et informations de sécurité.</p>
+
+                        <!-- Lexikon Search Box -->
+                        <form class="lexikon-search" action="https://oysi.eu/fr/wissen/lexikon" method="get" target="_blank">
+                            <div class="search-input-wrapper">
+                                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <path d="M21 21l-4.35-4.35"/>
+                                </svg>
+                                <input type="text" name="q" class="lexikon-search-input" placeholder="Rechercher (ex: Acétone, 67-64-1)">
+                            </div>
+                            <button type="submit" class="lexikon-search-btn">Rechercher</button>
+                        </form>
+                        <p class="search-hint">3.800+ substances avec CAS, SGH & données de sécurité</p>
+
+                        <a href="https://oysi.eu" target="_blank" rel="noopener noreferrer" class="platform-link"><span data-i18n="digital.lexikon.link">Ouvrir le lexique</span> →</a>
                     </div>
                 </div>
             </div>
@@ -2851,7 +3045,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label" data-i18n="industries.label">Branchen</span>
-                <h2 class="section-title" id="industries-title" data-i18n="industries.title">Anwendungsbereiche</h2>
+                <h2 class="section-title" id="industries-title" data-i18n="industries.title">Produits chimiques conformes REACH pour votre secteur</h2>
             </div>
 
             <div class="industries-grid" role="list">
@@ -2864,7 +3058,8 @@
                             <ellipse cx="12" cy="12" rx="8" ry="2" stroke-dasharray="3 3" opacity="0.5"/>
                         </svg>
                     </div>
-                    <div class="industry-name" data-i18n="industries.item1">Industrie & Produktion</div>
+                    <div class="industry-name" data-i18n="industries.item1">Industrie & Production</div>
+                    <div class="industry-desc">Acides, bases, solvants pour métallurgie, traitement de surface & fabrication</div>
                 </div>
                 <div class="industry-item reveal reveal-delay-1">
                     <div class="industry-icon">
@@ -2874,7 +3069,8 @@
                             <path d="M8 12h2M14 10h2" opacity="0.5"/>
                         </svg>
                     </div>
-                    <div class="industry-name" data-i18n="industries.item2">Labor & Forschung</div>
+                    <div class="industry-name" data-i18n="industries.item2">Laboratoire & Recherche</div>
+                    <div class="industry-desc">Réactifs, solvants de qualité analytique & substances de référence certifiées</div>
                 </div>
                 <div class="industry-item reveal reveal-delay-2">
                     <div class="industry-icon">
@@ -2884,7 +3080,8 @@
                             <path d="M6 4l-2 2M4 6l2 2"/>
                         </svg>
                     </div>
-                    <div class="industry-name" data-i18n="industries.item3">Reinigung & Hygiene</div>
+                    <div class="industry-name" data-i18n="industries.item3">Nettoyage & Hygiène</div>
+                    <div class="industry-desc">Agents nettoyants, désinfectants & tensioactifs pour applications professionnelles</div>
                 </div>
                 <div class="industry-item reveal reveal-delay-3">
                     <div class="industry-icon">
@@ -2893,7 +3090,8 @@
                             <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
                         </svg>
                     </div>
-                    <div class="industry-name" data-i18n="industries.item4">Handwerk & Gewerbe</div>
+                    <div class="industry-name" data-i18n="industries.item4">Artisanat & Commerce</div>
+                    <div class="industry-desc">Colles, peintures, vernis & produits chimiques spéciaux pour professionnels</div>
                 </div>
             </div>
         </div>
@@ -2905,7 +3103,7 @@
             <div class="usp-grid">
                 <div class="usp-content reveal">
                     <span class="section-label" data-i18n="usp.label">Vorteile</span>
-                    <h2 id="usp-title" data-i18n="usp.title">Warum OYSI?</h2>
+                    <h2 id="usp-title" data-i18n="usp.title">Votre avantage: Expertise chimique & conformité depuis 1995</h2>
 
                     <ul class="usp-list">
                         <li class="usp-item">
@@ -2947,7 +3145,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label" data-i18n="contact.label">Kontakt</span>
-                <h2 class="section-title" id="contact-title" data-i18n="contact.title">Sprechen Sie mit uns</h2>
+                <h2 class="section-title" id="contact-title" data-i18n="contact.title">Demander une consultation B2B gratuite</h2>
             </div>
 
             <div class="contact-grid">
@@ -3848,16 +4046,15 @@
                     const counters = entry.target.querySelectorAll('.stat-number');
                     counters.forEach((counter, index) => {
                         const target = parseInt(counter.dataset.target);
-                        // Reset to 0 first (HTML shows final value for no-JS fallback)
-                        counter.textContent = '0+';
+                        // Stagger animation start, keep HTML fallback visible until animation begins
                         setTimeout(() => {
                             animateCounter(counter, target);
-                        }, index * 200);
+                        }, index * 150);
                     });
                     statsObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.3 });
 
         const heroStats = document.getElementById('heroStats');
         if (heroStats) {

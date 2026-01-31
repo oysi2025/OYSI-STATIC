@@ -73,6 +73,14 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Wissen & Insights / Blog -->
+  <url>
+    <loc>https://oysi.gmbh/blog/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Impressum / Legal -->
   <url>
     <loc>https://oysi.gmbh/legal/</loc>
