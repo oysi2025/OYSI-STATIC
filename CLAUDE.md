@@ -127,31 +127,51 @@ Vollständige DSGVO-konforme Datenschutzerklärung mit 7 Abschnitten:
 
 ## Design System (Stand: Januar 2026)
 
-### Farbpalette (Navy Blue + Industrial Theme)
+### Farbpalette (OYSI Corporate Identity - Beige + Petrol Blue)
 
 ```css
 :root {
-    /* Backgrounds */
-    --bg-primary: #0f172a;
-    --bg-secondary: #1e293b;
-    --bg-card: rgba(30, 41, 59, 0.7);
+    /* OYSI Corporate Identity */
+    --oysi-primary: #095A7D;        /* Petrol Blue Dark - Header, Footer */
+    --oysi-secondary: #027897;      /* Petrol Blue Medium - Sections */
+    --oysi-accent: #17ACBA;         /* Teal - Links, Icons, Accents */
+    --oysi-accent-light: #52CCCD;   /* Teal Light - Hover states */
+    --oysi-highlight: #EF655E;      /* Coral - CTA (1 per page!) */
+    --oysi-bg-main: #F0ECE6;        /* Warm Beige - Main background */
+    --oysi-bg-alt: #D8D3CC;         /* Gray Beige - Alternating sections */
+    --oysi-text-muted: #8A949B;     /* Muted text */
+    --oysi-text-primary: #095A7D;   /* Headings (petrol blue) */
+    --oysi-text-body: #2D3748;      /* Body text (dark gray) */
 
-    /* Accent - Professional Blue */
-    --accent-primary: #3b82f6;
-    --accent-secondary: #60a5fa;
+    /* Legacy mappings (for compatibility) */
+    --bg-primary: var(--oysi-primary);
+    --bg-secondary: var(--oysi-secondary);
+    --bg-card: var(--oysi-bg-alt);
+    --accent-primary: var(--oysi-accent);
+    --accent-secondary: var(--oysi-accent-light);
 
     /* Industrial/Chemical accent colors */
     --chemical-yellow: #fbbf24;
     --chemical-orange: #f97316;
     --industrial-steel: #64748b;
-    --safety-green: #22c55e;
-
-    /* Text */
-    --text-primary: #ffffff;
-    --text-secondary: #e2e8f0;
-    --text-muted: #94a3b8;
+    --safety-green: #17ACBA;        /* Now uses accent color */
 }
 ```
+
+### Farbverwendung
+
+| Farbe | Verwendung |
+|-------|------------|
+| `--oysi-primary` (#095A7D) | Header, Footer, Primary Backgrounds |
+| `--oysi-secondary` (#027897) | Hero Gradient, Section Backgrounds |
+| `--oysi-accent` (#17ACBA) | Links, Icons, Timeline, Badges |
+| `--oysi-accent-light` (#52CCCD) | Hover States, Highlights |
+| `--oysi-highlight` (#EF655E) | **CTA Buttons** (nur 1 pro Viewport!) |
+| `--oysi-bg-main` (#F0ECE6) | Body Background (Warm Beige) |
+| `--oysi-bg-alt` (#D8D3CC) | Alternating Sections (Gray Beige) |
+| `--oysi-text-primary` (#095A7D) | Headings |
+| `--oysi-text-body` (#2D3748) | Body Text |
+| `--oysi-text-muted` (#8A949B) | Secondary/Muted Text |
 
 ### Hero Background (Hexagonales Molekül-Muster)
 
@@ -234,7 +254,7 @@ Für CAS-Nummern, Formeln und technische Daten:
 
 ### Logo-Sichtbarkeit
 
-Logos benötigen Brightness-Filter wegen dunklem Hintergrund:
+Logos benötigen Brightness-Filter wegen des petrol-blauen Header/Footer-Hintergrunds:
 
 ```css
 .hero-logo img { filter: brightness(2) contrast(1.1); }
@@ -246,9 +266,9 @@ Logos benötigen Brightness-Filter wegen dunklem Hintergrund:
 
 ```css
 .card {
-    background: rgba(30, 41, 59, 0.6);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(148, 163, 184, 0.2);
+    border: 1px solid rgba(9, 90, 125, 0.15);
 }
 ```
 
@@ -268,7 +288,7 @@ Die Firmengeschichte wird als auto-scrollende Timeline mit Zwei-Zeilen-Layout da
 | 02/2026 | Neustart | **OYSI GmbH** | Technische Chemie & Digital *(grün)* |
 
 **Design-Prinzipien (A + B Konzept):**
-- **A) Highlight-Spans** (`.hl`): Wichtige Zahlen/Begriffe in Akzentfarbe (#3b82f6)
+- **A) Highlight-Spans** (`.hl`): Wichtige Zahlen/Begriffe in Akzentfarbe (#17ACBA)
 - **B) Zwei-Zeilen-Layout**: Titel + Text, darunter Detail-Zeile (kleiner, grau)
 - Mobil-safe: kein Hover, keine versteckten Infos
 - Highlight nicht fett, Farbe reicht → Premium-Look
@@ -277,7 +297,7 @@ Die Firmengeschichte wird als auto-scrollende Timeline mit Zwei-Zeilen-Layout da
 - Auto-Scroll Animation (15s Zyklus)
 - Pause bei Hover
 - Gradient-Mask (oben/unten ausgeblendet)
-- Grünes Highlight für aktuellen Eintrag (02/2026)
+- Teal Highlight für aktuellen Eintrag (02/2026) - jetzt `--oysi-accent` statt grün
 
 **Übersetzungs-Keys:** `about.timeline.t1` bis `about.timeline.t8`
 
@@ -293,10 +313,10 @@ Die Firmengeschichte wird als auto-scrollende Timeline mit Zwei-Zeilen-Layout da
 .timeline-wrapper { max-height: 220px; overflow: hidden; }
 .timeline { animation: scrollTimeline 15s linear infinite; }
 .timeline:hover { animation-play-state: paused; }
-.timeline-text { font-size: 0.9rem; color: var(--text-secondary); }
-.timeline-detail { font-size: 0.8rem; color: var(--text-muted); }
-.timeline-text .hl, .timeline-detail .hl { color: var(--accent-primary); }
-.timeline-item.highlight .timeline-year { color: #22c55e; }
+.timeline-text { font-size: 0.9rem; color: var(--oysi-text-body); }
+.timeline-detail { font-size: 0.8rem; color: var(--oysi-text-muted); }
+.timeline-text .hl, .timeline-detail .hl { color: var(--oysi-accent); }
+.timeline-item.highlight .timeline-year { color: var(--oysi-accent); }
 ```
 
 ## SEO (2026 Best Practices - GEO/AEO Ready)

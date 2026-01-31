@@ -54,7 +54,7 @@
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="https://cdn.oysi.tech/oysi/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.oysi.tech/oysi/apple-touch-icon.png">
-    <meta name="theme-color" content="#0f172a">
+    <meta name="theme-color" content="#095A7D">
 
     <!-- Preconnect & Performance -->
     <link rel="preconnect" href="https://cdn.oysi.tech" crossorigin>
@@ -96,38 +96,38 @@
     </script>
 
     <style>
-        :root { --bg-primary: #0f172a; --bg-secondary: #1e293b; --bg-card: rgba(30, 41, 59, 0.7); --text-primary: #ffffff; --text-secondary: #e2e8f0; --text-muted: #94a3b8; --accent-primary: #3b82f6; --accent-secondary: #60a5fa; --border-subtle: rgba(148, 163, 184, 0.2); --font-heading: 'IBM Plex Sans', -apple-system, sans-serif; --font-body: 'Source Sans 3', -apple-system, sans-serif; --nav-height: 80px; --container-width: 1200px; }
+        :root { --bg-primary: #095A7D; --bg-secondary: #027897; --bg-card: rgba(2, 120, 151, 0.7); --text-primary: #ffffff; --text-secondary: #e2e8f0; --text-muted: #94a3b8; --accent-primary: #17ACBA; --accent-secondary: #52CCCD; --border-subtle: rgba(148, 163, 184, 0.2); --font-heading: 'IBM Plex Sans', -apple-system, sans-serif; --font-body: 'Source Sans 3', -apple-system, sans-serif; --nav-height: 80px; --container-width: 1200px; --oysi-primary: #095A7D; --oysi-secondary: #027897; --oysi-accent: #17ACBA; --oysi-accent-light: #52CCCD; --oysi-highlight: #EF655E; --oysi-bg-main: #F0ECE6; --oysi-bg-alt: #D8D3CC; --oysi-text-primary: #095A7D; --oysi-text-body: #2D3748; --oysi-text-muted: #8A949B; }
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); background-color: var(--bg-primary); color: var(--text-secondary); line-height: 1.7; }
+        body { font-family: var(--font-body); background-color: var(--oysi-bg-main); color: var(--oysi-text-body); line-height: 1.7; }
         .container { max-width: var(--container-width); margin: 0 auto; padding: 0 24px; }
-        .nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-subtle); z-index: 1000; display: flex; align-items: center; }
+        .nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); background: rgba(9, 90, 125, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-subtle); z-index: 1000; display: flex; align-items: center; }
         .nav .container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .nav-logo img { height: 32px; filter: brightness(1.8) contrast(1.1); }
         .nav-links { display: flex; gap: 32px; list-style: none; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--accent-primary); }
-        .nav-cta { background: var(--accent-primary); color: #fff !important; padding: 10px 20px; border-radius: 6px; font-weight: 600; }
+        .nav-links a:hover { color: var(--oysi-accent); }
+        .nav-cta { background: var(--oysi-highlight); color: #fff !important; padding: 10px 20px; border-radius: 6px; font-weight: 600; }
         .nav-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
         @media (max-width: 768px) { .nav-links { display: none; } .nav-toggle { display: block; } }
-        .page-header { padding: 160px 0 80px; text-align: center; background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%); }
+        .page-header { padding: 160px 0 80px; text-align: center; background: linear-gradient(180deg, var(--oysi-secondary) 0%, var(--oysi-primary) 100%); }
         .page-header h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: var(--text-primary); margin-bottom: 16px; }
         .page-header p { color: var(--text-muted); font-size: 1.1rem; }
         .content { padding: 80px 0; }
         .content-wrapper { max-width: 800px; margin: 0 auto; }
-        .content h2 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin: 48px 0 16px; }
+        .content h2 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; color: var(--oysi-text-primary); margin: 48px 0 16px; }
         .content h2:first-child { margin-top: 0; }
-        .content h3 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin: 28px 0 12px; }
+        .content h3 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; color: var(--oysi-text-primary); margin: 28px 0 12px; }
         .content h2 + h3 { margin-top: 24px; }
         .content p { margin-bottom: 16px; }
-        .content a { color: var(--accent-primary); text-decoration: none; }
+        .content a { color: var(--oysi-accent); text-decoration: none; }
         .content a:hover { text-decoration: underline; }
         .content ul, .content ol { margin: 16px 0; padding-left: 24px; }
         .content li { margin-bottom: 8px; }
         .content table { width: 100%; border-collapse: collapse; margin: 24px 0; }
         .content th, .content td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border-subtle); }
-        .content th { color: var(--text-primary); font-weight: 600; }
-        .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); padding: 64px 0 32px; }
+        .content th { color: var(--oysi-text-primary); font-weight: 600; }
+        .footer { background: var(--oysi-primary); border-top: 1px solid var(--border-subtle); padding: 64px 0 32px; }
         .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; margin-bottom: 48px; }
         .footer-brand img { height: 32px; filter: brightness(1.6) contrast(1.1); margin-bottom: 16px; }
         .footer-brand p { color: var(--text-muted); font-size: 0.9rem; }
@@ -135,19 +135,19 @@
         .footer-links { list-style: none; }
         .footer-links li { margin-bottom: 8px; }
         .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--accent-primary); }
+        .footer-links a:hover { color: var(--oysi-accent); }
         .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid var(--border-subtle); font-size: 0.85rem; color: var(--text-muted); }
         @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } .footer-bottom { flex-direction: column; gap: 16px; text-align: center; } }
         @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
         .cookie-banner { position: fixed; inset: 0; z-index: 10000; display: none; align-items: flex-end; justify-content: center; padding: 24px; }
         .cookie-banner-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); }
-        .cookie-banner-container { position: relative; background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 32px; max-width: 600px; width: 100%; }
+        .cookie-banner-container { position: relative; background: var(--oysi-primary); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 32px; max-width: 600px; width: 100%; }
         .cookie-title { font-family: var(--font-heading); font-size: 1.25rem; color: var(--text-primary); margin-bottom: 12px; }
         .cookie-description { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
         .cookie-banner-actions { display: flex; gap: 12px; flex-wrap: wrap; }
         .cookie-btn { padding: 12px 24px; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-        .cookie-btn-primary { background: var(--accent-primary); color: #fff; }
-        .cookie-btn-secondary { background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-subtle); }
+        .cookie-btn-primary { background: var(--oysi-highlight); color: #fff; }
+        .cookie-btn-secondary { background: var(--oysi-bg-alt); color: var(--oysi-text-primary); border: 1px solid var(--border-subtle); }
     </style>
 </head>
 <body>
