@@ -9,8 +9,8 @@ Corporate Landingpage für die OYSI GmbH (https://oysi.gmbh) mit Kontaktformular
 | Aspekt | Details |
 |--------|---------|
 | **URL** | https://oysi.gmbh |
-| **Sprachen** | DE, FR, EN (Client-seitig umschaltbar) |
-| **Passwort-Schutz** | `oysi2026` (Preview-Modus) |
+| **Sprachen** | DE (index.html), FR (/fr/), EN (/en/) - separate HTML-Dateien |
+| **Passwort-Schutz** | ❌ Entfernt (Januar 2026) |
 | **CDN** | https://cdn.oysi.tech (Logos, Favicons, OG-Images) |
 | **Reverse Proxy** | Traefik (kein direkter Port-Zugriff) |
 | **Analytics** | Google Analytics 4 (`G-GDV44WVP0Z`) |
@@ -172,6 +172,55 @@ Vollständige DSGVO-konforme Datenschutzerklärung mit 7 Abschnitten:
 | `--oysi-text-primary` (#095A7D) | Headings |
 | `--oysi-text-body` (#2D3748) | Body Text |
 | `--oysi-text-muted` (#8A949B) | Secondary/Muted Text |
+
+### iOS Safari Compatibility (Stand: Januar 2026)
+
+**WICHTIG:** iOS Safari hat Rendering-Probleme mit `backdrop-filter: blur()`.
+
+Die folgenden CSS-Fixes sind in allen HTML-Seiten implementiert (direkt nach `:root`):
+
+```css
+/* iOS Safari: Disable backdrop-filter (causes rendering issues) */
+@supports (-webkit-touch-callout: none) {
+    * {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+    }
+    .nav.scrolled {
+        background: rgba(9, 90, 125, 0.98) !important;
+    }
+}
+```
+
+**Zusätzlich vermeiden:**
+- `inset: 0` → Explizit `top: 0; left: 0; right: 0; bottom: 0` verwenden
+- `position: fixed` mit `backdrop-filter` kombinieren
+- Fullscreen-Overlays die `overflow: hidden` auf body setzen
+
+### Scroll-to-Top Button (Stand: Januar 2026)
+
+Ein Scroll-to-Top Button erscheint nach 500px Scrolltiefe:
+
+```css
+.scroll-to-top {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    background: var(--oysi-highlight);  /* Coral */
+    color: #ffffff;
+    border-radius: 50%;
+    display: none;  /* Default hidden */
+    z-index: 999999;  /* Above cookie banner */
+}
+.scroll-to-top.visible {
+    display: flex;
+}
+```
+
+**HTML-Position:** Nach `</footer>`, vor `<script>`
+**JavaScript:** Fügt `.visible` class bei `scrollY > 500` hinzu
 
 ### Hero Background (Hexagonales Molekül-Muster)
 
@@ -425,31 +474,44 @@ Google Tag ist auf allen Seiten eingebunden (direkt nach `<head>`):
 
 ### Cookie Consent Banner (DSGVO-konform)
 
-**Stand: Januar 2026** - Vollständig implementiert mit Google Consent Mode v2.
+**Stand: Januar 2026** - Implementiert als **Non-Blocking Bottom-Bar** mit Google Consent Mode v2.
 
 | Feature | Status |
 |---------|--------|
 | **Google Consent Mode v2** | ✅ GA4 erst nach Einwilligung aktiv |
+| **Non-Blocking Design** | ✅ Bottom-bar, Seite bleibt scrollbar |
+| **iOS Safari Compatible** | ✅ Kein backdrop-filter, kein overflow:hidden |
 | **3 klare Buttons** | ✅ "Alle akzeptieren", "Nur Essenzielle", "Einstellungen" |
-| **Keine Dark Patterns** | ✅ Gleichberechtigte visuelle Behandlung |
-| **CLS-frei** | ✅ Overlay/Modal blockiert kein Layout |
 | **Responsive** | ✅ 48px Touch Targets, Mobile-optimiert |
-| **Corporate Design** | ✅ Navy Blue mit #3b82f6 Akzent |
-| **i18n** | ✅ Übersetzungen für DE, FR, EN |
+| **Corporate Design** | ✅ Petrol Blue mit OYSI CI Farben |
+| **i18n** | ✅ Separate HTML-Dateien (DE/FR/EN) |
 | **Footer-Link** | ✅ "Cookie-Einstellungen" zum nachträglichen Ändern |
 
-**Consent-Kategorien:**
+**WICHTIG - iOS Safari Kompatibilität:**
+- Kein `document.body.style.overflow = 'hidden'`
+- Kein Fullscreen-Overlay mit `position: fixed; inset: 0`
+- Kein `backdrop-filter: blur()`
+- Einfache Bottom-Bar mit `position: fixed; bottom: 0`
 
-| Kategorie | Cookie-Typen | Default |
-|-----------|--------------|---------|
-| Essenzielle | Session, Sprache | Immer aktiv |
-| Analytics | Google Analytics 4 | Denied |
-| Marketing | Ads, Personalisierung | Denied |
+**CSS-Struktur:**
+```css
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    padding: 16px;
+    background: #ffffff;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+}
+.cookie-banner-overlay {
+    display: none;  /* Kein Overlay mehr */
+}
+```
 
-**Technische Details:**
-
+**JavaScript:**
 ```javascript
-// Cookie Name & Ablauf
 const COOKIE_NAME = 'oysi_consent';
 const COOKIE_EXPIRY_DAYS = 365;
 
@@ -464,8 +526,8 @@ gtag('consent', 'default', {
 
 // Nach Einwilligung
 gtag('consent', 'update', {
-    'analytics_storage': 'granted',  // wenn Analytics akzeptiert
-    'ad_storage': 'granted'          // wenn Marketing akzeptiert
+    'analytics_storage': 'granted',
+    'ad_storage': 'granted'
 });
 ```
 
@@ -473,12 +535,6 @@ gtag('consent', 'update', {
 ```javascript
 window.openCookieConsent()  // Öffnet Banner mit aktuellen Einstellungen
 ```
-
-**Code-Lokation in index.html:**
-- Zeilen 5-36: Google Consent Mode v2 Default
-- Zeilen 3982-4073: HTML Banner Markup
-- Zeilen 4078-4434: CSS Styles
-- Zeilen 4441-4700: JavaScript Logik + i18n
 
 ## Spam-Schutz
 
@@ -563,19 +619,6 @@ EMAIL_RECIPIENT=olivier.hoefer@oysi.gmbh
 
 ## Häufige Änderungen
 
-### Passwort ändern
-
-```javascript
-// In index.html, Zeile ~2660
-const PASSWORD = 'oysi2026';
-```
-
-### Neue Sprache hinzufügen
-
-1. Button in `.lang-switcher` hinzufügen
-2. Translations-Objekt erweitern (DE/FR/EN als Vorlage)
-3. hreflang-Link im Head hinzufügen
-
 ### Farben ändern
 
 Alle Farben sind als CSS Custom Properties in `:root` definiert (Zeile ~400-435).
@@ -587,3 +630,53 @@ Die SVG-Icons sind inline im HTML definiert:
 - **Industry Icons:** Zeile ~2610-2660
 
 Alle Icons verwenden `stroke="currentColor"` und erben die Farbe von `.service-icon` / `.industry-icon`.
+
+### Sprachversionen aktualisieren
+
+**ACHTUNG:** Jede Sprachversion hat eine eigene HTML-Datei:
+- `/public/index.html` - Deutsche Version (Master)
+- `/public/fr/index.html` - Französische Version
+- `/public/en/index.html` - Englische Version
+
+Bei Änderungen an CSS oder JavaScript müssen ALLE Dateien aktualisiert werden!
+
+Die deutsche Version (`index.html`) verwendet KEIN client-seitiges i18n mehr - der Inhalt ist direkt auf Deutsch im HTML.
+
+---
+
+## Changelog (Januar 2026)
+
+### 31. Januar 2026 - Major Update
+
+**OYSI Corporate Identity Refonte:**
+- Alle Farben von Navy/Dark Theme auf Beige + Petrol Blue umgestellt
+- ~200+ Farbwerte pro Seite aktualisiert (11 HTML-Dateien)
+- CSS Custom Properties (`:root`) mit neuer OYSI CI Palette
+- Alle hardcoded rgba() und hex Werte durch Variablen ersetzt
+
+**iOS Safari Fixes:**
+- `backdrop-filter: blur()` auf iOS deaktiviert (verursacht Rendering-Probleme)
+- `inset: 0` durch explizite `top/left/right/bottom` ersetzt
+- Media Query `@supports (-webkit-touch-callout: none)` für iOS-spezifisches CSS
+
+**Passwort-Schutz entfernt:**
+- Preview-Modus mit Passwort komplett entfernt
+- CSS, HTML und JavaScript für Password-Gate gelöscht
+- Website ist jetzt öffentlich zugänglich
+
+**Cookie Banner neu implementiert:**
+- Fullscreen-Overlay durch Non-Blocking Bottom-Bar ersetzt
+- `overflow: hidden` auf body entfernt (blockierte Scrollen auf iOS)
+- Google Consent Mode v2 weiterhin aktiv
+- iOS Safari kompatibel
+
+**Scroll-to-Top Button:**
+- Neuer Button unten rechts nach 500px Scrolltiefe
+- Coral-Farbe (`--oysi-highlight`) als Akzent
+- z-index 999999 (über Cookie Banner)
+- Smooth-Scroll Animation
+
+**Sprachversionen:**
+- Client-seitiges i18n auf deutscher Hauptseite deaktiviert
+- Jede Sprache hat nun dedizierte HTML-Datei mit nativen Inhalten
+- Language-Switcher verlinkt direkt auf `/`, `/fr/`, `/en/`

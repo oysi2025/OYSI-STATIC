@@ -763,7 +763,7 @@
 
         /* Explicit dimensions for known images */
         .hero-logo img {
-            aspect-ratio: 200 / 80;
+            aspect-ratio: 280 / 112;
         }
 
         .nav-logo img {
@@ -1169,30 +1169,71 @@
             border-radius: 50%;
         }
 
-        /* Hero Logo - Large Centered */
+        /* Hero Logo - Large Centered with Glow Ring */
         .hero-logo {
             display: flex;
             justify-content: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             animation: fadeInUp 0.8s ease forwards;
+            position: relative;
+        }
+
+        .hero-logo::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle,
+                rgba(23, 172, 186, 0.25) 0%,
+                rgba(23, 172, 186, 0.1) 40%,
+                transparent 70%);
+            border-radius: 50%;
+            animation: pulseGlow 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 1;
+            }
         }
 
         .hero-logo img {
-            width: 200px;
+            width: 280px;
             height: auto;
-            /* CRITICAL: Brighten logo for dark background visibility */
-            filter: brightness(2) contrast(1.1) drop-shadow(0 0 40px rgba(255, 255, 255, 0.25));
-            transition: filter 0.3s ease, transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+            /* Multi-layer glow for prominence */
+            filter: brightness(2.2) contrast(1.15)
+                    drop-shadow(0 0 20px rgba(255, 255, 255, 0.4))
+                    drop-shadow(0 0 50px rgba(23, 172, 186, 0.35))
+                    drop-shadow(0 0 80px rgba(23, 172, 186, 0.2));
+            transition: filter 0.4s ease, transform 0.4s ease;
         }
 
         .hero-logo img:hover {
-            filter: brightness(2.2) contrast(1.2) drop-shadow(0 0 50px rgba(255, 255, 255, 0.35));
-            transform: scale(1.02);
+            filter: brightness(2.4) contrast(1.2)
+                    drop-shadow(0 0 25px rgba(255, 255, 255, 0.5))
+                    drop-shadow(0 0 60px rgba(23, 172, 186, 0.45))
+                    drop-shadow(0 0 100px rgba(23, 172, 186, 0.25));
+            transform: scale(1.03);
         }
 
         @media (max-width: 768px) {
             .hero-logo img {
-                width: 160px;
+                width: 220px;
+            }
+            .hero-logo::before {
+                width: 260px;
+                height: 260px;
             }
         }
 
@@ -1511,17 +1552,16 @@
         }
 
         .founder-avatar {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--oysi-accent), var(--oysi-accent-light));
+            width: 64px;
+            height: 64px;
+            min-width: 64px;
+            min-height: 64px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #ffffff;
+            object-fit: cover;
+            object-position: center top;
+            border: 3px solid var(--oysi-accent);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            flex-shrink: 0;
         }
 
         .founder-details h4 {
@@ -2366,6 +2406,54 @@
         }
 
         /* ============================================
+           SCROLL TO TOP BUTTON
+        ============================================ */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: var(--oysi-highlight);
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(239, 101, 94, 0.5);
+            z-index: 999999;
+        }
+
+        .scroll-to-top.visible {
+            display: flex;
+        }
+
+        .scroll-to-top:hover {
+            background: #d9534f;
+        }
+
+        .scroll-to-top svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-to-top {
+                bottom: 90px;
+                right: 16px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .scroll-to-top svg {
+                width: 24px;
+                height: 20px;
+            }
+        }
+
+        /* ============================================
            RESPONSIVE ADJUSTMENTS
         ============================================ */
         @media (max-width: 480px) {
@@ -2436,10 +2524,10 @@
             <!-- Large Logo with Glow -->
             <div class="hero-logo" itemscope itemtype="https://schema.org/Organization">
                 <img src="https://cdn.oysi.tech/oysi/Logo_Oysi_RZ.svg"
-                     alt="OYSI GmbH - Technische Chemie seit 1995"
+                     alt="OYSI GmbH - Chimie technique depuis 1995"
                      itemprop="logo"
-                     width="200"
-                     height="80"
+                     width="280"
+                     height="112"
                      loading="eager"
                      fetchpriority="high">
             </div>
@@ -2459,22 +2547,22 @@
 
             <div class="hero-stats" id="heroStats">
                 <div class="stat-item">
-                    <div class="stat-number" data-target="30">0</div>
-                    <div class="stat-label" data-i18n="hero.stat1">Jahre Expertise</div>
+                    <div class="stat-number" data-target="30">30+</div>
+                    <div class="stat-label" data-i18n="hero.stat1">Ans d'expertise</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" data-target="3800">0</div>
-                    <div class="stat-label" data-i18n="hero.stat2">Substanzen dokumentiert</div>
+                    <div class="stat-number" data-target="3800">3.800+</div>
+                    <div class="stat-label" data-i18n="hero.stat2">Substances documentées</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" data-target="100">0</div>
-                    <div class="stat-label" data-i18n="hero.stat3">% EU-Konform</div>
+                    <div class="stat-number" data-target="100">100%</div>
+                    <div class="stat-label" data-i18n="hero.stat3">Conforme UE</div>
                 </div>
             </div>
 
             <div class="hero-ctas">
-                <a href="https://oysi.gmbh/shop" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                    <span data-i18n="hero.cta1">Produkte entdecken</span>
+                <a href="#contact" class="btn btn-primary">
+                    <span data-i18n="hero.cta1">Nous contacter</span>
                     <span class="btn-arrow">→</span>
                 </a>
                 <a href="#kontakt" class="btn btn-secondary" data-i18n="hero.cta2">
@@ -2524,7 +2612,7 @@
                 <div class="about-visual reveal reveal-delay-2">
                     <div class="about-image-frame">
                         <div class="founder-info">
-                            <div class="founder-avatar">OH</div>
+                            <img class="founder-avatar" src="https://cdn.oysi.tech/images/olivier-hoefer-portrait.png" alt="Olivier Höfer" loading="lazy">
                             <div class="founder-details">
                                 <h4>Olivier Höfer</h4>
                                 <p data-i18n="about.founderRole">Geschäftsführer & Gründer</p>
@@ -2587,7 +2675,7 @@
                                     <div class="timeline-content">
                                         <span class="timeline-title" data-i18n="about.timeline.t7.title">Exit Management</span>
                                         <p class="timeline-text" data-i18n="about.timeline.t7.text">Abgabe der Geschäftsführung</p>
-                                        <p class="timeline-detail"><span class="hl" data-i18n="about.timeline.t7.detail">Kein Gesellschafter mehr</span></p>
+                                        <p class="timeline-detail"><span class="hl" data-i18n="about.timeline.t7.detail">Vollständiger Exit</span></p>
                                     </div>
                                 </div>
                                 <div class="timeline-item highlight">
@@ -2969,7 +3057,7 @@
                 <div class="footer-col">
                     <h4 data-i18n="footer.ecosystem">OYSI Ökosystem</h4>
                     <ul class="footer-links">
-                        <li><a href="https://oysi.gmbh/shop" target="_blank" rel="noopener noreferrer">Shop</a></li>
+                        <li><span style="color: var(--oysi-text-muted); cursor: default;">Shop (Coming soon)</span></li>
                         <li><a href="https://oysi.eu" target="_blank" rel="noopener noreferrer" data-i18n="digital.lexikon.title">Chemie-Lexikon</a></li>
                         <li><a href="https://dpp.oysi.gmbh" target="_blank" rel="noopener noreferrer">Digital Product Passport</a></li>
                     </ul>
@@ -2997,6 +3085,13 @@
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top" title="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
 
     <script>
         // ============================================
@@ -3052,7 +3147,7 @@
                         t4: { title: "Produktionsstandort", text: "Neubau in Kleinblittersdorf", unit: "Produktionsfläche" },
                         t5: { title: "Logistikzentrum", text: "Inbetriebnahme Logistik", unit: "Lager- & Versandfläche" },
                         t6: { title: "Beteiligungsverkauf", text: "Verkauf der Unternehmensanteile", detail: "Minderheitsgesellschafter" },
-                        t7: { title: "Exit Management", text: "Abgabe der Geschäftsführung", detail: "Kein Gesellschafter mehr" },
+                        t7: { title: "Exit Management", text: "Abgabe der Geschäftsführung", detail: "Vollständiger Exit" },
                         t8: { title: "Neustart", detail: "Technische Chemie & Digital" }
                     }
                 },
@@ -3623,20 +3718,53 @@
         const navToggle = document.getElementById('navToggle');
         const navMenu = document.getElementById('navMenu');
         const navLinks = document.querySelectorAll('.nav-link');
+        const scrollToTopBtn = document.getElementById('scrollToTop');
 
-        // Scroll-Effekt für Navigation
+        // Scroll-Effekt für Navigation + Scroll-to-Top Button
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
+            // Navigation scrolled state
+            if (nav) {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            }
+
+            // Scroll-to-Top Button visibility
+            if (scrollToTopBtn) {
+                if (window.scrollY > 500) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
             }
         });
 
+        // Scroll-to-Top Button click handler
+        if (scrollToTopBtn) {
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
         // Mobile Menu Toggle
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('open');
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navMenu.classList.toggle('open');
+            });
+        }
+
+        // Close menu when clicking a nav link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu) navMenu.classList.remove('open');
+                if (navToggle) navToggle.classList.remove('active');
+            });
         });
 
         // Smooth Scroll für Anchor-Links
@@ -3648,7 +3776,7 @@
                 e.preventDefault();
                 const target = document.querySelector(href);
                 if (target) {
-                    const navHeight = nav.offsetHeight;
+                    const navHeight = nav ? nav.offsetHeight : 80;
                     const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
 
                     window.scrollTo({
@@ -3657,8 +3785,8 @@
                     });
 
                     // Mobile Menu schließen
-                    navToggle.classList.remove('active');
-                    navMenu.classList.remove('open');
+                    if (navToggle) navToggle.classList.remove('active');
+                    if (navMenu) navMenu.classList.remove('open');
                 }
             });
         });
@@ -3667,7 +3795,7 @@
         const sections = document.querySelectorAll('section[id]');
 
         function updateActiveLink() {
-            const scrollPos = window.scrollY + nav.offsetHeight + 100;
+            const scrollPos = window.scrollY + (nav ? nav.offsetHeight : 80) + 100;
 
             sections.forEach(section => {
                 const top = section.offsetTop;
@@ -3720,6 +3848,8 @@
                     const counters = entry.target.querySelectorAll('.stat-number');
                     counters.forEach((counter, index) => {
                         const target = parseInt(counter.dataset.target);
+                        // Reset to 0 first (HTML shows final value for no-JS fallback)
+                        counter.textContent = '0+';
                         setTimeout(() => {
                             animateCounter(counter, target);
                         }, index * 200);

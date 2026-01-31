@@ -123,19 +123,28 @@
         .content h2:first-child { margin-top: 0; }
         .content p { margin-bottom: 20px; font-size: 1.05rem; }
         .content a { color: var(--accent-primary); text-decoration: none; }
-        .highlight-box { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 32px; margin: 32px 0; }
-        .highlight-box blockquote { font-size: 1.2rem; font-style: italic; color: var(--oysi-text-primary); border-left: 3px solid var(--accent-primary); padding-left: 20px; margin: 0; }
-        .highlight-box cite { display: block; margin-top: 16px; color: var(--text-muted); font-style: normal; }
+        .highlight-box { background: #ffffff; border: 1px solid rgba(9, 90, 125, 0.15); border-radius: 12px; padding: 32px; margin: 32px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .highlight-box blockquote { font-size: 1.2rem; font-style: italic; color: var(--oysi-text-body); border-left: 3px solid var(--oysi-highlight); padding-left: 20px; margin: 0; }
+        .highlight-box cite { display: block; margin-top: 16px; color: var(--oysi-text-primary); font-style: normal; font-weight: 500; }
         .timeline { margin: 48px 0; }
         .timeline-item { display: flex; gap: 24px; margin-bottom: 32px; }
         .timeline-year { font-family: var(--font-heading); font-weight: 700; color: var(--accent-primary); min-width: 80px; }
         .timeline-content h3 { color: var(--oysi-text-primary); font-size: 1.1rem; margin-bottom: 8px; }
         .timeline-content p { color: var(--text-muted); margin: 0; }
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 48px 0; }
-        .stat-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 32px; text-align: center; }
-        .stat-number { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700; color: var(--accent-primary); }
-        .stat-label { color: var(--text-muted); margin-top: 8px; }
+        .stat-card { background: #ffffff; border: 1px solid rgba(9, 90, 125, 0.15); border-radius: 12px; padding: 32px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .stat-number { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700; color: var(--oysi-primary); }
+        .stat-label { color: var(--oysi-text-body); margin-top: 8px; }
         @media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr; } .timeline-item { flex-direction: column; gap: 8px; } }
+        .story-image { margin: 32px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .story-image img { width: 100%; height: auto; display: block; }
+        .story-image figcaption { background: #ffffff; padding: 12px 16px; font-size: 0.9rem; color: var(--oysi-text-muted); border-top: 1px solid rgba(9, 90, 125, 0.1); }
+        .image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 40px 0; }
+        @media (max-width: 768px) { .image-grid { grid-template-columns: 1fr; } }
+        .founder-card { display: flex; gap: 24px; align-items: center; }
+        .founder-portrait { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; object-position: center top; border: 4px solid var(--oysi-accent); box-shadow: 0 8px 24px rgba(0,0,0,0.12); flex-shrink: 0; }
+        .founder-quote { flex: 1; }
+        @media (max-width: 600px) { .founder-card { flex-direction: column; text-align: center; } .founder-portrait { width: 100px; height: 100px; } }
         .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); padding: 64px 0 32px; }
         .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; margin-bottom: 48px; }
         .footer-brand img { height: 32px; filter: brightness(1.6) contrast(1.1); margin-bottom: 16px; }
@@ -188,13 +197,29 @@
                 <h2>Unsere Geschichte</h2>
                 <p>1995 gründete Olivier Höfer sein erstes Unternehmen in einer Saarbrücker Garage. Aus diesen bescheidenen Anfängen entwickelte er die Höfer Chemie GmbH zu einem der führenden Chemiedistributoren Deutschlands – mit 70 Mitarbeitern und über 11.000 m² Produktions- und Logistikfläche.</p>
 
-                <p>2025 beginnt ein neues Kapitel: Mit der OYSI GmbH bündelt Höfer sein gesamtes Know-how aus 30 Jahren Chemiebranche. Der Fokus liegt auf strategischem B2B-Chemikalienhandel mit eigener digitaler Infrastruktur und höchsten Compliance-Standards.</p>
+                <p>2025 beginnt ein neues Kapitel: Mit der OYSI GmbH bündelt Olivier Höfer sein gesamtes Know-how aus 30 Jahren Chemiebranche. Der Fokus liegt auf strategischem B2B-Chemikalienhandel mit eigener digitaler Infrastruktur und höchsten Compliance-Standards.</p>
+
+                <div class="image-grid">
+                    <figure class="story-image">
+                        <img src="https://cdn.oysi.tech/images/7FBC5C4A-F554-4C8C-80D3-2359BB0617DD_1_105_c.jpeg" alt="Garage in Saarbrücken - Der Ursprung 1995" width="600" height="400" loading="lazy">
+                        <figcaption>1995: Die Garage in Saarbrücken – hier fing alles an</figcaption>
+                    </figure>
+                    <figure class="story-image">
+                        <img src="https://cdn.oysi.tech/images/hc_gmbh_20481.jpg" alt="Höfer Chemie GmbH Firmengebäude" width="600" height="400" loading="lazy">
+                        <figcaption>Höfer Chemie GmbH – 11.500 m² Produktions- und Logistikfläche</figcaption>
+                    </figure>
+                </div>
 
                 <div class="highlight-box">
-                    <blockquote>
-                        «Nach 30 Jahren in der Chemiebranche weiß ich: Nicht das Produkt macht den Unterschied, sondern Wissen, Service und Compliance.»
-                    </blockquote>
-                    <cite>— Olivier Höfer, Geschäftsführer</cite>
+                    <div class="founder-card">
+                        <img class="founder-portrait" src="https://cdn.oysi.tech/images/olivier-hoefer-portrait.png" alt="Olivier Höfer, Geschäftsführer OYSI GmbH" loading="lazy">
+                        <div class="founder-quote">
+                            <blockquote>
+                                «Nach 30 Jahren in der Chemiebranche weiß ich: Nicht das Produkt macht den Unterschied, sondern Wissen, Service und Compliance.»
+                            </blockquote>
+                            <cite>— Olivier Höfer, Geschäftsführer</cite>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="stats-grid">
