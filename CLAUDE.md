@@ -13,6 +13,7 @@ Corporate Landingpage für die OYSI GmbH (https://oysi.gmbh) mit Kontaktformular
 | **Passwort-Schutz** | `oysi2026` (Preview-Modus) |
 | **CDN** | https://cdn.oysi.tech (Logos, Favicons, OG-Images) |
 | **Reverse Proxy** | Traefik (kein direkter Port-Zugriff) |
+| **Analytics** | Google Analytics 4 (`G-GDV44WVP0Z`) |
 
 ## Kontaktdaten
 
@@ -58,29 +59,66 @@ docker exec oysi_static wget -q --spider http://127.0.0.1/
 ```
 oysi-static/
 ├── public/
-│   ├── index.html       # Deutsche Version (Master)
-│   ├── fr/index.html    # Französische Version (generiert)
-│   ├── en/index.html    # Englische Version (generiert)
-│   ├── sitemap.xml      # Sitemap mit hreflang
+│   ├── index.html           # Homepage (Master)
+│   ├── fr/index.html        # Homepage FR (generiert)
+│   ├── en/index.html        # Homepage EN (generiert)
+│   ├── about/index.html     # Über uns
+│   ├── services/index.html  # Leistungen
+│   ├── contact/index.html   # Kontakt
+│   ├── faq/index.html       # FAQ
+│   ├── partner/index.html   # Partner
+│   ├── legal/index.html     # Impressum
+│   ├── privacy/index.html   # Datenschutz
+│   ├── dental/index.html    # Dental Landing Page
+│   ├── sitemap.xml          # Sitemap (alle Seiten)
 │   └── robots.txt
 ├── backend/
-│   ├── main.py          # FastAPI Kontaktformular-API
+│   ├── main.py              # FastAPI Kontaktformular-API
 │   ├── requirements.txt
 │   └── Dockerfile
-├── nginx.conf           # Reverse Proxy mit Sprachrouting
-├── docker-compose.yml   # Service-Orchestrierung (Traefik Labels)
-├── build-i18n.sh        # ⚠️ Nach Änderungen an index.html ausführen!
-├── .env                 # SMTP-Zugangsdaten (NICHT in Git!)
+├── nginx.conf               # Reverse Proxy mit Sprachrouting
+├── docker-compose.yml       # Service-Orchestrierung (Traefik Labels)
+├── build-i18n.sh            # ⚠️ Nach Änderungen an index.html ausführen!
+├── .env                     # SMTP-Zugangsdaten (NICHT in Git!)
 └── CLAUDE.md
 ```
 
-### Sprachversionen (SEO-optimiert)
+### Seitenstruktur (Multi-Page, Stand: 31. Januar 2026)
+
+| Seite | URL | Beschreibung | SEO |
+|-------|-----|--------------|-----|
+| **Homepage** | `/` | Hero, Services-Übersicht, CTA | ✅ Vollständig (12 Schemas) |
+| **Über uns** | `/about/` | Timeline, Firmengeschichte, Statistiken | ✅ OG, Twitter, Breadcrumb |
+| **Leistungen** | `/services/` | 4 Kernkompetenzen mit Details | ✅ OG, Twitter, Service Schema |
+| **Kontakt** | `/contact/` | Kontaktformular + Kontaktdaten | ✅ OG, Twitter, LocalBusiness |
+| **FAQ** | `/faq/` | Accordion mit häufigen Fragen (SEO) | ✅ OG, Twitter, FAQPage (7 Q&A) |
+| **Partner** | `/partner/` | Partnerschaftsmodelle + Benefits | ✅ OG, Twitter, Breadcrumb |
+| **Impressum** | `/legal/` | Pflichtangaben nach § 5 TMG | ✅ OG, Twitter, Breadcrumb |
+| **Datenschutz** | `/privacy/` | Vollständige DSGVO-Erklärung (7 Abschnitte) | ✅ OG, Twitter, Breadcrumb |
+
+### Datenschutzseite (Stand: 31. Januar 2026)
+
+Vollständige DSGVO-konforme Datenschutzerklärung mit 7 Abschnitten:
+
+1. **Datenschutz auf einen Blick** - Allgemeine Hinweise, Verantwortlicher, Datenerfassung
+2. **Hosting** - OVH (Saarbrücken), AVV, ISO 27001/27701
+3. **Allgemeine Hinweise** - Verantwortlicher, Widerrufsrecht, SSL/TLS
+4. **Datenerfassung** - Cookies (oysi_consent, _ga), Server-Logs, Kontaktanfragen
+5. **Analyse-Tools (Google)** - Consent Mode V2 (4 Parameter), GA4 mit IP-Anonymisierung, EU-US DPF
+6. **Betroffenenrechte** - Art. 15-21 DSGVO, Aufsichtsbehörde (UDZ Saarland)
+7. **Aktualität** - Stand Januar 2026
+
+**Hinweis:** Keine Mobilnummer im Verantwortlichen-Abschnitt (gemäß Policy).
+
+### Sprachversionen (Homepage only)
 
 | URL | Datei | Canonical |
 |-----|-------|-----------|
 | `oysi.gmbh/` | `public/index.html` | `oysi.gmbh/` |
 | `oysi.gmbh/fr/` | `public/fr/index.html` | `oysi.gmbh/fr/` |
 | `oysi.gmbh/en/` | `public/en/index.html` | `oysi.gmbh/en/` |
+
+**Hinweis:** Unterseiten (about, services, etc.) sind aktuell nur auf Deutsch. i18n kann später ergänzt werden.
 
 **WICHTIG:** Nach Änderungen an `index.html`:
 ```bash
@@ -263,6 +301,22 @@ Die Firmengeschichte wird als auto-scrollende Timeline mit Zwei-Zeilen-Layout da
 
 ## SEO (2026 Best Practices - GEO/AEO Ready)
 
+### Unterseiten-SEO (Stand: 31. Januar 2026)
+
+Alle 7 Unterseiten wurden auf Homepage-Niveau gebracht:
+
+| Feature | Implementiert auf allen Unterseiten |
+|---------|-------------------------------------|
+| **Google Consent Mode v2** | ✅ Erweitert mit `allow_google_signals: false` |
+| **Hreflang Tags** | ✅ DE + x-default |
+| **Open Graph** | ✅ og:title, og:description, og:image, og:url |
+| **Twitter Cards** | ✅ summary_large_image (Hauptseiten) / summary (Legal) |
+| **Geo Meta Tags** | ✅ DE-SL, Saarbrücken |
+| **Preconnect/DNS-Prefetch** | ✅ cdn.oysi.tech, fonts.googleapis.com |
+| **JSON-LD WebPage** | ✅ Mit dateModified, isPartOf, breadcrumb |
+| **JSON-LD BreadcrumbList** | ✅ Startseite → Aktuelle Seite |
+| **Seitenspezifische Schemas** | ✅ FAQPage, LocalBusiness, Service, AboutPage |
+
 ### Structured Data (12 JSON-LD Schemas)
 
 | Schema | Zweck |
@@ -326,6 +380,85 @@ Validierung: https://validator.schema.org/ und https://search.google.com/test/ri
 - ARIA landmarks (role="banner", "navigation", "main", "contentinfo")
 - aria-labelledby für alle Sections
 - Microdata (itemprop, itemscope, itemtype)
+
+### Google Analytics 4
+
+**Hinweis:** Wir verwenden gtag.js (GA4 direkt), NICHT den Google Tag Manager (GTM).
+
+Google Tag ist auf allen Seiten eingebunden (direkt nach `<head>`):
+
+| Property | Wert |
+|----------|------|
+| **Measurement ID** | `G-GDV44WVP0Z` |
+| **Eingebunden in** | Alle Seiten (Homepage + 7 Unterseiten + Sprachversionen) |
+
+```html
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GDV44WVP0Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GDV44WVP0Z');
+</script>
+```
+
+### Cookie Consent Banner (DSGVO-konform)
+
+**Stand: Januar 2026** - Vollständig implementiert mit Google Consent Mode v2.
+
+| Feature | Status |
+|---------|--------|
+| **Google Consent Mode v2** | ✅ GA4 erst nach Einwilligung aktiv |
+| **3 klare Buttons** | ✅ "Alle akzeptieren", "Nur Essenzielle", "Einstellungen" |
+| **Keine Dark Patterns** | ✅ Gleichberechtigte visuelle Behandlung |
+| **CLS-frei** | ✅ Overlay/Modal blockiert kein Layout |
+| **Responsive** | ✅ 48px Touch Targets, Mobile-optimiert |
+| **Corporate Design** | ✅ Navy Blue mit #3b82f6 Akzent |
+| **i18n** | ✅ Übersetzungen für DE, FR, EN |
+| **Footer-Link** | ✅ "Cookie-Einstellungen" zum nachträglichen Ändern |
+
+**Consent-Kategorien:**
+
+| Kategorie | Cookie-Typen | Default |
+|-----------|--------------|---------|
+| Essenzielle | Session, Sprache | Immer aktiv |
+| Analytics | Google Analytics 4 | Denied |
+| Marketing | Ads, Personalisierung | Denied |
+
+**Technische Details:**
+
+```javascript
+// Cookie Name & Ablauf
+const COOKIE_NAME = 'oysi_consent';
+const COOKIE_EXPIRY_DAYS = 365;
+
+// Google Consent Mode v2 Default (vor gtag.js)
+gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'wait_for_update': 500
+});
+
+// Nach Einwilligung
+gtag('consent', 'update', {
+    'analytics_storage': 'granted',  // wenn Analytics akzeptiert
+    'ad_storage': 'granted'          // wenn Marketing akzeptiert
+});
+```
+
+**Footer-Link zum Öffnen:**
+```javascript
+window.openCookieConsent()  // Öffnet Banner mit aktuellen Einstellungen
+```
+
+**Code-Lokation in index.html:**
+- Zeilen 5-36: Google Consent Mode v2 Default
+- Zeilen 3982-4073: HTML Banner Markup
+- Zeilen 4078-4434: CSS Styles
+- Zeilen 4441-4700: JavaScript Logik + i18n
 
 ## Spam-Schutz
 
