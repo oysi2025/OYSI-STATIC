@@ -1743,6 +1743,49 @@
             }
         }
 
+        /* Outcome Block */
+        .outcome-block {
+            background: var(--bg-primary, #095A7D);
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(23, 172, 186, 0.2);
+        }
+
+        .outcome-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 16px 32px;
+        }
+
+        .outcome-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .outcome-items {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px 24px;
+        }
+
+        .outcome-item {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .outcome-block { padding: 20px 0; }
+            .outcome-content { flex-direction: column; gap: 12px; }
+            .outcome-items { flex-direction: column; gap: 8px; text-align: center; }
+        }
+
         /* Secondary Highlight CTA */
         .btn-highlight-secondary {
             display: inline-flex;
@@ -2757,6 +2800,13 @@
             margin-top: 4px;
         }
 
+        .metric-note {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
         .segments-section {
             margin-top: 48px;
             padding-top: 48px;
@@ -2820,6 +2870,95 @@
 
         @media (max-width: 768px) {
             .segments-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Mini Case Study */
+        .case-study {
+            margin-top: 48px;
+            padding: 32px;
+            background: rgba(23, 172, 186, 0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(23, 172, 186, 0.2);
+        }
+
+        .case-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--oysi-accent, #17ACBA);
+            margin-bottom: 20px;
+        }
+
+        .case-note {
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .case-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .case-item {
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .case-stage {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .case-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .case-result {
+            background: rgba(23, 172, 186, 0.15);
+            border-left: 3px solid var(--oysi-accent, #17ACBA);
+        }
+
+        .case-result p strong {
+            color: var(--oysi-accent-light, #52CCCD);
+        }
+
+        .case-disclaimer {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .cta-subtext {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .case-content {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .case-study {
+                padding: 24px 20px;
+            }
         }
 
         .usp-visual {
@@ -3622,9 +3761,9 @@
 
             <!-- KPI Bar: Measurable Outcomes -->
             <div class="kpi-bar">
-                <div class="kpi-item">
+                <div class="kpi-item" title="Based on project experience; depends on product complexity & data availability">
                     <div class="kpi-value">−60%</div>
-                    <div class="kpi-label">Coordination for SDS creation</div>
+                    <div class="kpi-label">Coordination for SDS creation*</div>
                 </div>
                 <div class="kpi-item">
                     <div class="kpi-value">24h</div>
@@ -3654,6 +3793,34 @@
                     <span class="trust-item">Regulatory responsibility (REACH, CLP, GHS)</span>
                 </div>
                 <span class="trust-proof">3,800+ products managed across European markets</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcome Block - Business Impact -->
+    <section class="outcome-block" aria-label="Client outcomes">
+        <div class="container">
+            <div class="outcome-content">
+                <span class="outcome-label">What our clients actually achieve</span>
+                <div class="outcome-items">
+                    <span class="outcome-item">→ Shorter approval times for chemical products</span>
+                    <span class="outcome-item">→ Fewer inquiries from authorities & auditors</span>
+                    <span class="outcome-item">→ Clear data foundation for DPP, REACH & logistics</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience Block -->
+    <section class="target-block" aria-label="Target audience">
+        <div class="container">
+            <div class="target-content">
+                <span class="target-label">Relevant for:</span>
+                <div class="target-items">
+                    <span class="target-item">Chemical trading & industry</span>
+                    <span class="target-item">Companies with authorization & DPP obligations</span>
+                    <span class="target-item">Compliance & product approval managers</span>
+                </div>
             </div>
         </div>
     </section>
@@ -3899,12 +4066,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Section CTA -->
-            <div class="section-cta reveal">
-                <p>Compliance questions? We analyze your situation free of charge.</p>
-                <a href="#kontakt" class="btn btn-highlight-secondary">Free Assessment →</a>
-            </div>
         </div>
     </section>
 
@@ -4078,13 +4239,14 @@
                 <div class="usp-content reveal">
                     <span class="section-label">What You Gain</span>
                     <h2 id="usp-title">Less Compliance Burden, More Business Focus</h2>
+                    <p class="usp-positioning">OYSI is not a consultancy – we come from operational responsibility in chemistry, logistics, and regulation.</p>
 
                     <ul class="usp-list">
                         <li class="usp-item">
                             <span class="usp-check">✓</span>
                             <span class="usp-text">
                                 All-in-one compliance documentation
-                                <span class="usp-metric">→ Avg. 60% less coordination for SDS creation</span>
+                                <span class="usp-metric">→ Avg. 60% less coordination for SDS creation <span class="metric-note">(project-based; varies by complexity)</span></span>
                             </span>
                         </li>
                         <li class="usp-item">
@@ -4226,10 +4388,31 @@
                 </div>
             </div>
 
+            <!-- Mini Case Study -->
+            <div class="case-study reveal">
+                <div class="case-label">Real-world example from operational chemical trading <span class="case-note">(anonymized)</span></div>
+                <div class="case-content">
+                    <div class="case-item">
+                        <span class="case-stage">Initial Situation</span>
+                        <p>Mid-sized chemical trader, 12 suppliers, outdated SDS documentation, unclear ADR processes</p>
+                    </div>
+                    <div class="case-item">
+                        <span class="case-stage">Action Taken</span>
+                        <p>Documentation audit & cleanup · ADR process standardized · Integration into substance database</p>
+                    </div>
+                    <div class="case-item case-result">
+                        <span class="case-stage">Result</span>
+                        <p><strong>Audit-ready in 6 weeks</strong> · 70% fewer authority inquiries · Approval time cut in half</p>
+                        <span class="case-disclaimer">(Based on comparable projects, depending on product & supplier structure)</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- Section CTA -->
             <div class="section-cta reveal">
                 <p>Ready to reduce your compliance risks?</p>
-                <a href="#kontakt" class="btn btn-highlight">Request Free Assessment →</a>
+                <a href="#kontakt" class="btn btn-highlight">Free Compliance Assessment →</a>
+                <p class="cta-subtext">No obligation. Confidential. Clear assessment within days.</p>
             </div>
         </div>
     </section>

@@ -1743,6 +1743,49 @@
             }
         }
 
+        /* Outcome Block */
+        .outcome-block {
+            background: var(--bg-primary, #095A7D);
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(23, 172, 186, 0.2);
+        }
+
+        .outcome-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 16px 32px;
+        }
+
+        .outcome-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .outcome-items {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px 24px;
+        }
+
+        .outcome-item {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .outcome-block { padding: 20px 0; }
+            .outcome-content { flex-direction: column; gap: 12px; }
+            .outcome-items { flex-direction: column; gap: 8px; text-align: center; }
+        }
+
         /* Secondary Highlight CTA */
         .btn-highlight-secondary {
             display: inline-flex;
@@ -2757,6 +2800,13 @@
             margin-top: 4px;
         }
 
+        .metric-note {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
         .segments-section {
             margin-top: 48px;
             padding-top: 48px;
@@ -2820,6 +2870,95 @@
 
         @media (max-width: 768px) {
             .segments-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Mini Case Study */
+        .case-study {
+            margin-top: 48px;
+            padding: 32px;
+            background: rgba(23, 172, 186, 0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(23, 172, 186, 0.2);
+        }
+
+        .case-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--oysi-accent, #17ACBA);
+            margin-bottom: 20px;
+        }
+
+        .case-note {
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .case-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .case-item {
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .case-stage {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .case-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .case-result {
+            background: rgba(23, 172, 186, 0.15);
+            border-left: 3px solid var(--oysi-accent, #17ACBA);
+        }
+
+        .case-result p strong {
+            color: var(--oysi-accent-light, #52CCCD);
+        }
+
+        .case-disclaimer {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .cta-subtext {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .case-content {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .case-study {
+                padding: 24px 20px;
+            }
         }
 
         .usp-visual {
@@ -3621,9 +3760,9 @@
 
             <!-- KPI Bar: Résultats mesurables -->
             <div class="kpi-bar">
-                <div class="kpi-item">
+                <div class="kpi-item" title="Valeur basée sur l'expérience projet ; dépend de la complexité produit & disponibilité des données">
                     <div class="kpi-value">−60%</div>
-                    <div class="kpi-label">Coordination pour création FDS</div>
+                    <div class="kpi-label">Coordination pour création FDS*</div>
                 </div>
                 <div class="kpi-item">
                     <div class="kpi-value">24h</div>
@@ -3653,6 +3792,34 @@
                     <span class="trust-item">Responsabilité réglementaire (REACH, CLP, GHS)</span>
                 </div>
                 <span class="trust-proof">3 800+ produits gérés sur le marché européen</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcome Block - Business Impact -->
+    <section class="outcome-block" aria-label="Résultats clients">
+        <div class="container">
+            <div class="outcome-content">
+                <span class="outcome-label">Ce que nos clients obtiennent concrètement</span>
+                <div class="outcome-items">
+                    <span class="outcome-item">→ Délais d'approbation raccourcis pour les produits chimiques</span>
+                    <span class="outcome-item">→ Moins de demandes des autorités & auditeurs</span>
+                    <span class="outcome-item">→ Base de données claire pour DPP, REACH & logistique</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience Block -->
+    <section class="target-block" aria-label="Public cible">
+        <div class="container">
+            <div class="target-content">
+                <span class="target-label">Pertinent pour :</span>
+                <div class="target-items">
+                    <span class="target-item">Négoce chimique & industrie</span>
+                    <span class="target-item">Entreprises avec obligations d'autorisation & DPP</span>
+                    <span class="target-item">Responsables conformité & validation produits</span>
+                </div>
             </div>
         </div>
     </section>
@@ -3898,12 +4065,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Section CTA -->
-            <div class="section-cta reveal">
-                <p>Questions de conformité? Nous analysons votre situation gratuitement.</p>
-                <a href="#kontakt" class="btn btn-highlight-secondary">Évaluation gratuite →</a>
-            </div>
         </div>
     </section>
 
@@ -4077,13 +4238,14 @@
                 <div class="usp-content reveal">
                     <span class="section-label">Ce que vous gagnez</span>
                     <h2 id="usp-title">Moins de charge compliance, plus de focus business</h2>
+                    <p class="usp-positioning">OYSI n'est pas un cabinet de conseil – nous venons de la responsabilité opérationnelle en chimie, logistique et réglementation.</p>
 
                     <ul class="usp-list">
                         <li class="usp-item">
                             <span class="usp-check">✓</span>
                             <span class="usp-text">
                                 Documentation conformité tout-en-un
-                                <span class="usp-metric">→ Ø 60% moins de coordination pour les FDS</span>
+                                <span class="usp-metric">→ Ø 60% moins de coordination pour les FDS <span class="metric-note">(valeur projet ; selon complexité)</span></span>
                             </span>
                         </li>
                         <li class="usp-item">
@@ -4225,10 +4387,31 @@
                 </div>
             </div>
 
+            <!-- Mini Case Study -->
+            <div class="case-study reveal">
+                <div class="case-label">Exemple pratique du négoce chimique opérationnel <span class="case-note">(anonymisé)</span></div>
+                <div class="case-content">
+                    <div class="case-item">
+                        <span class="case-stage">Situation initiale</span>
+                        <p>Négociant chimique PME, 12 fournisseurs, documentation FDS obsolète, processus ADR flous</p>
+                    </div>
+                    <div class="case-item">
+                        <span class="case-stage">Action</span>
+                        <p>Audit & assainissement documentation · Processus ADR standardisé · Intégration base de données</p>
+                    </div>
+                    <div class="case-item case-result">
+                        <span class="case-stage">Résultat</span>
+                        <p><strong>Prêt pour l'audit en 6 semaines</strong> · 70% moins de demandes des autorités · Délai d'approbation divisé par 2</p>
+                        <span class="case-disclaimer">(Valeurs basées sur des projets comparables, selon structure produit & fournisseurs)</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- Section CTA -->
             <div class="section-cta reveal">
                 <p>Prêt à réduire vos risques de conformité?</p>
-                <a href="#kontakt" class="btn btn-highlight">Demander une évaluation gratuite →</a>
+                <a href="#kontakt" class="btn btn-highlight">Évaluation conformité gratuite →</a>
+                <p class="cta-subtext">Sans engagement. Confidentiel. Évaluation claire sous quelques jours.</p>
             </div>
         </div>
     </section>

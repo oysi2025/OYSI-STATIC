@@ -1753,6 +1753,115 @@
         }
 
         /* ============================================
+           OUTCOME BLOCK (Business Impact)
+        ============================================ */
+        .outcome-block {
+            background: var(--oysi-bg-main);
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(9, 90, 125, 0.1);
+        }
+
+        .outcome-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 16px 32px;
+        }
+
+        .outcome-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--oysi-text-muted);
+        }
+
+        .outcome-items {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px 24px;
+        }
+
+        .outcome-item {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--oysi-text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .outcome-block {
+                padding: 20px 0;
+            }
+
+            .outcome-content {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .outcome-items {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+
+        /* ============================================
+           TARGET BLOCK (Audience)
+        ============================================ */
+        .target-block {
+            background: var(--oysi-bg-main);
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(9, 90, 125, 0.08);
+        }
+
+        .target-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 12px 24px;
+        }
+
+        .target-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--oysi-text-muted);
+        }
+
+        .target-items {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 6px 16px;
+        }
+
+        .target-item {
+            font-size: 0.85rem;
+            color: var(--oysi-text-body);
+            padding: 4px 12px;
+            background: rgba(9, 90, 125, 0.06);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .target-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .target-items {
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+
+        /* ============================================
            ABOUT SECTION
         ============================================ */
         .about {
@@ -2098,6 +2207,98 @@
 
             .about-visual {
                 order: -1;
+            }
+        }
+
+        /* ============================================
+           MINI CASE STUDY
+        ============================================ */
+        .case-study {
+            margin-top: 48px;
+            padding: 32px;
+            background: rgba(9, 90, 125, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(9, 90, 125, 0.1);
+        }
+
+        .case-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--oysi-accent);
+            margin-bottom: 20px;
+        }
+
+        .case-note {
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+            color: var(--oysi-text-muted);
+            font-size: 0.8rem;
+        }
+
+        .case-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .case-item {
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+        }
+
+        .case-stage {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--oysi-text-muted);
+            margin-bottom: 8px;
+        }
+
+        .case-item p {
+            color: var(--oysi-text-body);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .case-result {
+            background: rgba(23, 172, 186, 0.1);
+            border-left: 3px solid var(--oysi-accent);
+        }
+
+        .case-result p strong {
+            color: var(--oysi-accent);
+        }
+
+        .case-disclaimer {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.75rem;
+            color: var(--oysi-text-muted);
+            font-style: italic;
+        }
+
+        .cta-subtext {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: var(--oysi-text-muted);
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .case-content {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .case-study {
+                padding: 24px 20px;
             }
         }
 
@@ -2766,6 +2967,13 @@
             margin-bottom: 32px;
         }
 
+        .usp-positioning {
+            font-size: 1.05rem;
+            color: var(--oysi-text-muted);
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
         .usp-list {
             list-style: none;
         }
@@ -2806,6 +3014,13 @@
             font-size: 0.8rem;
             color: var(--oysi-accent);
             margin-top: 4px;
+        }
+
+        .metric-note {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            color: var(--oysi-text-muted);
+            font-style: italic;
         }
 
         /* Customer Segments */
@@ -3720,9 +3935,9 @@
 
             <!-- KPI Bar: Messbare Outcomes -->
             <div class="kpi-bar">
-                <div class="kpi-item">
+                <div class="kpi-item" title="Erfahrungswert aus Projekten; abhängig von Produktkomplexität & Datenlage">
                     <div class="kpi-value">−60%</div>
-                    <div class="kpi-label">Koordinationsaufwand bei SDB-Erstellung</div>
+                    <div class="kpi-label">Koordinationsaufwand bei SDB-Erstellung*</div>
                 </div>
                 <div class="kpi-item">
                     <div class="kpi-value">24h</div>
@@ -3752,6 +3967,34 @@
                     <span class="trust-item">Regulatorische Verantwortung (REACH, CLP, GHS)</span>
                 </div>
                 <span class="trust-proof">3.800+ Produkte im europäischen Markt betreut</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcome Block - Business Impact -->
+    <section class="outcome-block" aria-label="Kundenergebnisse">
+        <div class="container">
+            <div class="outcome-content">
+                <span class="outcome-label">Was unsere Kunden konkret erreichen</span>
+                <div class="outcome-items">
+                    <span class="outcome-item">→ Kürzere Freigabezeiten für chemische Produkte</span>
+                    <span class="outcome-item">→ Weniger Rückfragen von Behörden & Auditoren</span>
+                    <span class="outcome-item">→ Klare Datenbasis für DPP, REACH & Logistik</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience Block -->
+    <section class="target-block" aria-label="Zielgruppe">
+        <div class="container">
+            <div class="target-content">
+                <span class="target-label">Relevant für:</span>
+                <div class="target-items">
+                    <span class="target-item">Chemiehandel & Industrie</span>
+                    <span class="target-item">Unternehmen mit Zulassungs- & DPP-Pflichten</span>
+                    <span class="target-item">Verantwortliche für Compliance & Produktfreigabe</span>
+                </div>
             </div>
         </div>
     </section>
@@ -3987,12 +4230,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Section CTA -->
-            <div class="section-cta reveal">
-                <p>Compliance-Fragen? Wir prüfen Ihre Situation kostenfrei.</p>
-                <a href="#kontakt" class="btn btn-highlight-secondary">Kostenfreie Ersteinschätzung →</a>
-            </div>
         </div>
     </section>
 
@@ -4162,12 +4399,6 @@
                     <div class="industry-desc">Technische Chemikalien für KFZ, Bau, Elektro & weitere Gewerke – auch in Kleinmengen</div>
                 </div>
             </div>
-
-            <!-- Section CTA -->
-            <div class="section-cta reveal">
-                <p>Substanzdaten für Ihre Branche recherchieren?</p>
-                <a href="https://oysi.eu" target="_blank" rel="noopener" class="btn btn-highlight-secondary">Chemie-Datenbank testen →</a>
-            </div>
         </div>
     </section>
 
@@ -4178,13 +4409,14 @@
                 <div class="usp-content reveal">
                     <span class="section-label">Was Sie gewinnen</span>
                     <h2 id="usp-title">Weniger Compliance-Last, mehr Geschäftsfokus</h2>
+                    <p class="usp-positioning">OYSI ist keine Beratung – wir kommen aus der operativen Verantwortung für Chemie, Logistik und Regulierung.</p>
 
                     <ul class="usp-list">
                         <li class="usp-item">
                             <span class="usp-check">✓</span>
                             <span class="usp-text">
                                 Compliance-Dokumentation aus einer Hand
-                                <span class="usp-metric">→ Ø 60% weniger Koordinationsaufwand bei SDB-Erstellung</span>
+                                <span class="usp-metric">→ Ø 60% weniger Koordinationsaufwand bei SDB-Erstellung <span class="metric-note">(Erfahrungswert; abhängig von Produktkomplexität)</span></span>
                             </span>
                         </li>
                         <li class="usp-item">
@@ -4326,10 +4558,31 @@
                 </div>
             </div>
 
+            <!-- Mini Case Study -->
+            <div class="case-study reveal">
+                <div class="case-label">Praxisbeispiel aus dem operativen Chemiehandel <span class="case-note">(anonymisiert)</span></div>
+                <div class="case-content">
+                    <div class="case-item">
+                        <span class="case-stage">Ausgangslage</span>
+                        <p>Mittelständischer Chemiehandel, 12 Lieferanten, SDB-Dokumentation veraltet, ADR-Prozesse unklar</p>
+                    </div>
+                    <div class="case-item">
+                        <span class="case-stage">Maßnahme</span>
+                        <p>Dokumentations-Audit & Bereinigung · ADR-Prozess standardisiert · Integration in Substanzdatenbank</p>
+                    </div>
+                    <div class="case-item case-result">
+                        <span class="case-stage">Ergebnis</span>
+                        <p><strong>Audit-ready in 6 Wochen</strong> · 70% weniger Behörden-Rückfragen · Freigabezeit halbiert</p>
+                        <span class="case-disclaimer">(Erfahrungswerte aus vergleichbaren Projekten, abhängig von Produkt- & Lieferantenstruktur)</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- Section CTA -->
             <div class="section-cta reveal">
                 <p>Bereit, Ihre Compliance-Risiken zu reduzieren?</p>
-                <a href="#kontakt" class="btn btn-highlight">Kostenfreie Ersteinschätzung anfordern →</a>
+                <a href="#kontakt" class="btn btn-highlight">Kostenfreie Compliance-Ersteinschätzung →</a>
+                <p class="cta-subtext">Unverbindlich. Vertraulich. Klare Einschätzung in wenigen Tagen.</p>
             </div>
         </div>
     </section>
