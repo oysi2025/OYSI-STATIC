@@ -57,6 +57,23 @@
     <meta name="revisit-after" content="7 days">
 
     <!-- ============================================
+         SECURITY: Content Security Policy (CSP)
+    ============================================ -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' https://cdn.oysi.tech https://www.google-analytics.com data:;
+        connect-src 'self' https://www.google-analytics.com https://analytics.google.com;
+        frame-ancestors 'none';
+        base-uri 'self';
+        form-action 'self';
+    ">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+    <!-- ============================================
          GEO & BUSINESS META TAGS
     ============================================ -->
     <meta name="geo.region" content="DE-SL">
@@ -133,11 +150,20 @@
          PERFORMANCE: PRELOAD CRITICAL RESOURCES (LCP Optimization)
     ============================================ -->
     <link rel="preload" as="image" href="https://cdn.oysi.tech/oysi/Logo_Oysi_RZ.svg" type="image/svg+xml">
+    <link rel="preload" as="image" href="https://cdn.oysi.tech/oysi/og-image.jpg" type="image/jpeg"
+          imagesrcset="https://cdn.oysi.tech/oysi/og-image-600.jpg 600w,
+                       https://cdn.oysi.tech/oysi/og-image-900.jpg 900w,
+                       https://cdn.oysi.tech/oysi/og-image.jpg 1200w"
+          imagesizes="(max-width: 600px) 600px, (max-width: 900px) 900px, 1200px">
 
     <!-- ============================================
          FONTS (with font-display: swap for LCP)
     ============================================ -->
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Sans+3:wght@300;400;500;600&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    </noscript>
 
     <!-- ============================================
          STRUCTURED DATA: ORGANIZATION (JSON-LD)
@@ -445,9 +471,15 @@
         "name": "Olivier Höfer",
         "givenName": "Olivier",
         "familyName": "Höfer",
-        "jobTitle": "Geschäftsführer",
+        "image": "https://cdn.oysi.tech/oysi/olivier-hoefer.jpg",
+        "url": "https://oysi.gmbh/fr/#ueber-uns",
+        "jobTitle": "Directeur Général",
         "worksFor": {
             "@id": "https://oysi.gmbh/#organization"
+        },
+        "alumniOf": {
+            "@type": "Organization",
+            "name": "Höfer Chemie GmbH (2005-2026)"
         },
         "knowsAbout": [
             "Technische Chemie",
@@ -481,15 +513,26 @@
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "@id": "https://oysi.gmbh/#speakable",
+        "@id": "https://oysi.gmbh/fr/#speakable",
         "speakable": {
             "@type": "SpeakableSpecification",
             "cssSelector": [
                 ".hero-title",
                 ".hero-subtitle",
+                ".founder-text",
                 "#about-title",
+                ".quote-text",
                 "#services-title",
-                ".service-card h3"
+                ".problem-text",
+                ".service-card h3",
+                ".card-solution",
+                "#digital-title",
+                ".digital-intro",
+                "#usp-title",
+                ".usp-text",
+                "#contact-title",
+                ".segment-problem",
+                ".segment-solution"
             ]
         },
         "mainEntity": {
@@ -650,6 +693,7 @@
             --oysi-bg-main: #F0ECE6;
             --oysi-bg-alt: #D8D3CC;
             --oysi-text-primary: #095A7D;
+            --oysi-text-heading: #063E56;  /* Dunklerer Ton für Headlines - mehr Kontrast */
             --oysi-text-body: #2D3748;
             --oysi-text-muted: #8A949B;
 
@@ -817,20 +861,24 @@
         .section-label {
             display: inline-block;
             font-family: var(--font-mono);
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--oysi-accent-light);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--oysi-highlight);
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 16px;
+            padding: 6px 14px;
+            background: rgba(239, 101, 94, 0.1);
+            border-radius: 4px;
         }
 
         .section-title {
             font-family: var(--font-heading);
             font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            line-height: 1.2;
+            font-weight: 800;
+            color: var(--oysi-text-heading);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
         }
 
         /* ============================================
@@ -997,10 +1045,15 @@
             color: var(--text-muted);
             background: transparent;
             border: none;
-            padding: 6px 10px;
+            padding: 12px 14px;
+            min-height: 44px;
+            min-width: 44px;
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .lang-btn:hover {
@@ -1317,6 +1370,67 @@
             color: var(--text-muted);
         }
 
+        /* Hero Benefits */
+        .hero-benefits {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 48px;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 16px 20px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .benefit-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--oysi-accent);
+        }
+
+        .benefit-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(23, 172, 186, 0.2);
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .benefit-icon svg {
+            width: 22px;
+            height: 22px;
+            color: var(--oysi-accent-light);
+        }
+
+        .benefit-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .benefit-text strong {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .benefit-text span {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
         /* CTAs */
         .hero-ctas {
             display: flex;
@@ -1324,6 +1438,57 @@
             flex-wrap: wrap;
             animation: fadeInUp 0.8s ease 0.4s forwards;
             opacity: 0;
+        }
+
+        /* KPI Bar - Résultats mesurables */
+        .kpi-bar {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 48px;
+            padding: 24px 32px;
+            background: rgba(9, 90, 125, 0.06);
+            border-radius: 16px;
+            border: 1px solid rgba(9, 90, 125, 0.1);
+            animation: fadeInUp 0.8s ease 0.5s forwards;
+            opacity: 0;
+        }
+
+        .kpi-item {
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-family: var(--font-mono);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--oysi-accent);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .kpi-label {
+            font-size: 0.85rem;
+            color: var(--oysi-text-body);
+            max-width: 140px;
+        }
+
+        @media (max-width: 768px) {
+            .kpi-bar {
+                gap: 24px;
+                padding: 20px 16px;
+                flex-wrap: wrap;
+            }
+            .kpi-item {
+                flex: 1 1 45%;
+                min-width: 120px;
+            }
+            .kpi-value {
+                font-size: 1.6rem;
+            }
+            .kpi-label {
+                font-size: 0.8rem;
+            }
         }
 
         .btn {
@@ -1343,24 +1508,65 @@
             background: var(--oysi-highlight);
             color: #ffffff;
             border: none;
-            box-shadow: 0 4px 15px rgba(239, 101, 94, 0.3);
+            box-shadow: 0 4px 20px rgba(239, 101, 94, 0.4);
+            padding: 18px 36px;
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: linear-gradient(135deg, rgba(239, 101, 94, 0.3), rgba(239, 101, 94, 0));
+            border-radius: 12px;
+            z-index: -1;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
         }
 
         .btn-primary:hover {
-            background: #F07D77;
+            background: #F2857F;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(239, 101, 94, 0.4);
+            box-shadow: 0 8px 30px rgba(239, 101, 94, 0.5);
+        }
+
+        .btn-primary:hover::before {
+            animation: none;
+            opacity: 0;
         }
 
         .btn-secondary {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid rgba(138, 148, 155, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(23, 172, 186, 0.4);
+            padding: 14px 24px;
+            font-size: 0.9rem;
         }
 
         .btn-secondary:hover {
-            border-color: var(--oysi-accent);
+            border-color: var(--oysi-accent-light);
             color: var(--oysi-accent-light);
+            background: rgba(23, 172, 186, 0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 14px 24px;
+            font-size: 0.9rem;
+        }
+
+        .btn-outline:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .btn-arrow {
@@ -1377,6 +1583,15 @@
                 gap: 24px;
             }
 
+            .hero-benefits {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .benefit-item {
+                padding: 14px 16px;
+            }
+
             .hero-ctas {
                 flex-direction: column;
             }
@@ -1384,6 +1599,170 @@
             .btn {
                 justify-content: center;
             }
+        }
+
+        /* Founder Statement / Differentiator */
+        .founder-statement {
+            background: linear-gradient(135deg, rgba(9, 90, 125, 0.08) 0%, rgba(9, 90, 125, 0.03) 100%);
+            border: 1px solid rgba(9, 90, 125, 0.2);
+            border-radius: 12px;
+            padding: 20px 28px;
+            margin: 32px auto;
+            max-width: 700px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .founder-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: rgba(9, 90, 125, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .founder-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--oysi-primary);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .founder-text {
+            font-size: 1rem;
+            color: var(--oysi-text-body);
+            line-height: 1.5;
+        }
+
+        .founder-text strong {
+            color: var(--oysi-text-primary);
+            font-weight: 600;
+        }
+
+        .founder-text em {
+            font-style: normal;
+            color: var(--oysi-accent);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .founder-statement {
+                flex-direction: column;
+                text-align: center;
+                padding: 16px 20px;
+            }
+        }
+
+        /* ============================================
+           TRUST LAYER (Post-Hero Proof)
+        ============================================ */
+        .trust-layer {
+            background: var(--oysi-primary, #095A7D);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(23, 172, 186, 0.2);
+        }
+
+        .trust-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 12px 24px;
+            text-align: center;
+        }
+
+        .trust-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .trust-items {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px 20px;
+        }
+
+        .trust-item {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .trust-item:not(:last-child)::after {
+            content: '·';
+            position: absolute;
+            right: -12px;
+            color: var(--oysi-accent, #17ACBA);
+            font-weight: 700;
+        }
+
+        .trust-proof {
+            color: var(--oysi-accent, #17ACBA);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding-left: 16px;
+            border-left: 2px solid var(--oysi-accent, #17ACBA);
+        }
+
+        @media (max-width: 768px) {
+            .trust-layer {
+                padding: 16px 0;
+            }
+
+            .trust-content {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .trust-items {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .trust-item:not(:last-child)::after {
+                display: none;
+            }
+
+            .trust-proof {
+                padding-left: 0;
+                border-left: none;
+                padding-top: 8px;
+                border-top: 1px solid rgba(23, 172, 186, 0.3);
+            }
+        }
+
+        /* Secondary Highlight CTA */
+        .btn-highlight-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--oysi-accent, #17ACBA);
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: 1.5px solid var(--oysi-accent, #17ACBA);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-highlight-secondary:hover {
+            background: rgba(23, 172, 186, 0.1);
+            color: var(--oysi-accent-light, #52CCCD);
+            border-color: var(--oysi-accent-light, #52CCCD);
+            transform: translateY(-2px);
         }
 
         /* ============================================
@@ -1412,6 +1791,62 @@
             color: var(--text-muted);
             margin-bottom: 24px;
             font-size: 1.05rem;
+        }
+
+        .about-positioning {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            padding: 16px 20px;
+            background: rgba(23, 172, 186, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid var(--oysi-accent, #17ACBA);
+        }
+
+        .about-positioning strong {
+            color: var(--oysi-accent-light, #52CCCD);
+        }
+
+        .about-subhead {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--oysi-accent, #17ACBA);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 24px 0 12px 0;
+        }
+
+        .about-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+
+        .about-list li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .about-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: var(--oysi-accent, #17ACBA);
+            border-radius: 2px;
+        }
+
+        .about-list li strong {
+            color: var(--oysi-accent-light, #52CCCD);
+            font-weight: 600;
         }
 
         .quote-block {
@@ -1750,10 +2185,11 @@
 
         .service-card h3 {
             font-family: var(--font-heading);
-            font-size: 1.35rem;
-            font-weight: 600;
-            color: var(--text-primary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--oysi-text-heading);
             margin-bottom: 16px;
+            letter-spacing: -0.01em;
         }
 
         .service-card p {
@@ -1802,6 +2238,127 @@
         @media (max-width: 768px) {
             .services-grid {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        /* Problem Statement Box */
+        .problem-statement {
+            background: linear-gradient(135deg, rgba(239, 101, 94, 0.08) 0%, rgba(239, 101, 94, 0.03) 100%);
+            border: 1px solid rgba(239, 101, 94, 0.2);
+            border-left: 4px solid var(--oysi-highlight);
+            border-radius: 12px;
+            padding: 24px 32px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .problem-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: rgba(239, 101, 94, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .problem-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--oysi-highlight);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .problem-content {
+            flex: 1;
+        }
+
+        .problem-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--oysi-highlight);
+            margin-bottom: 8px;
+        }
+
+        .problem-text {
+            font-size: 1.1rem;
+            color: var(--oysi-text-body);
+            line-height: 1.6;
+        }
+
+        .problem-text strong {
+            color: var(--oysi-text-primary);
+        }
+
+        /* Service Card Tags */
+        .card-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+
+        .card-tag-solution {
+            background: rgba(23, 172, 186, 0.15);
+            color: var(--oysi-accent);
+        }
+
+        /* Service Card Solution Text */
+        .card-solution {
+            font-size: 0.95rem;
+            color: var(--oysi-text-body);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Service Card Result Badge */
+        .card-result {
+            background: linear-gradient(135deg, rgba(23, 172, 186, 0.1) 0%, rgba(23, 172, 186, 0.05) 100%);
+            border: 1px solid rgba(23, 172, 186, 0.2);
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+
+        .result-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--oysi-accent);
+            white-space: nowrap;
+        }
+
+        .card-result span:last-child {
+            color: var(--oysi-text-body);
+        }
+
+        @media (max-width: 768px) {
+            .problem-statement {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .card-result {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
             }
         }
 
@@ -2192,6 +2749,79 @@
             color: var(--text-secondary);
         }
 
+        .usp-metric {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--oysi-accent);
+            margin-top: 4px;
+        }
+
+        .segments-section {
+            margin-top: 48px;
+            padding-top: 48px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .segments-title {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--oysi-text-heading);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .segments-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .segment-card {
+            background: #fff;
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .segment-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .segment-icon { font-size: 1.5rem; }
+
+        .segment-name {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--oysi-text-heading);
+        }
+
+        .segment-problem {
+            font-size: 0.9rem;
+            color: var(--oysi-text-muted);
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .segment-problem strong { color: var(--oysi-highlight); }
+
+        .segment-solution {
+            font-size: 0.95rem;
+            color: var(--oysi-text-body);
+        }
+
+        .segment-solution strong { color: var(--oysi-accent); }
+
+        @media (max-width: 768px) {
+            .segments-grid { grid-template-columns: 1fr; }
+        }
+
         .usp-visual {
             position: relative;
         }
@@ -2227,6 +2857,142 @@
             .usp-grid {
                 grid-template-columns: 1fr;
                 gap: 48px;
+            }
+        }
+
+        /* Track Record / Credentials */
+        .track-record {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(9, 90, 125, 0.12);
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 48px;
+        }
+
+        .track-record-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .track-record-header svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--oysi-accent);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .track-record-title {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--oysi-text-primary);
+            margin: 0;
+        }
+
+        .track-record-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        .track-stat {
+            text-align: center;
+        }
+
+        .track-stat-value {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--oysi-accent);
+            line-height: 1;
+        }
+
+        .track-stat-label {
+            font-size: 0.8rem;
+            color: var(--oysi-text-muted);
+            margin-top: 4px;
+        }
+
+        .roles-section {
+            margin-bottom: 24px;
+        }
+
+        .roles-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--oysi-text-muted);
+            margin-bottom: 12px;
+        }
+
+        .roles-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .role-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(23, 172, 186, 0.1);
+            border: 1px solid rgba(23, 172, 186, 0.2);
+            border-radius: 6px;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            color: var(--oysi-text-body);
+        }
+
+        .role-badge svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--oysi-accent);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .projects-section {
+            border-top: 1px solid rgba(9, 90, 125, 0.1);
+            padding-top: 20px;
+        }
+
+        .projects-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--oysi-text-muted);
+            margin-bottom: 12px;
+        }
+
+        .projects-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-type {
+            background: rgba(9, 90, 125, 0.06);
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            color: var(--oysi-text-body);
+        }
+
+        @media (max-width: 768px) {
+            .track-record-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .track-stat-value {
+                font-size: 1.5rem;
             }
         }
 
@@ -2369,6 +3135,68 @@
             min-height: 140px;
         }
 
+        /* Inquiry Type Checkboxes */
+        .inquiry-type-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .inquiry-type-label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--oysi-text-body);
+            margin-bottom: 0.75rem;
+        }
+
+        .inquiry-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .inquiry-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1rem;
+            background: rgba(9, 90, 125, 0.05);
+            border: 1px solid rgba(9, 90, 125, 0.15);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .inquiry-option:hover {
+            background: rgba(9, 90, 125, 0.1);
+            border-color: var(--oysi-accent);
+        }
+
+        .inquiry-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--oysi-accent);
+            cursor: pointer;
+        }
+
+        .inquiry-option span {
+            font-size: 0.9rem;
+            color: var(--oysi-text-body);
+        }
+
+        .inquiry-option:has(input:checked) {
+            background: rgba(23, 172, 186, 0.1);
+            border-color: var(--oysi-accent);
+        }
+
+        @media (max-width: 480px) {
+            .inquiry-options {
+                flex-direction: column;
+            }
+            .inquiry-option {
+                width: 100%;
+            }
+        }
+
         .form-submit {
             width: 100%;
             padding: 18px 32px;
@@ -2416,6 +3244,48 @@
             background: rgba(255, 68, 68, 0.1);
             color: #ff6b6b;
             border: 1px solid #ff6b6b;
+        }
+
+        /* Form Error Messages (WCAG 4.3.3) */
+        .form-error {
+            display: none;
+            font-size: 0.85rem;
+            color: var(--oysi-highlight);
+            margin-top: 0.5rem;
+        }
+
+        .form-error:not(:empty) {
+            display: block;
+        }
+
+        .form-input[aria-invalid="true"],
+        .form-textarea[aria-invalid="true"] {
+            border-color: var(--oysi-highlight);
+            background: rgba(239, 101, 94, 0.05);
+        }
+
+        /* Enhanced Focus Indicators (WCAG 2.4.7) */
+        .nav-link:focus,
+        .btn:focus,
+        .btn-primary:focus,
+        .btn-secondary:focus,
+        .btn-outline:focus,
+        .btn-highlight:focus,
+        .form-submit:focus,
+        .lang-btn:focus {
+            outline: 2px solid var(--oysi-accent);
+            outline-offset: 2px;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: 2px solid var(--oysi-accent);
+            outline-offset: 1px;
+        }
+
+        .nav-cta:focus {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
         }
 
         /* Honeypot - invisible */
@@ -2624,10 +3494,11 @@
             </a>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#ueber-uns" class="nav-link" data-i18n="nav.about">Über uns</a></li>
-                <li><a href="#leistungen" class="nav-link" data-i18n="nav.services">Leistungen</a></li>
-                <li><a href="#digital-solutions" class="nav-link" data-i18n="nav.digital">Digital Solutions</a></li>
-                <li><a href="#kontakt" class="nav-link" data-i18n="nav.contact">Kontakt</a></li>
+                <li><a href="#ueber-uns" class="nav-link">À propos</a></li>
+                <li><a href="#leistungen" class="nav-link">Services Compliance</a></li>
+                <li><a href="#digital-solutions" class="nav-link">DPP & Solutions</a></li>
+                <li><a href="/blog/" class="nav-link">Ressources</a></li>
+                <li><a href="#kontakt" class="nav-link">Contact</a></li>
             </ul>
 
             <div class="nav-right">
@@ -2636,7 +3507,7 @@
                     <a href="/fr/" class="lang-btn" data-lang="fr">FR</a>
                     <a href="/en/" class="lang-btn" data-lang="en">EN</a>
                 </div>
-                <a href="#kontakt" class="nav-cta" data-i18n="nav.cta">Anfrage stellen</a>
+                <a href="#kontakt" class="nav-cta">Demande de devis</a>
                 <button class="nav-toggle" id="navToggle" aria-label="Menu">
                     <span></span>
                     <span></span>
@@ -2675,37 +3546,113 @@
             </div>
 
             <h1 class="hero-title" id="hero-title" itemprop="headline">
-                <span data-i18n="hero.title1">Moins de risques de conformité.</span><br>
-                <span class="accent" data-i18n="hero.title2">Mise sur le marché plus rapide.</span>
+                <span data-i18n="hero.title1">Évitez les blocages réglementaires –</span><br>
+                <span class="accent" data-i18n="hero.title2">de REACH au DPP en passant par l'ADR.</span>
             </h1>
 
             <p class="hero-subtitle" data-i18n="hero.subtitle">
-                Produits chimiques certifiés REACH avec documentation automatisée (DPP). 30 ans d'expertise, livraison européenne.
+                Une conformité qui accélère votre activité chimique, pas qui la freine.
             </p>
 
-            <div class="hero-stats" id="heroStats">
-                <div class="stat-item">
-                    <div class="stat-number" data-target="30">30+</div>
-                    <div class="stat-label" data-i18n="hero.stat1">Ans d'expertise</div>
+            <!-- 3 Hard Benefits -->
+            <div class="hero-benefits">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <div class="benefit-text">
+                        <strong>REACH / CLP / ADR</strong>
+                        <span>sans délais</span>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-target="3800">3.800+</div>
-                    <div class="stat-label" data-i18n="hero.stat2">Substances documentées</div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="4" y="4" width="16" height="16" rx="2"/>
+                            <path d="M8 8h2v2H8zM14 8h2v2h-2zM8 14h2v2H8zM14 14h2v2h-2z"/>
+                        </svg>
+                    </div>
+                    <div class="benefit-text">
+                        <strong>Infrastructure numérique</strong>
+                        <span>Base de données & DPP</span>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-target="100">100%</div>
-                    <div class="stat-label" data-i18n="hero.stat3">Conforme UE</div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div class="benefit-text">
+                        <strong>30 ans de pratique</strong>
+                        <span>Production & E-Commerce</span>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Founder Statement / Differentiator -->
+            <div class="founder-statement">
+                <div class="founder-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                </div>
+                <p class="founder-text">
+                    <strong>OYSI a été créé par des entrepreneurs</strong> qui ont <em>produit</em>, <em>homologué</em> et <em>vendu des millions</em> de produits chimiques – pas de théorie, mais de l'ADN industriel.
+                </p>
             </div>
 
             <div class="hero-ctas">
                 <a href="#kontakt" class="btn btn-primary">
-                    <span data-i18n="hero.cta1">Demander le catalogue</span>
+                    <span data-i18n="hero.cta1">Évaluation conformité gratuite</span>
                     <span class="btn-arrow">→</span>
                 </a>
-                <a href="#leistungen" class="btn btn-secondary" data-i18n="hero.cta2">
-                    Découvrir nos services
+                <a href="#kontakt" class="btn btn-secondary" data-i18n="hero.cta2">
+                    Discuter architecture DPP
                 </a>
+                <a href="https://oysi.eu" target="_blank" rel="noopener" class="btn btn-outline">
+                    Tester la base de données →
+                </a>
+            </div>
+
+            <!-- KPI Bar: Résultats mesurables -->
+            <div class="kpi-bar">
+                <div class="kpi-item">
+                    <div class="kpi-value">−60%</div>
+                    <div class="kpi-label">Coordination pour création FDS</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">24h</div>
+                    <div class="kpi-label">Délai pour documents conformité</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">3.800+</div>
+                    <div class="kpi-label">Substances disponibles</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">0</div>
+                    <div class="kpi-label">Ressources IT pour DPP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Layer - Proof of Experience -->
+    <section class="trust-layer" aria-label="Domaines d'expertise">
+        <div class="container">
+            <div class="trust-content">
+                <span class="trust-label">Fondé sur l'expérience de :</span>
+                <div class="trust-items">
+                    <span class="trust-item">Production chimique industrielle</span>
+                    <span class="trust-item">Logistique de matières dangereuses (ADR/IMDG)</span>
+                    <span class="trust-item">E-commerce à grande échelle</span>
+                    <span class="trust-item">Responsabilité réglementaire (REACH, CLP, GHS)</span>
+                </div>
+                <span class="trust-proof">3 800+ produits gérés sur le marché européen</span>
             </div>
         </div>
     </section>
@@ -2715,20 +3662,32 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-content reveal">
-                    <span class="section-label" data-i18n="about.label">Über OYSI</span>
-                    <h2 id="about-title" data-i18n="about.title" itemprop="name">30 ans de négoce chimique B2B en Europe</h2>
-                    <p data-i18n="about.text1">
-                        1995 gründete Olivier Höfer sein erstes Unternehmen in einer Saarbrücker Garage. Aus diesen ersten Schritten entwickelte er die Höfer Chemie GmbH zu einem der führenden Chemiedistributoren Deutschlands – mit 70 Mitarbeitern und über 11.000m² Produktions- und Logistikfläche.
-                    </p>
-                    <p data-i18n="about.text2">
-                        2025 beginnt ein neues Kapitel: Mit der OYSI GmbH bündelt Höfer sein gesamtes Know-how aus 30 Jahren Chemiebranche. Der Fokus liegt auf strategischem B2B-Chemikalienhandel mit eigener digitaler Infrastruktur und höchsten Compliance-Standards.
+                    <span class="section-label">À propos d'OYSI</span>
+                    <h2 id="about-title" itemprop="name">30 ans de chimie B2B. Un nouveau départ en 2026.</h2>
+
+                    <p class="about-positioning">
+                        <strong>OYSI n'est pas un cabinet de conseil.</strong> Nous venons de la réalité opérationnelle de la chimie, de la logistique et de la réglementation.
                     </p>
 
+                    <h3 class="about-subhead">Les fondations</h3>
+                    <ul class="about-list">
+                        <li><strong>1995</strong> – Début dans un garage à Sarrebruck</li>
+                        <li><strong>30 ans</strong> – Expertise en chimie technique, conformité & logistique</li>
+                        <li><strong>3 800+</strong> – Produits gérés sur le marché européen</li>
+                    </ul>
+
+                    <h3 class="about-subhead">Ce qui distingue OYSI en 2026</h3>
+                    <ul class="about-list">
+                        <li><strong>Indépendant</strong> – pas une ancienne entreprise sous un nouveau nom</li>
+                        <li><strong>Infrastructure propre</strong> – système DPP, lexique chimique, outils de conformité</li>
+                        <li><strong>Conformité d'abord</strong> – aucun compromis sur REACH, GHS, ADR</li>
+                    </ul>
+
                     <div class="quote-block">
-                        <p class="quote-text" data-i18n="about.quote">
-                            «Nach 30 Jahren in der Chemiebranche weiß ich: Nicht das Produkt macht den Unterschied, sondern Wissen, Service und Compliance.»
+                        <p class="quote-text">
+                            «Ce n'est pas le produit qui fait la différence – mais le savoir, le service et la conformité.»
                         </p>
-                        <span class="quote-author">— Olivier Höfer, <span data-i18n="about.quoteRole">Geschäftsführer</span></span>
+                        <span class="quote-author">— Olivier Höfer, Directeur général</span>
                     </div>
 
                     <div class="trust-badges">
@@ -2840,12 +3799,28 @@
     <section class="section" id="leistungen" aria-labelledby="services-title">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label" data-i18n="services.label">Leistungen</span>
-                <h2 class="section-title" id="services-title" data-i18n="services.title">Services de conformité pour produits chimiques</h2>
+                <span class="section-label">Services Compliance</span>
+                <h2 class="section-title" id="services-title">Produits chimiques conformes REACH en Europe</h2>
+            </div>
+
+            <!-- Problem Statement -->
+            <div class="problem-statement reveal">
+                <div class="problem-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 8v4M12 16h.01"/>
+                    </svg>
+                </div>
+                <div class="problem-content">
+                    <p class="problem-label">Votre problème</p>
+                    <p class="problem-text">Fournisseurs sans documentation complète. <strong>Incertitudes REACH</strong>. <strong>Chaos FDS</strong>. Chaque transport ADR est un risque. La charge de conformité consume vos ressources.</p>
+                </div>
             </div>
 
             <div class="services-grid" role="list">
+                <!-- Card 1: Commerce chimique -->
                 <div class="service-card reveal">
+                    <span class="card-tag card-tag-solution">Solution</span>
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <path d="M9 3h6v6l4 9a2 2 0 01-2 3H7a2 2 0 01-2-3l4-9V3z"/>
@@ -2853,17 +3828,17 @@
                             <path d="M7 15h10" stroke-dasharray="2 2" opacity="0.5"/>
                         </svg>
                     </div>
-                    <h3 data-i18n="services.card1.title">Technischer Chemikalienhandel</h3>
-                    <p data-i18n="services.card1.desc">Umfassendes Sortiment für Industrie, Gewerbe und Labor – von Standardprodukten bis hin zu Spezialchemikalien.</p>
-                    <ul class="service-list">
-                        <li data-i18n="services.card1.item1">Säuren, Laugen, Lösemittel</li>
-                        <li data-i18n="services.card1.item2">Spezialchemikalien</li>
-                        <li data-i18n="services.card1.item3">Reinigungs- & Pflegemittel</li>
-                        <li data-i18n="services.card1.item4">Labor- & Industriebedarf</li>
-                    </ul>
+                    <h3 data-i18n="services.card1.title">Commerce de produits chimiques techniques</h3>
+                    <p class="card-solution">Gamme complète d'une seule source – déjà enregistré REACH et documenté.</p>
+                    <div class="card-result">
+                        <span class="result-label">Résultat:</span>
+                        <span>Plus de recherche de fournisseurs, plus de lacunes documentaires</span>
+                    </div>
                 </div>
 
+                <!-- Card 2: Compliance -->
                 <div class="service-card reveal reveal-delay-1">
+                    <span class="card-tag card-tag-solution">Solution</span>
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <rect x="3" y="3" width="18" height="18" rx="1" transform="rotate(45 12 12)"/>
@@ -2871,17 +3846,17 @@
                             <circle cx="12" cy="16" r="1" fill="currentColor"/>
                         </svg>
                     </div>
-                    <h3 data-i18n="services.card2.title">Compliance & Dokumentation</h3>
-                    <p data-i18n="services.card2.desc">Volle regulatorische Compliance aus einer Hand – von der Produktdokumentation bis zur Logistik.</p>
-                    <ul class="service-list">
-                        <li data-i18n="services.card2.item1">REACH-konforme Sicherheitsdatenblätter</li>
-                        <li data-i18n="services.card2.item2">GHS-Etikettierung</li>
-                        <li data-i18n="services.card2.item3">ADR-konforme Logistik</li>
-                        <li data-i18n="services.card2.item4">Expositionsszenarien</li>
-                    </ul>
+                    <h3 data-i18n="services.card2.title">Conformité & Documentation</h3>
+                    <p class="card-solution">Fiches de données de sécurité, étiquettes SGH, documents ADR – tout conforme et à jour.</p>
+                    <div class="card-result">
+                        <span class="result-label">Résultat:</span>
+                        <span>Aucune contestation des autorités, aucun retard</span>
+                    </div>
                 </div>
 
+                <!-- Card 3: DPP -->
                 <div class="service-card reveal reveal-delay-2">
+                    <span class="card-tag card-tag-solution">Solution</span>
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <rect x="3" y="3" width="7" height="7" rx="1"/>
@@ -2894,19 +3869,16 @@
                         </svg>
                     </div>
                     <h3 data-i18n="services.card3.title">Digital Product Passport</h3>
-                    <p data-i18n="services.card3.desc">Zukunftssicher mit dem DPP nach EU 2024/1781 – vollständige Chargen-Rückverfolgbarkeit per QR-Code.</p>
-                    <ul class="service-list">
-                        <li data-i18n="services.card3.item1">EU 2024/1781 konform</li>
-                        <li data-i18n="services.card3.item2">Chargen-Rückverfolgbarkeit</li>
-                        <li data-i18n="services.card3.item3">QR-Code Identifikation</li>
-                        <li data-i18n="services.card3.item4">Echtzeit-Dokumentation</li>
-                    </ul>
-                    <a href="https://dpp.oysi.gmbh" target="_blank" rel="noopener noreferrer" class="service-link">
-                        <span data-i18n="services.card3.link">dpp.oysi.gmbh besuchen</span> →
-                    </a>
+                    <p class="card-solution">Identité produit conforme EU 2024/1781 – scannez le QR code, toutes les données immédiatement disponibles.</p>
+                    <div class="card-result">
+                        <span class="result-label">Résultat:</span>
+                        <span>Pérenne, prêt pour l'audit, évolutif</span>
+                    </div>
                 </div>
 
+                <!-- Card 4: Base de données -->
                 <div class="service-card reveal reveal-delay-3">
+                    <span class="card-tag card-tag-solution">Solution</span>
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <polygon points="12,2 20,7 20,17 12,22 4,17 4,7"/>
@@ -2918,18 +3890,19 @@
                             <circle cx="4" cy="7" r="1.5" fill="currentColor"/>
                         </svg>
                     </div>
-                    <h3 data-i18n="services.card4.title">Chemie-Wissensdatenbank</h3>
-                    <p data-i18n="services.card4.desc">Über 3.800 Substanzen mit umfassenden Informationen – CAS-Nummern, H-/P-Sätze, mehrsprachig verfügbar.</p>
-                    <ul class="service-list">
-                        <li data-i18n="services.card4.item1">3.800+ Substanzen</li>
-                        <li data-i18n="services.card4.item2">CAS-Nummern & Synonyme</li>
-                        <li data-i18n="services.card4.item3">H- und P-Sätze</li>
-                        <li data-i18n="services.card4.item4">Mehrsprachige Inhalte</li>
-                    </ul>
-                    <a href="https://oysi.eu" target="_blank" rel="noopener noreferrer" class="service-link">
-                        <span data-i18n="services.card4.link">oysi.eu besuchen</span> →
-                    </a>
+                    <h3 data-i18n="services.card4.title">Base de données chimiques</h3>
+                    <p class="card-solution">3.800+ substances avec CAS, pictogrammes SGH, mentions H/P – immédiatement accessibles.</p>
+                    <div class="card-result">
+                        <span class="result-label">Résultat:</span>
+                        <span>Recherche plus rapide, moins d'erreurs</span>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Section CTA -->
+            <div class="section-cta reveal">
+                <p>Questions de conformité? Nous analysons votre situation gratuitement.</p>
+                <a href="#kontakt" class="btn btn-highlight-secondary">Évaluation gratuite →</a>
             </div>
         </div>
     </section>
@@ -2938,12 +3911,12 @@
     <section class="section digital" id="digital-solutions" aria-labelledby="digital-title">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label" data-i18n="digital.label">Digital Solutions</span>
-                <h2 class="section-title" id="digital-title" data-i18n="digital.title">Digital Product Passport (DPP) & Base de données chimique</h2>
+                <span class="section-label">DPP & Solutions</span>
+                <h2 class="section-title" id="digital-title">Passeport Numérique Produit (DPP) pour chimie – conforme UE</h2>
             </div>
 
-            <p class="digital-intro reveal" data-i18n="digital.intro" itemprop="description">
-                Entwickelt aus 30 Jahren Praxiserfahrung – digitale Werkzeuge, die Chemie-Profis wirklich brauchen.
+            <p class="digital-intro reveal" itemprop="description">
+                <strong>Problème :</strong> Vous avez besoin de capacités DPP mais pas de budget pour un développement interne. <strong>Solution :</strong> Notre infrastructure prête à l'emploi – utilisez-la simplement.
             </p>
 
             <div class="digital-grid">
@@ -3102,29 +4075,44 @@
         <div class="container">
             <div class="usp-grid">
                 <div class="usp-content reveal">
-                    <span class="section-label" data-i18n="usp.label">Vorteile</span>
-                    <h2 id="usp-title" data-i18n="usp.title">Votre avantage: Expertise chimique & conformité depuis 1995</h2>
+                    <span class="section-label">Ce que vous gagnez</span>
+                    <h2 id="usp-title">Moins de charge compliance, plus de focus business</h2>
 
                     <ul class="usp-list">
                         <li class="usp-item">
                             <span class="usp-check">✓</span>
-                            <span class="usp-text" data-i18n="usp.item1">30+ Jahre Marktpräsenz und Branchenerfahrung</span>
+                            <span class="usp-text">
+                                Documentation conformité tout-en-un
+                                <span class="usp-metric">→ Ø 60% moins de coordination pour les FDS</span>
+                            </span>
                         </li>
                         <li class="usp-item">
                             <span class="usp-check">✓</span>
-                            <span class="usp-text" data-i18n="usp.item2">Eigene digitale Infrastruktur (DPP, Lexikon)</span>
+                            <span class="usp-text">
+                                Digital Product Passport ready
+                                <span class="usp-metric">→ Conforme EU 2024/1781, sans ressources IT internes</span>
+                            </span>
                         </li>
                         <li class="usp-item">
                             <span class="usp-check">✓</span>
-                            <span class="usp-text" data-i18n="usp.item3">Europaweite Lieferung mit ADR-konformer Logistik</span>
+                            <span class="usp-text">
+                                Données substances instantanées
+                                <span class="usp-metric">→ 3.800+ substances avec CAS, SGH, mentions H/P en secondes</span>
+                            </span>
                         </li>
                         <li class="usp-item">
                             <span class="usp-check">✓</span>
-                            <span class="usp-text" data-i18n="usp.item4">Compliance aus einer Hand (REACH, GHS, ADR)</span>
+                            <span class="usp-text">
+                                Logistique ADR dans toute l'Europe
+                                <span class="usp-metric">→ Transport matières dangereuses DE, FR, AT, CH, BE, LU, NL</span>
+                            </span>
                         </li>
                         <li class="usp-item">
                             <span class="usp-check">✓</span>
-                            <span class="usp-text" data-i18n="usp.item5">Persönliche Beratung vom Experten</span>
+                            <span class="usp-text">
+                                Conseil expert, pas de centre d'appels
+                                <span class="usp-metric">→ Direct avec le fondateur, 30+ ans d'expérience</span>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -3132,10 +4120,115 @@
                 <div class="usp-visual reveal reveal-delay-2">
                     <div class="usp-card">
                         <div class="usp-card-icon">🤝</div>
-                        <h4 data-i18n="usp.card.title">Persönlicher Kontakt</h4>
-                        <p data-i18n="usp.card.text">Bei uns sprechen Sie direkt mit Experten – keine Call-Center, keine Warteschleifen. Echte Beratung für echte Herausforderungen.</p>
+                        <h4 data-i18n="usp.card.title">Contact personnel</h4>
+                        <p data-i18n="usp.card.text">Chez nous, vous parlez directement avec des experts – pas de centres d'appels, pas de files d'attente. Un vrai conseil pour de vrais défis.</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- Track Record / Credentials -->
+            <div class="track-record reveal">
+                <div class="track-record-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    <h3 class="track-record-title">Parcours opérationnel</h3>
+                </div>
+
+                <div class="track-record-stats">
+                    <div class="track-stat">
+                        <div class="track-stat-value">30+</div>
+                        <div class="track-stat-label">Années d'expérience</div>
+                    </div>
+                    <div class="track-stat">
+                        <div class="track-stat-value">70</div>
+                        <div class="track-stat-label">Employés dirigés</div>
+                    </div>
+                    <div class="track-stat">
+                        <div class="track-stat-value">11.000</div>
+                        <div class="track-stat-label">m² de production</div>
+                    </div>
+                    <div class="track-stat">
+                        <div class="track-stat-value">Mio.</div>
+                        <div class="track-stat-label">Unités vendues</div>
+                    </div>
+                </div>
+
+                <div class="roles-section">
+                    <p class="roles-label">Rôles opérationnels</p>
+                    <div class="roles-grid">
+                        <span class="role-badge">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            Production
+                        </span>
+                        <span class="role-badge">
+                            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                            Homologation & Conformité
+                        </span>
+                        <span class="role-badge">
+                            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                            Logistique & ADR
+                        </span>
+                        <span class="role-badge">
+                            <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+                            E-Commerce
+                        </span>
+                        <span class="role-badge">
+                            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                            Direction générale
+                        </span>
+                    </div>
+                </div>
+
+                <div class="projects-section">
+                    <p class="projects-label">Types de projets (sélection)</p>
+                    <div class="projects-list">
+                        <span class="project-type">Production chimique mise en place</span>
+                        <span class="project-type">Enregistrement REACH effectué</span>
+                        <span class="project-type">Boutique B2B développée</span>
+                        <span class="project-type">Entrepôt de substances dangereuses</span>
+                        <span class="project-type">Logistique ADR établie</span>
+                        <span class="project-type">Assurance qualité GMP</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Segments -->
+            <div class="segments-section reveal">
+                <h3 class="segments-title">Pour qui nous travaillons</h3>
+                <div class="segments-grid">
+                    <div class="segment-card">
+                        <div class="segment-header">
+                            <span class="segment-icon">🏭</span>
+                            <span class="segment-name">Industrie</span>
+                        </div>
+                        <p class="segment-problem"><strong>Problème:</strong> Chaos fournisseurs, FDS manquantes, incertitude REACH.</p>
+                        <p class="segment-solution"><strong>Solution:</strong> Un fournisseur pour chimie + conformité. Tout documenté, livré ADR.</p>
+                    </div>
+                    <div class="segment-card">
+                        <div class="segment-header">
+                            <span class="segment-icon">🔬</span>
+                            <span class="segment-name">Labo & Recherche</span>
+                        </div>
+                        <p class="segment-problem"><strong>Problème:</strong> Recherches longues, fiches sécurité obsolètes.</p>
+                        <p class="segment-solution"><strong>Solution:</strong> Base de données 3.800+ substances. CAS, SGH, H/P – en secondes.</p>
+                    </div>
+                    <div class="segment-card">
+                        <div class="segment-header">
+                            <span class="segment-icon">🚚</span>
+                            <span class="segment-name">Commerce & Logistique</span>
+                        </div>
+                        <p class="segment-problem"><strong>Problème:</strong> Exigences documentation croissantes, DPP flou.</p>
+                        <p class="segment-solution"><strong>Solution:</strong> Digital Product Passport ready. Scanner QR, données instantanées.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section CTA -->
+            <div class="section-cta reveal">
+                <p>Prêt à réduire vos risques de conformité?</p>
+                <a href="#kontakt" class="btn btn-highlight">Demander une évaluation gratuite →</a>
             </div>
         </div>
     </section>
@@ -3144,8 +4237,9 @@
     <section class="section" id="kontakt" aria-labelledby="contact-title" itemscope itemtype="https://schema.org/ContactPage">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label" data-i18n="contact.label">Kontakt</span>
-                <h2 class="section-title" id="contact-title" data-i18n="contact.title">Demander une consultation B2B gratuite</h2>
+                <span class="section-label">Conseil stratégique</span>
+                <h2 class="section-title" id="contact-title">Faire évaluer votre projet en toute confidentialité</h2>
+                <p class="section-subtitle">Première évaluation personnalisée par le directeur général – sans attente, sans centre d'appels.</p>
             </div>
 
             <div class="contact-grid">
@@ -3192,7 +4286,7 @@
                 </div>
 
                 <div class="contact-form-wrapper reveal reveal-delay-2">
-                    <h3 data-i18n="contact.form.title">Nachricht senden</h3>
+                    <h3>Soumettre une demande stratégique</h3>
                     <form id="contactForm">
                         <!-- Honeypot-Feld (unsichtbar für Menschen) -->
                         <div class="hp-field" aria-hidden="true">
@@ -3203,20 +4297,40 @@
                         <input type="hidden" name="form_time" id="formTime">
 
                         <div class="form-group">
-                            <label class="form-label" for="contactEmail" data-i18n="contact.form.email">E-Mail-Adresse *</label>
-                            <input type="email" id="contactEmail" name="email" class="form-input" data-i18n-placeholder="contact.form.emailPlaceholder" placeholder="ihre.email@beispiel.de" required>
+                            <label class="form-label" for="contactEmail">Adresse e-mail *</label>
+                            <input type="email" id="contactEmail" name="email" class="form-input" placeholder="votre.email@exemple.fr" required aria-invalid="false" aria-describedby="email-error">
+                            <span id="email-error" class="form-error" role="alert"></span>
+                        </div>
+
+                        <div class="inquiry-type-group">
+                            <span class="inquiry-type-label">Sujet de votre demande (optionnel)</span>
+                            <div class="inquiry-options">
+                                <label class="inquiry-option">
+                                    <input type="checkbox" name="inquiry_type" value="project">
+                                    <span>Présenter un projet</span>
+                                </label>
+                                <label class="inquiry-option">
+                                    <input type="checkbox" name="inquiry_type" value="compliance">
+                                    <span>Évaluation gratuite</span>
+                                </label>
+                                <label class="inquiry-option">
+                                    <input type="checkbox" name="inquiry_type" value="dpp">
+                                    <span>Questions DPP</span>
+                                </label>
+                            </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="contactMessage" data-i18n="contact.form.message">Ihre Nachricht *</label>
-                            <textarea id="contactMessage" name="message" class="form-textarea" data-i18n-placeholder="contact.form.messagePlaceholder" placeholder="Wie können wir Ihnen helfen?" required></textarea>
+                            <label class="form-label" for="contactMessage">Votre message *</label>
+                            <textarea id="contactMessage" name="message" class="form-textarea" placeholder="Décrivez brièvement votre projet ou votre défi de conformité..." required aria-invalid="false" aria-describedby="message-error"></textarea>
+                            <span id="message-error" class="form-error" role="alert"></span>
                         </div>
 
-                        <button type="submit" class="form-submit" id="submitBtn" data-i18n="contact.form.submit">
-                            Nachricht senden
+                        <button type="submit" class="form-submit" id="submitBtn">
+                            Soumettre votre projet en toute confidentialité
                         </button>
 
-                        <div class="form-status" id="formStatus"></div>
+                        <div class="form-status" id="formStatus" aria-live="polite" aria-atomic="true" role="status"></div>
                     </form>
                 </div>
             </div>
@@ -3432,12 +4546,12 @@
                     phone: "Telefon",
                     mobile: "Mobil",
                     form: {
-                        title: "Nachricht senden",
+                        title: "Strategische Anfrage stellen",
                         email: "E-Mail-Adresse *",
                         emailPlaceholder: "ihre.email@beispiel.de",
                         message: "Ihre Nachricht *",
-                        messagePlaceholder: "Wie können wir Ihnen helfen?",
-                        submit: "Nachricht senden",
+                        messagePlaceholder: "Beschreiben Sie kurz Ihr Projekt oder Ihre Compliance-Herausforderung...",
+                        submit: "Projekt vertraulich einreichen",
                         sending: "Wird gesendet...",
                         success: "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.",
                         error: "Fehler beim Senden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch.",
@@ -3592,12 +4706,12 @@
                     phone: "Téléphone",
                     mobile: "Mobile",
                     form: {
-                        title: "Envoyer un message",
+                        title: "Soumettre une demande stratégique",
                         email: "Adresse e-mail *",
                         emailPlaceholder: "votre.email@exemple.fr",
                         message: "Votre message *",
-                        messagePlaceholder: "Comment pouvons-nous vous aider ?",
-                        submit: "Envoyer le message",
+                        messagePlaceholder: "Décrivez brièvement votre projet ou votre défi de conformité...",
+                        submit: "Soumettre votre projet en toute confidentialité",
                         sending: "Envoi en cours...",
                         success: "Merci ! Votre message a été envoyé avec succès.",
                         error: "Erreur lors de l'envoi. Veuillez réessayer ou nous contacter par téléphone.",
@@ -3752,12 +4866,12 @@
                     phone: "Phone",
                     mobile: "Mobile",
                     form: {
-                        title: "Send Message",
+                        title: "Submit a Strategic Inquiry",
                         email: "Email Address *",
                         emailPlaceholder: "your.email@example.com",
                         message: "Your Message *",
-                        messagePlaceholder: "How can we help you?",
-                        submit: "Send Message",
+                        messagePlaceholder: "Briefly describe your project or compliance challenge...",
+                        submit: "Submit Project Confidentially",
                         sending: "Sending...",
                         success: "Thank you! Your message has been sent successfully.",
                         error: "Error sending. Please try again or contact us by phone.",
@@ -4743,11 +5857,50 @@
             hideBanner();
         }
 
+        // Focus Trap for Cookie Dialog (WCAG 2.4.3)
+        let focusTrapHandler = null;
+
+        function enableFocusTrap(container) {
+            const focusableElements = container.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstFocusable = focusableElements[0];
+            const lastFocusable = focusableElements[focusableElements.length - 1];
+
+            focusTrapHandler = function(e) {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstFocusable) {
+                            lastFocusable.focus();
+                            e.preventDefault();
+                        }
+                    } else {
+                        if (document.activeElement === lastFocusable) {
+                            firstFocusable.focus();
+                            e.preventDefault();
+                        }
+                    }
+                }
+            };
+
+            container.addEventListener('keydown', focusTrapHandler);
+        }
+
+        function disableFocusTrap(container) {
+            if (focusTrapHandler) {
+                container.removeEventListener('keydown', focusTrapHandler);
+                focusTrapHandler = null;
+            }
+        }
+
         // Show/Hide Banner
         function showBanner() {
             const banner = document.getElementById('cookie-consent-banner');
             if (banner) {
                 banner.style.display = 'block';
+
+                // Enable focus trap
+                enableFocusTrap(banner);
 
                 // Focus management for accessibility
                 const acceptBtn = document.getElementById('cookie-accept');
@@ -4762,6 +5915,9 @@
             if (banner) {
                 banner.style.display = 'none';
                 document.body.style.overflow = '';
+
+                // Disable focus trap
+                disableFocusTrap(banner);
             }
         }
 

@@ -10,10 +10,11 @@ Corporate Landingpage für die OYSI GmbH (https://oysi.gmbh) mit Kontaktformular
 |--------|---------|
 | **URL** | https://oysi.gmbh |
 | **Sprachen** | DE (index.html), FR (/fr/), EN (/en/) - separate HTML-Dateien |
+| **Letztes Audit** | ✅ 31. Januar 2026 (WCAG 2.2 AA, Security, CWV) |
 | **Passwort-Schutz** | ❌ Entfernt (Januar 2026) |
 | **CDN** | https://cdn.oysi.tech (Logos, Favicons, OG-Images) |
 | **Reverse Proxy** | Traefik (kein direkter Port-Zugriff) |
-| **Analytics** | Google Analytics 4 (`G-GDV44WVP0Z`) |
+| **Analytics** | Google Analytics 4 (`G-GDV44WVP0Z`) + Consent Mode v2 |
 
 ## Kontaktdaten
 
@@ -597,16 +598,65 @@ EMAIL_RECIPIENT=olivier.hoefer@oysi.gmbh
 - `oysi.gmbh` / `www.oysi.gmbh` → oysi_static:80
 - `oysi.tech` / `www.oysi.tech` → Redirect zu oysi.gmbh
 
-## Sektionen der Website
+## Sektionen der Website (Homepage)
 
-1. **Hero** - Großes Logo mit Glow, Stats-Counter, CTAs, Hexagon-Molekül-Hintergrund
-2. **Über uns** - Firmengeschichte mit Auto-Scroll Timeline (8 Meilensteine, Zwei-Zeilen-Layout), Gründer-Info, Trust-Badges, GHS-Strip
-3. **Leistungen** - 4 Service-Karten mit SVG-Icons (Flask, GHS-Diamond, QR-Code, Benzene)
-4. **Digital Solutions** - Browser-Frames für dpp.oysi.gmbh und oysi.eu
-5. **Branchen** - 4 Industrie-SVG-Icons (Barrel, Test Tubes, Spray Bottle, Gear)
-6. **Warum OYSI** - USP-Liste mit Checkmarks
-7. **Kontakt** - Kontaktdaten + Formular
-8. **Footer** - Links, Legal (HRB 109351, DE368627554)
+### 1. Hero
+- Großes Logo mit Glow-Effekt
+- Stats-Counter (animiert)
+- **KPI-Bar** (neu 01/2026): 4 messbare Outcomes direkt unter Hero-CTAs
+  - `−60%` Koordinationsaufwand bei SDB-Erstellung
+  - `24h` Lieferzeit für Compliance-Dokumente
+  - `3.800+` Substanzen sofort abrufbar
+  - `0` IT-Ressourcen für DPP nötig
+- **CTAs** (Hierarchie):
+  - Primary: `Kostenfreie Ersteinschätzung` (Coral mit Pulse-Animation)
+  - Secondary: `Lexikon entdecken`
+- Hexagon-Molekül-Hintergrund (SVG Pattern)
+
+### 2. Über uns
+- Auto-Scroll Timeline (8 Meilensteine, Zwei-Zeilen-Layout)
+- Gründer-Info mit E-E-A-T Schema
+- Trust-Badges
+- GHS-Piktogramm Strip
+
+### 3. Leistungen
+- 4 Service-Karten mit SVG-Icons
+- **SEO-optimierte H2-Titel** (neu 01/2026):
+  - `REACH-konforme Chemikalien & Compliance in Europa`
+  - `Digitaler Produktpass (DPP) für Chemikalien – EU-konform`
+
+### 4. Digital Solutions
+- Browser-Frames für dpp.oysi.gmbh und oysi.eu
+
+### 5. Branchen (Segmentierung)
+- Problem → Lösung Pattern pro Segment
+- 4 Industrie-SVG-Icons (Barrel, Test Tubes, Spray Bottle, Gear)
+
+### 6. Warum OYSI
+- USP-Liste mit Checkmarks
+
+### 7. Kontakt (Premium B2B - neu 01/2026)
+
+**Positionierung:** Exklusiv, strategisch, CEO-direkt (nicht generisch)
+
+| Element | DE | FR | EN |
+|---------|----|----|-----|
+| **Section-Label** | Strategische Beratung | Conseil stratégique | Strategic Advisory |
+| **Section-Title** | Ihr Projekt vertraulich bewerten lassen | Faire évaluer votre projet en toute confidentialité | Have Your Project Confidentially Evaluated |
+| **Section-Subtitle** | Persönliche Ersteinschätzung durch den Geschäftsführer – keine Wartezeiten, keine Call-Center. | Première évaluation personnalisée par le directeur général – sans attente, sans centre d'appels. | Personal initial assessment by the CEO – no waiting, no call centers. |
+| **Form-Title** | Strategische Anfrage stellen | Soumettre une demande stratégique | Submit a Strategic Inquiry |
+| **Placeholder** | Beschreiben Sie kurz Ihr Projekt oder Ihre Compliance-Herausforderung... | Décrivez brièvement votre projet ou votre défi de conformité... | Briefly describe your project or compliance challenge... |
+| **Submit-Button** | Projekt vertraulich einreichen | Soumettre votre projet en toute confidentialité | Submit Project Confidentially |
+
+**Formular-Features:**
+- Inquiry-Type Checkboxes (Projekt / Compliance-Check / DPP)
+- Honeypot Spam-Schutz
+- ARIA-Attribute für Accessibility
+- Rate Limiting (3 Anfragen/10 Min)
+
+### 8. Footer
+- Links, Legal (HRB 109351, DE368627554)
+- Cookie-Einstellungen Link
 
 ## Wichtige URLs im OYSI-Ökosystem
 
@@ -645,6 +695,33 @@ Die deutsche Version (`index.html`) verwendet KEIN client-seitiges i18n mehr - d
 ---
 
 ## Changelog (Januar 2026)
+
+### 31. Januar 2026 - Audit & Conversion-Optimierung
+
+**Technisches Audit (Mobile/Desktop):**
+- WCAG 2.2 AA Compliance geprüft
+- Core Web Vitals optimiert (LCP, CLS, INP)
+- Security Headers hinzugefügt (CSP, X-Content-Type-Options, Referrer-Policy)
+
+**Accessibility-Fixes (P0-P2):**
+- `aria-live="polite"` für Formular-Feedback
+- `aria-invalid` für Validierungsstatus
+- Focus-Trap für Cookie-Dialog
+- Touch-Targets auf 44px minimum erhöht
+- `role="alert"` für Fehlermeldungen
+
+**Conversion-Optimierung:**
+- **KPI-Bar:** 4 messbare Outcomes unter Hero (−60%, 24h, 3.800+, 0)
+- **CTA-Hierarchie:** Primary mit Pulse-Glow Animation hervorgehoben
+- **SEO H2-Titel:** Keyword-optimiert für Suchintent
+- **Premium-Kontaktbereich:** B2B-exklusiv, CEO-direkt positioniert
+
+**Schema.org Updates:**
+- `Speakable` für Voice Search
+- `Person` mit E-E-A-T Signalen (Olivier Höfer)
+- `HowTo` für AI-Antworten
+
+---
 
 ### 31. Januar 2026 - Major Update
 

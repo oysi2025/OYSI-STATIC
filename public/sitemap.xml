@@ -49,6 +49,30 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Service: B2B-Chemikalienhandel -->
+  <url>
+    <loc>https://oysi.gmbh/services/b2b-chemie/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: REACH-Services -->
+  <url>
+    <loc>https://oysi.gmbh/services/reach/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: Digital Product Passport -->
+  <url>
+    <loc>https://oysi.gmbh/services/dpp/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Kontakt / Contact -->
   <url>
     <loc>https://oysi.gmbh/contact/</loc>
