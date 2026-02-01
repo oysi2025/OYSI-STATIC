@@ -21,6 +21,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://oysi.gmbh/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://oysi.gmbh/fr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://oysi.gmbh/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oysi.gmbh/"/>
   </url>
   <!-- Homepage English -->
   <url>
@@ -31,6 +32,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://oysi.gmbh/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://oysi.gmbh/fr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://oysi.gmbh/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oysi.gmbh/"/>
   </url>
 
   <!-- Über uns / About -->

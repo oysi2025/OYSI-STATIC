@@ -181,9 +181,7 @@
         "description": "OYSI GmbH ist ein führender B2B-Händler für technische Chemie mit über 30 Jahren Expertise. Spezialisiert auf Industrie- und Laborchemikalien mit vollständiger EU-Compliance (REACH, CLP/GHS, ADR) und Digital Product Passport nach EU 2024/1781.",
         "foundingDate": "1995",
         "founder": {
-            "@type": "Person",
-            "name": "Olivier Höfer",
-            "jobTitle": "Geschäftsführer"
+            "@id": "https://oysi.gmbh/#founder"
         },
         "address": {
             "@type": "PostalAddress",
@@ -465,9 +463,12 @@
         "name": "Olivier Höfer",
         "givenName": "Olivier",
         "familyName": "Höfer",
-        "image": "https://cdn.oysi.tech/oysi/olivier-hoefer.jpg",
+        "image": "https://cdn.oysi.tech/images/olivier-hoefer-portrait.png",
         "url": "https://oysi.gmbh/en/#ueber-uns",
         "jobTitle": "CEO & Managing Director",
+        "sameAs": [
+            "https://www.linkedin.com/in/olivier-h%C3%B6fer/"
+        ],
         "worksFor": {
             "@id": "https://oysi.gmbh/#organization"
         },
@@ -3977,11 +3978,11 @@
                 </div>
 
                 <div class="ghs-strip" title="GHS Pictograms">
-                    <img src="https://cdn.oysi.tech/ghs/GHS02.svg" alt="GHS02 Flammable" title="GHS02 - Flammable" width="36" height="36" loading="lazy">
-                    <img src="https://cdn.oysi.tech/ghs/GHS05.svg" alt="GHS05 Corrosive" title="GHS05 - Corrosive" width="36" height="36" loading="lazy">
-                    <img src="https://cdn.oysi.tech/ghs/GHS06.svg" alt="GHS06 Toxic" title="GHS06 - Toxic" width="36" height="36" loading="lazy">
-                    <img src="https://cdn.oysi.tech/ghs/GHS07.svg" alt="GHS07 Irritant" title="GHS07 - Irritant" width="36" height="36" loading="lazy">
-                    <img src="https://cdn.oysi.tech/ghs/GHS09.svg" alt="GHS09 Environment" title="GHS09 - Hazardous to Environment" width="36" height="36" loading="lazy">
+                    <img src="https://cdn.oysi.tech/ghs/GHS02.svg" alt="GHS02 Flammable" title="GHS02 - Flammable" width="36" height="36" loading="lazy" decoding="async">
+                    <img src="https://cdn.oysi.tech/ghs/GHS05.svg" alt="GHS05 Corrosive" title="GHS05 - Corrosive" width="36" height="36" loading="lazy" decoding="async">
+                    <img src="https://cdn.oysi.tech/ghs/GHS06.svg" alt="GHS06 Toxic" title="GHS06 - Toxic" width="36" height="36" loading="lazy" decoding="async">
+                    <img src="https://cdn.oysi.tech/ghs/GHS07.svg" alt="GHS07 Irritant" title="GHS07 - Irritant" width="36" height="36" loading="lazy" decoding="async">
+                    <img src="https://cdn.oysi.tech/ghs/GHS09.svg" alt="GHS09 Environment" title="GHS09 - Hazardous to Environment" width="36" height="36" loading="lazy" decoding="async">
                 </div>
 
                 <div class="about-cta">
@@ -4400,7 +4401,8 @@
                                      alt="Olivier Höfer, Founder of OYSI GmbH"
                                      width="140"
                                      height="140"
-                                     loading="lazy">
+                                     loading="lazy"
+                                     decoding="async">
                             </div>
                         </div>
                         <div class="trust-verified" title="Verified Profile">
@@ -4451,7 +4453,7 @@
 
             <!-- Customer Segments -->
             <div class="segments-section reveal">
-                <h3 class="segments-title">Who We Work With</h3>
+                <h2 class="segments-title">Who We Work With</h2>
                 <div class="segments-grid">
                     <div class="segment-card">
                         <div class="segment-header">
@@ -5329,26 +5331,39 @@
         const navLinks = document.querySelectorAll('.nav-link');
         const scrollToTopBtn = document.getElementById('scrollToTop');
 
-        // Scroll-Effekt für Navigation + Scroll-to-Top Button
-        window.addEventListener('scroll', () => {
-            // Navigation scrolled state
-            if (nav) {
-                if (window.scrollY > 50) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-            }
+        // ============================================
+        // INP-OPTIMIZED SCROLL HANDLING
+        // Uses requestAnimationFrame throttling + passive listeners
+        // ============================================
+        let scrollTicking = false;
+        let lastScrollY = 0;
 
-            // Scroll-to-Top Button visibility
-            if (scrollToTopBtn) {
-                if (window.scrollY > 500) {
-                    scrollToTopBtn.classList.add('visible');
-                } else {
-                    scrollToTopBtn.classList.remove('visible');
-                }
+        function handleScroll() {
+            lastScrollY = window.scrollY;
+
+            if (!scrollTicking) {
+                requestAnimationFrame(() => {
+                    // Navigation scrolled state
+                    if (nav) {
+                        nav.classList.toggle('scrolled', lastScrollY > 50);
+                    }
+
+                    // Scroll-to-Top Button visibility
+                    if (scrollToTopBtn) {
+                        scrollToTopBtn.classList.toggle('visible', lastScrollY > 500);
+                    }
+
+                    // Update active nav link (throttled)
+                    updateActiveNavLink();
+
+                    scrollTicking = false;
+                });
+                scrollTicking = true;
             }
-        });
+        }
+
+        // Single passive scroll listener for all scroll-based updates
+        window.addEventListener('scroll', handleScroll, { passive: true });
 
         // Scroll-to-Top Button click handler
         if (scrollToTopBtn) {
@@ -5401,28 +5416,31 @@
         });
 
         // Aktiver Link basierend auf Scroll-Position
+        // Aktiver Link basierend auf Scroll-Position (INP-optimiert)
         const sections = document.querySelectorAll('section[id]');
+        const navHeight = nav ? nav.offsetHeight : 80;
 
-        function updateActiveLink() {
-            const scrollPos = window.scrollY + (nav ? nav.offsetHeight : 80) + 100;
+        function updateActiveNavLink() {
+            const scrollPos = lastScrollY + navHeight + 100;
+            let currentSection = null;
 
-            sections.forEach(section => {
+            // Find current section (optimized: break early)
+            for (const section of sections) {
                 const top = section.offsetTop;
-                const height = section.offsetHeight;
-                const id = section.getAttribute('id');
-
-                if (scrollPos >= top && scrollPos < top + height) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('active');
-                        }
-                    });
+                if (scrollPos >= top && scrollPos < top + section.offsetHeight) {
+                    currentSection = section.getAttribute('id');
+                    break;
                 }
-            });
-        }
+            }
 
-        window.addEventListener('scroll', updateActiveLink);
+            // Only update DOM if section changed
+            if (currentSection) {
+                navLinks.forEach(link => {
+                    const isActive = link.getAttribute('href') === `#${currentSection}`;
+                    link.classList.toggle('active', isActive);
+                });
+            }
+        }
 
         // ============================================
         // COUNTER ANIMATION
