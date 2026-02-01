@@ -603,37 +603,68 @@ EMAIL_RECIPIENT=olivier.hoefer@oysi.gmbh
 ### 1. Hero
 - Großes Logo mit Glow-Effekt
 - Stats-Counter (animiert)
-- **KPI-Bar** (neu 01/2026): 4 messbare Outcomes direkt unter Hero-CTAs
-  - `−60%` Koordinationsaufwand bei SDB-Erstellung
+- **KPI-Bar**: 4 messbare Outcomes direkt unter Hero-CTAs
+  - `−60%` Koordinationsaufwand bei SDB-Erstellung* (mit Disclaimer)
   - `24h` Lieferzeit für Compliance-Dokumente
   - `3.800+` Substanzen sofort abrufbar
   - `0` IT-Ressourcen für DPP nötig
 - **CTAs** (Hierarchie):
-  - Primary: `Kostenfreie Ersteinschätzung` (Coral mit Pulse-Animation)
-  - Secondary: `Lexikon entdecken`
+  - Primary: `Kostenfreie Compliance-Ersteinschätzung` (Coral mit Pulse-Animation)
+  - Secondary: `DPP-Architektur besprechen` (Teal-Border)
+  - Outline: `Substanzdatenbank testen` (extern)
 - Hexagon-Molekül-Hintergrund (SVG Pattern)
 
+### 1b. Trust-Layer (neu 02/2026)
+- Direkt unter Hero, Petrol Blue Background
+- **Inhalt:** "Fundiert durch Praxis aus:"
+  - Industrielle Chemieproduktion
+  - Gefahrstofflogistik (ADR/IMDG)
+  - E-Commerce-Skalierung
+  - Regulatorische Verantwortung (REACH, CLP, GHS)
+- **Proof:** "3.800+ Produkte im europäischen Markt betreut"
+
+### 1c. Outcome-Block (neu 02/2026)
+- "Was unsere Kunden konkret erreichen"
+- 3 konkrete Business-Outcomes (Freigabezeiten, Rückfragen, Datenbasis)
+
+### 1d. Target-Block (neu 02/2026)
+- "Relevant für:" mit 3 Zielgruppen-Badges
+- Chemiehandel & Industrie
+- Unternehmen mit Zulassungs- & DPP-Pflichten
+- Verantwortliche für Compliance & Produktfreigabe
+
 ### 2. Über uns
+- **Positionierungs-Statement:** "OYSI ist keine Beratung – wir kommen aus der operativen Realität"
+- **Bullet-Logik:** "Das Fundament" + "Was OYSI 2026 anders macht"
 - Auto-Scroll Timeline (8 Meilensteine, Zwei-Zeilen-Layout)
 - Gründer-Info mit E-E-A-T Schema
-- Trust-Badges
-- GHS-Piktogramm Strip
+- Trust-Badges + GHS-Piktogramm Strip
 
 ### 3. Leistungen
 - 4 Service-Karten mit SVG-Icons
-- **SEO-optimierte H2-Titel** (neu 01/2026):
+- **SEO-optimierte H2-Titel**:
   - `REACH-konforme Chemikalien & Compliance in Europa`
   - `Digitaler Produktpass (DPP) für Chemikalien – EU-konform`
+- **Section-CTA:** `Projekt vertraulich vorstellen` (Secondary)
 
 ### 4. Digital Solutions
 - Browser-Frames für dpp.oysi.gmbh und oysi.eu
+- **Section-CTA:** `DPP-Architektur besprechen` (Secondary)
 
 ### 5. Branchen (Segmentierung)
 - Problem → Lösung Pattern pro Segment
 - 4 Industrie-SVG-Icons (Barrel, Test Tubes, Spray Bottle, Gear)
+- Kein Section-CTA mehr (entfernt 02/2026)
 
 ### 6. Warum OYSI
-- USP-Liste mit Checkmarks
+- **Abgrenzung:** "OYSI ist keine Beratung – wir kommen aus der operativen Verantwortung"
+- USP-Liste mit Checkmarks + 60%-Metrik (mit Disclaimer)
+- **Mini-Case Study (neu 02/2026):**
+  - Überschrift: "Praxisbeispiel aus dem operativen Chemiehandel (anonymisiert)"
+  - 3-Spalten: Ausgangslage → Maßnahme → Ergebnis
+  - Disclaimer unter Ergebnis
+- **Finaler CTA (Primary):** `Kostenfreie Compliance-Ersteinschätzung`
+- **Erwartungsmanagement:** "Unverbindlich. Vertraulich. Klare Einschätzung in wenigen Tagen."
 
 ### 7. Kontakt (Premium B2B - neu 01/2026)
 
@@ -691,6 +722,47 @@ Alle Icons verwenden `stroke="currentColor"` und erben die Farbe von `.service-i
 Bei Änderungen an CSS oder JavaScript müssen ALLE Dateien aktualisiert werden!
 
 Die deutsche Version (`index.html`) verwendet KEIN client-seitiges i18n mehr - der Inhalt ist direkt auf Deutsch im HTML.
+
+---
+
+## Changelog
+
+### 1. Februar 2026 - Trust & Conversion Optimization
+
+**Trust-Signale (Post-Hero):**
+- **Trust-Layer:** Erfahrungsbereiche direkt unter Hero (Chemieproduktion, Gefahrstofflogistik, E-Commerce, Regulierung)
+- **Outcome-Block:** "Was unsere Kunden konkret erreichen" (Freigabezeiten, Rückfragen, Datenbasis)
+- **Target-Block:** "Relevant für" Zielgruppen-Badges (Chemiehandel, DPP-Pflichten, Compliance-Verantwortliche)
+
+**CTA-Hierarchie (1 Primary pro Viewport):**
+- Neue CSS-Klasse `.btn-highlight-secondary` (Teal-Border, dezent)
+- Section-CTAs auf Secondary umgestellt
+- Nur finaler CTA in "Warum OYSI" bleibt Primary (Coral)
+- CTA-Dopplungen im unteren Funnel entfernt
+
+**About-Section Restrukturierung:**
+- Positionierungs-Statement: "OYSI ist keine Beratung – wir kommen aus der operativen Realität"
+- Bullet-Logik statt Fließtext ("Das Fundament", "Was OYSI 2026 anders macht")
+- Scanbare Zwischenüberschriften als Anker
+
+**Mini-Case Study (Warum OYSI):**
+- Überschrift: "Praxisbeispiel aus dem operativen Chemiehandel (anonymisiert)"
+- 3-Spalten-Layout: Ausgangslage → Maßnahme → Ergebnis
+- Disclaimer unter Ergebnis: "(Erfahrungswerte aus vergleichbaren Projekten...)"
+
+**60%-KPI Absicherung:**
+- Tooltip auf KPI-Bar mit Methodik-Hinweis
+- Klammer-Disclaimer in USP-Section
+- Neue CSS-Klasse `.metric-note` für dezente Hinweise
+
+**Finaler CTA mit Erwartungsmanagement:**
+- Text: "Kostenfreie Compliance-Ersteinschätzung"
+- Subtext: "Unverbindlich. Vertraulich. Klare Einschätzung in wenigen Tagen."
+- Neue CSS-Klasse `.cta-subtext`
+
+**Abgrenzung in "Warum OYSI":**
+- Positionierungs-Satz nach H2-Titel
+- Neue CSS-Klasse `.usp-positioning`
 
 ---
 
