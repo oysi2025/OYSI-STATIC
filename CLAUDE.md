@@ -10,7 +10,7 @@ Corporate Landingpage für die OYSI GmbH (https://oysi.gmbh) mit Kontaktformular
 |--------|---------|
 | **URL** | https://oysi.gmbh |
 | **Sprachen** | DE (index.html), FR (/fr/), EN (/en/) - separate HTML-Dateien |
-| **Letztes Audit** | ✅ 31. Januar 2026 (WCAG 2.2 AA, Security, CWV) |
+| **Letztes Audit** | ✅ 1. Februar 2026 (WCAG 2.2 AA, Security, CWV) |
 | **Passwort-Schutz** | ❌ Entfernt (Januar 2026) |
 | **CDN** | https://cdn.oysi.tech (Logos, Favicons, OG-Images) |
 | **Reverse Proxy** | Traefik (kein direkter Port-Zugriff) |
@@ -685,7 +685,23 @@ EMAIL_RECIPIENT=olivier.hoefer@oysi.gmbh
 - ARIA-Attribute für Accessibility
 - Rate Limiting (3 Anfragen/10 Min)
 
-### 8. Footer
+### 8. SEO-Text-Block (neu 02/2026)
+- **Position:** Nach Kontakt-Section, vor Footer
+- **Zweck:** Keyword-Relevanz für organische Sichtbarkeit
+- **Design:** Dezent, kleinere Schrift, gedämpfte Farben (`--oysi-bg-alt`)
+- **Responsive:** Angepasst für 768px und 480px Breakpoints
+
+**Target Keywords (DE):**
+- REACH-konforme Chemikalien
+- Sicherheitsdatenblätter (SDB)
+- Digitaler Produktpass (DPP)
+- EU 2024/1781
+- B2B-Chemikalienhandel
+- Gefahrstofflogistik
+- GHS-Kennzeichnung
+- ADR-Transport
+
+### 9. Footer
 - Links, Legal (HRB 109351, DE368627554)
 - Cookie-Einstellungen Link
 
@@ -729,6 +745,20 @@ Die deutsche Version (`index.html`) verwendet KEIN client-seitiges i18n mehr - d
 
 ### 1. Februar 2026 - Trust & Conversion Optimization
 
+**SEO-Text-Block (Pre-Footer):**
+- Neuer SEO-Block mit starken Keywords nach Kontakt-Section
+- Target: REACH, SDB, DPP, GHS, ADR, B2B-Chemikalienhandel
+- Dezentes Design (gedämpfte Farben, kleinere Schrift)
+- Mobile-responsive (768px + 480px Breakpoints)
+- Alle 3 Sprachversionen (DE/FR/EN) implementiert
+
+**SEO Meta-Optimierung (2025/2026 Best Practices):**
+- **Title Tag (DE):** `B2B-Chemikalien mit REACH-Compliance | OYSI GmbH` (48 Zeichen)
+- **Meta Description (DE):** 158 Zeichen (vorher 208 – zu lang!)
+- **H1:** "Chemikalien-Compliance von REACH bis DPP" (Keyword-Integration)
+- **OG Tags:** Konsistent mit Title/Description
+- Alle 3 Sprachversionen aktualisiert (DE/FR/EN)
+
 **Trust-Signale (Post-Hero):**
 - **Trust-Layer:** Erfahrungsbereiche direkt unter Hero (Chemieproduktion, Gefahrstofflogistik, E-Commerce, Regulierung)
 - **Outcome-Block:** "Was unsere Kunden konkret erreichen" (Freigabezeiten, Rückfragen, Datenbasis)
@@ -763,6 +793,24 @@ Die deutsche Version (`index.html`) verwendet KEIN client-seitiges i18n mehr - d
 **Abgrenzung in "Warum OYSI":**
 - Positionierungs-Satz nach H2-Titel
 - Neue CSS-Klasse `.usp-positioning`
+
+**Sticky CTA Mobile:**
+- Fixierter Primary-CTA am unteren Bildschirmrand auf Mobilgeräten (<768px)
+- CSS: `.sticky-cta-mobile` mit `position: fixed; bottom: 0`
+- Footer-Padding angepasst (`padding-bottom: 80px` auf Mobile)
+- Scroll-to-top Button Position angepasst
+- Texte: DE "Kostenlose Ersteinschätzung", FR "Évaluation gratuite", EN "Free Assessment"
+
+**Interne Verlinkung (SEO):**
+- About-Section: Link zu `/about/` ("Mehr über unsere Geschichte →")
+- Services-Section: Link zu `/services/` ("Alle Leistungen im Detail →")
+- SEO-Block: Link zu `/faq/` ("Häufige Fragen →")
+- Alle 3 Sprachversionen (DE/FR/EN) implementiert
+
+**CSP-Fixes (Content Security Policy):**
+- `connect-src` um `https://*.google-analytics.com` erweitert (GA4 region1 Endpoint)
+- `frame-ancestors` aus meta-Tag entfernt (funktioniert nur via HTTP-Header)
+- Preload für og-image.jpg entfernt (Warnung "not used within a few seconds")
 
 ---
 

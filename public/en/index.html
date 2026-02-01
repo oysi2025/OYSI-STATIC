@@ -46,8 +46,8 @@
     <!-- ============================================
          PRIMARY META TAGS (SEO 2025/2026)
     ============================================ -->
-    <title>Acids, Bases & Solvents | OYSI GmbH – B2B Chemical Trading</title>
-    <meta name="description" content="REACH-compliant chemicals for industry & laboratory. Acids, bases, solvents, alcohols & specialty chemicals. 30 years expertise, 3,800+ substances, Europe-wide delivery. Digital Product Passport (DPP) included.">
+    <title>B2B Chemicals with REACH Compliance | OYSI GmbH</title>
+    <meta name="description" content="REACH-compliant chemicals with full compliance documentation: SDS, GHS labeling, ADR & Digital Product Passport (EU 2024/1781). 30 years expertise – Europe-wide service.">
     <meta name="keywords" content="buy acids, buy bases, solvents B2B, REACH compliant chemicals, technical chemistry, industrial chemicals, laboratory chemicals, technical alcohols, specialty chemicals, Digital Product Passport, GHS labeling, safety data sheets">
     <meta name="author" content="OYSI GmbH">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -65,8 +65,7 @@
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
         font-src 'self' https://fonts.gstatic.com;
         img-src 'self' https://cdn.oysi.tech https://www.google-analytics.com data:;
-        connect-src 'self' https://www.google-analytics.com https://analytics.google.com;
-        frame-ancestors 'none';
+        connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com;
         base-uri 'self';
         form-action 'self';
     ">
@@ -101,8 +100,8 @@
     ============================================ -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://oysi.gmbh/en/">
-    <meta property="og:title" content="Acids, Bases & Solvents | OYSI GmbH">
-    <meta property="og:description" content="REACH-compliant chemicals for industry & laboratory. Acids, bases, solvents, alcohols & specialty chemicals. 30 years expertise, Europe-wide delivery.">
+    <meta property="og:title" content="B2B Chemicals with REACH Compliance | OYSI GmbH">
+    <meta property="og:description" content="REACH-compliant chemicals with full compliance documentation: SDS, GHS, ADR & Digital Product Passport (EU 2024/1781). 30 years expertise – Europe-wide.">
     <meta property="og:image" content="https://cdn.oysi.tech/oysi/og-image.jpg">
     <meta property="og:image:secure_url" content="https://cdn.oysi.tech/oysi/og-image.jpg">
     <meta property="og:image:type" content="image/jpeg">
@@ -150,11 +149,6 @@
          PERFORMANCE: PRELOAD CRITICAL RESOURCES (LCP Optimization)
     ============================================ -->
     <link rel="preload" as="image" href="https://cdn.oysi.tech/oysi/Logo_Oysi_RZ.svg" type="image/svg+xml">
-    <link rel="preload" as="image" href="https://cdn.oysi.tech/oysi/og-image.jpg" type="image/jpeg"
-          imagesrcset="https://cdn.oysi.tech/oysi/og-image-600.jpg 600w,
-                       https://cdn.oysi.tech/oysi/og-image-900.jpg 900w,
-                       https://cdn.oysi.tech/oysi/og-image.jpg 1200w"
-          imagesizes="(max-width: 600px) 600px, (max-width: 900px) 900px, 1200px">
 
     <!-- ============================================
          FONTS (with font-display: swap for LCP)
@@ -1815,25 +1809,31 @@
             background: var(--bg-secondary);
         }
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
+        .about-compact {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        .about-content h3 {
-            font-family: var(--font-heading);
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--text-primary);
+        .about-compact .section-label {
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .about-compact h2 {
             margin-bottom: 24px;
         }
 
-        .about-content p {
-            color: var(--text-muted);
-            margin-bottom: 24px;
-            font-size: 1.05rem;
+        .about-compact .trust-badges {
+            justify-content: center;
+        }
+
+        .about-compact .ghs-strip {
+            justify-content: center;
+        }
+
+        .about-cta {
+            margin-top: 32px;
         }
 
         .about-positioning {
@@ -1849,47 +1849,6 @@
 
         .about-positioning strong {
             color: var(--oysi-accent-light, #52CCCD);
-        }
-
-        .about-subhead {
-            font-family: var(--font-heading);
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--oysi-accent, #17ACBA);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin: 24px 0 12px 0;
-        }
-
-        .about-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 20px 0;
-        }
-
-        .about-list li {
-            position: relative;
-            padding-left: 24px;
-            margin-bottom: 10px;
-            color: var(--text-muted);
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        .about-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            width: 8px;
-            height: 8px;
-            background: var(--oysi-accent, #17ACBA);
-            border-radius: 2px;
-        }
-
-        .about-list li strong {
-            color: var(--oysi-accent-light, #52CCCD);
-            font-weight: 600;
         }
 
         .quote-block {
@@ -1967,194 +1926,6 @@
         .chemical-data {
             font-family: 'JetBrains Mono', 'Fira Code', var(--font-mono);
             letter-spacing: 0.02em;
-        }
-
-        .about-visual {
-            position: relative;
-        }
-
-        .about-image-frame {
-            background: rgba(2, 120, 151, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            padding: 40px;
-            position: relative;
-        }
-
-        .about-image-frame::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 100%;
-            height: 100%;
-            border: 1px solid var(--oysi-accent);
-            border-radius: 16px;
-            opacity: 0.3;
-        }
-
-        .experience-badge {
-            position: absolute;
-            bottom: -20px;
-            left: 40px;
-            background: var(--oysi-accent);
-            color: #ffffff;
-            padding: 20px 32px;
-            border-radius: 12px;
-            font-family: var(--font-heading);
-            font-weight: 700;
-            box-shadow: 0 10px 40px rgba(23, 172, 186, 0.4);
-        }
-
-        .experience-badge .number {
-            font-family: var(--font-mono);
-            font-size: 2.5rem;
-            display: block;
-            line-height: 1;
-        }
-
-        .experience-badge .label {
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .founder-info {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 24px;
-            background: rgba(23, 172, 186, 0.08);
-            border-radius: 12px;
-        }
-
-        .founder-avatar {
-            width: 64px;
-            height: 64px;
-            min-width: 64px;
-            min-height: 64px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: center top;
-            border: 3px solid var(--oysi-accent);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            flex-shrink: 0;
-        }
-
-        .founder-details h4 {
-            font-family: var(--font-heading);
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-
-        .founder-details p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        /* Timeline Component */
-        .timeline-wrapper {
-            max-height: 220px;
-            overflow: hidden;
-            position: relative;
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border-subtle);
-            mask-image: linear-gradient(to bottom,
-                transparent 0%,
-                black 10%,
-                black 90%,
-                transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom,
-                transparent 0%,
-                black 10%,
-                black 90%,
-                transparent 100%);
-        }
-
-        .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-            animation: scrollTimeline 15s linear infinite;
-        }
-
-        .timeline:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes scrollTimeline {
-            0%, 10% { transform: translateY(0); }
-            90%, 100% { transform: translateY(calc(-100% + 220px)); }
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-
-        .timeline-year {
-            font-family: var(--font-mono);
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--accent-primary);
-            min-width: 50px;
-            text-align: right;
-        }
-
-        .timeline-content {
-            padding-left: 1rem;
-            border-left: 2px solid rgba(23, 172, 186, 0.4);
-        }
-
-        .timeline-title {
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 0.95rem;
-        }
-
-        .timeline-text {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-top: 0.2rem;
-            margin-bottom: 0;
-        }
-
-        .timeline-detail {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 0.15rem;
-            margin-bottom: 0;
-        }
-
-        .timeline-text .hl,
-        .timeline-detail .hl {
-            color: var(--accent-primary);
-        }
-
-        /* Highlight for current timeline entry */
-        .timeline-item.highlight .timeline-year {
-            color: var(--oysi-accent);
-        }
-
-        .timeline-item.highlight .timeline-content {
-            border-left-color: var(--oysi-accent);
-        }
-
-        @media (max-width: 1024px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .about-visual {
-                order: -1;
-            }
         }
 
         /* ============================================
@@ -3136,6 +2907,270 @@
         }
 
         /* ============================================
+           TRUST & TRANSPARENCY
+        ============================================ */
+        .trust-transparency {
+            background: linear-gradient(135deg, rgba(9, 90, 125, 0.03) 0%, rgba(23, 172, 186, 0.05) 100%);
+            border: 1px solid rgba(9, 90, 125, 0.12);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-transparency::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(23, 172, 186, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .trust-inner {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 36px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trust-portrait {
+            position: relative;
+        }
+
+        .trust-portrait-frame {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--oysi-primary) 0%, var(--oysi-secondary) 100%);
+            padding: 4px;
+            box-shadow: 0 8px 32px rgba(9, 90, 125, 0.2);
+        }
+
+        .trust-portrait-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--oysi-bg-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .trust-portrait-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .trust-portrait-inner svg {
+            width: 60px;
+            height: 60px;
+            stroke: var(--oysi-secondary);
+            stroke-width: 1.5;
+            fill: none;
+            opacity: 0.5;
+        }
+
+        .trust-verified {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            width: 36px;
+            height: 36px;
+            background: var(--oysi-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--oysi-bg-main);
+            box-shadow: 0 4px 12px rgba(23, 172, 186, 0.4);
+        }
+
+        .trust-verified svg {
+            width: 18px;
+            height: 18px;
+            stroke: white;
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        .trust-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .trust-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .trust-shield {
+            width: 32px;
+            height: 32px;
+            background: rgba(9, 90, 125, 0.08);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .trust-shield svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--oysi-primary);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .trust-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--oysi-text-muted);
+        }
+
+        .trust-message {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--oysi-text-body);
+            max-width: 520px;
+        }
+
+        .trust-message strong {
+            color: var(--oysi-text-primary);
+            font-weight: 600;
+        }
+
+        .trust-founder {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .trust-founder-name {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--oysi-text-primary);
+        }
+
+        .trust-founder-role {
+            font-size: 0.85rem;
+            color: var(--oysi-text-muted);
+        }
+
+        .trust-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #0A66C2;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(10, 102, 194, 0.3);
+        }
+
+        .linkedin-btn:hover {
+            background: #004182;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(10, 102, 194, 0.4);
+        }
+
+        .linkedin-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .trust-hint {
+            font-size: 0.8rem;
+            color: var(--oysi-text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .trust-hint svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--oysi-accent);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        @media (max-width: 768px) {
+            .trust-transparency {
+                padding: 28px 24px;
+            }
+
+            .trust-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                text-align: center;
+            }
+
+            .trust-portrait {
+                display: flex;
+                justify-content: center;
+            }
+
+            .trust-portrait-frame {
+                width: 120px;
+                height: 120px;
+            }
+
+            .trust-header {
+                justify-content: center;
+            }
+
+            .trust-message {
+                font-size: 1rem;
+            }
+
+            .trust-founder {
+                align-items: center;
+            }
+
+            .trust-actions {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .linkedin-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 16px 24px;
+                min-height: 56px;
+            }
+
+            .trust-hint {
+                justify-content: center;
+            }
+        }
+
+        /* ============================================
            CONTACT SECTION
         ============================================ */
         .contact-grid {
@@ -3447,6 +3482,40 @@
         }
 
         /* ============================================
+           SEO TEXT BLOCK
+        ============================================ */
+        .seo-block {
+            background: var(--oysi-bg-alt);
+            padding: 48px 0;
+            border-top: 1px solid rgba(9, 90, 125, 0.1);
+        }
+
+        .seo-block h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--oysi-text-primary);
+            margin-bottom: 16px;
+            opacity: 0.85;
+        }
+
+        .seo-block p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--oysi-text-muted);
+            max-width: 900px;
+            margin-bottom: 12px;
+        }
+
+        .seo-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .seo-block strong {
+            font-weight: 500;
+            color: var(--oysi-text-body);
+        }
+
+        /* ============================================
            FOOTER
         ============================================ */
         .footer {
@@ -3603,6 +3672,21 @@
         /* ============================================
            RESPONSIVE ADJUSTMENTS
         ============================================ */
+        @media (max-width: 768px) {
+            .seo-block {
+                padding: 36px 0;
+            }
+
+            .seo-block h3 {
+                font-size: 1rem;
+            }
+
+            .seo-block p {
+                font-size: 0.85rem;
+                line-height: 1.6;
+            }
+        }
+
         @media (max-width: 480px) {
             :root {
                 --section-padding: 80px;
@@ -3610,6 +3694,55 @@
 
             .section-title {
                 font-size: 1.75rem;
+            }
+
+            .seo-block {
+                padding: 28px 0;
+            }
+
+            .seo-block h3 {
+                font-size: 0.95rem;
+                margin-bottom: 12px;
+            }
+
+            .seo-block p {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ============================================
+           STICKY CTA MOBILE
+        ============================================ */
+        @media (max-width: 768px) {
+            .sticky-cta-mobile {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 12px 16px;
+                background: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+                z-index: 9999;
+                display: flex;
+                justify-content: center;
+            }
+            .sticky-cta-mobile .btn-highlight {
+                width: 100%;
+                max-width: 400px;
+                text-align: center;
+            }
+            /* Footer-Abstand für Sticky CTA */
+            .footer {
+                padding-bottom: 80px;
+            }
+            /* Scroll-to-top über Sticky CTA */
+            .scroll-to-top {
+                bottom: 90px;
+            }
+        }
+        @media (min-width: 769px) {
+            .sticky-cta-mobile {
+                display: none;
             }
         }
     </style>
@@ -3686,8 +3819,8 @@
             </div>
 
             <h1 class="hero-title" id="hero-title" itemprop="headline">
-                <span data-i18n="hero.title1">Avoid regulatory roadblocks –</span><br>
-                <span class="accent" data-i18n="hero.title2">from REACH to DPP to ADR.</span>
+                <span data-i18n="hero.title1">Chemical Compliance from REACH to DPP –</span><br>
+                <span class="accent" data-i18n="hero.title2">without regulatory roadblocks.</span>
             </h1>
 
             <p class="hero-subtitle" data-i18n="hero.subtitle">
@@ -3828,136 +3961,31 @@
     <!-- About Section -->
     <section class="section about" id="ueber-uns" aria-labelledby="about-title" itemscope itemtype="https://schema.org/AboutPage">
         <div class="container">
-            <div class="about-grid">
-                <div class="about-content reveal">
-                    <span class="section-label">About OYSI</span>
-                    <h2 id="about-title" itemprop="name">30 Years of B2B Chemistry. A Fresh Start in 2026.</h2>
+            <div class="about-compact reveal">
+                <span class="section-label">About OYSI</span>
+                <h2 id="about-title" itemprop="name">30 Years of B2B Chemistry. A Fresh Start in 2026.</h2>
 
-                    <p class="about-positioning">
-                        <strong>OYSI is not a consultancy.</strong> We come from the operational reality of chemistry, logistics, and regulation.
-                    </p>
+                <p class="about-positioning">
+                    <strong>OYSI is not a consultancy.</strong> We come from the operational reality of chemistry, logistics, and regulation. <span style="color: var(--oysi-accent); font-weight: 500;">Personal response in &lt;4h (business days).</span>
+                </p>
 
-                    <h3 class="about-subhead">The Foundation</h3>
-                    <ul class="about-list">
-                        <li><strong>1995</strong> – Started in a Saarbrücken garage</li>
-                        <li><strong>30 years</strong> – Expertise in technical chemistry, compliance & logistics</li>
-                        <li><strong>3,800+</strong> – Products managed across European markets</li>
-                    </ul>
-
-                    <h3 class="about-subhead">What Makes OYSI Different in 2026</h3>
-                    <ul class="about-list">
-                        <li><strong>Independent</strong> – not an old company under a new name</li>
-                        <li><strong>Own infrastructure</strong> – DPP system, chemistry lexicon, compliance tools</li>
-                        <li><strong>Compliance-first</strong> – no compromises on REACH, GHS, ADR</li>
-                    </ul>
-
-                    <div class="quote-block">
-                        <p class="quote-text">
-                            "It's not the product that makes the difference – it's knowledge, service, and compliance."
-                        </p>
-                        <span class="quote-author">— Olivier Höfer, Managing Director</span>
-                    </div>
-
-                    <div class="trust-badges">
-                        <span class="badge">REACH</span>
-                        <span class="badge">CLP/GHS</span>
-                        <span class="badge">ADR</span>
-                        <span class="badge">EU 2024/1781</span>
-                    </div>
-
-                    <div class="ghs-strip" title="GHS-Piktogramme">
-                        <img src="https://cdn.oysi.tech/ghs/GHS02.svg" alt="GHS02 Entzündbar" title="GHS02 - Entzündbar" width="36" height="36" loading="lazy">
-                        <img src="https://cdn.oysi.tech/ghs/GHS05.svg" alt="GHS05 Ätzend" title="GHS05 - Ätzend" width="36" height="36" loading="lazy">
-                        <img src="https://cdn.oysi.tech/ghs/GHS06.svg" alt="GHS06 Giftig" title="GHS06 - Giftig" width="36" height="36" loading="lazy">
-                        <img src="https://cdn.oysi.tech/ghs/GHS07.svg" alt="GHS07 Reizend" title="GHS07 - Reizend" width="36" height="36" loading="lazy">
-                        <img src="https://cdn.oysi.tech/ghs/GHS09.svg" alt="GHS09 Umweltgefährlich" title="GHS09 - Umweltgefährlich" width="36" height="36" loading="lazy">
-                    </div>
+                <div class="trust-badges">
+                    <span class="badge">REACH</span>
+                    <span class="badge">CLP/GHS</span>
+                    <span class="badge">ADR</span>
+                    <span class="badge">EU 2024/1781</span>
                 </div>
 
-                <div class="about-visual reveal reveal-delay-2">
-                    <div class="about-image-frame">
-                        <div class="founder-info">
-                            <img class="founder-avatar" src="https://cdn.oysi.tech/images/olivier-hoefer-portrait.png" alt="Olivier Höfer" loading="lazy">
-                            <div class="founder-details">
-                                <h4>Olivier Höfer</h4>
-                                <p data-i18n="about.founderRole">Geschäftsführer & Gründer</p>
-                            </div>
-                        </div>
+                <div class="ghs-strip" title="GHS Pictograms">
+                    <img src="https://cdn.oysi.tech/ghs/GHS02.svg" alt="GHS02 Flammable" title="GHS02 - Flammable" width="36" height="36" loading="lazy">
+                    <img src="https://cdn.oysi.tech/ghs/GHS05.svg" alt="GHS05 Corrosive" title="GHS05 - Corrosive" width="36" height="36" loading="lazy">
+                    <img src="https://cdn.oysi.tech/ghs/GHS06.svg" alt="GHS06 Toxic" title="GHS06 - Toxic" width="36" height="36" loading="lazy">
+                    <img src="https://cdn.oysi.tech/ghs/GHS07.svg" alt="GHS07 Irritant" title="GHS07 - Irritant" width="36" height="36" loading="lazy">
+                    <img src="https://cdn.oysi.tech/ghs/GHS09.svg" alt="GHS09 Environment" title="GHS09 - Hazardous to Environment" width="36" height="36" loading="lazy">
+                </div>
 
-                        <!-- Timeline -->
-                        <div class="timeline-wrapper">
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <span class="timeline-year">1995</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t1.title">Ursprung</span>
-                                        <p class="timeline-text" data-i18n="about.timeline.t1.text">Start in einer Garage</p>
-                                        <p class="timeline-detail">Luisenthalerstraße, <span class="hl">Saarbrücken</span></p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <span class="timeline-year">2005</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t2.title">Gründung</span>
-                                        <p class="timeline-text" data-i18n="about.timeline.t2.text">Firmengründung</p>
-                                        <p class="timeline-detail"><span class="hl">Höfer Chemie GmbH</span></p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <span class="timeline-year">2009</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t3.title">Industrialisierung</span>
-                                        <p class="timeline-text" data-i18n="about.timeline.t3.text">Eigene Produktion & Logistik</p>
-                                        <p class="timeline-detail"><span data-i18n="about.timeline.t3.location">Standort</span> <span class="hl">Sulzbach</span></p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <span class="timeline-year">2018</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t4.title">Produktionsstandort</span>
-                                        <p class="timeline-text" data-i18n="about.timeline.t4.text">Neubau in Kleinblittersdorf</p>
-                                        <p class="timeline-detail"><span class="hl">11.500 m²</span> <span data-i18n="about.timeline.t4.unit">Produktionsfläche</span></p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <span class="timeline-year">2021</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t5.title">Logistikzentrum</span>
-                                        <p class="timeline-text" data-i18n="about.timeline.t5.text">Inbetriebnahme Logistik</p>
-                                        <p class="timeline-detail"><span class="hl">10.500 m²</span> <span data-i18n="about.timeline.t5.unit">Lager- & Versandfläche</span></p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <span class="timeline-year">2022</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t6.title">Beteiligungsverkauf</span>
-                                        <p class="timeline-text" data-i18n="about.timeline.t6.text">Verkauf der Unternehmensanteile</p>
-                                        <p class="timeline-detail"><span class="hl" data-i18n="about.timeline.t6.detail">Minderheitsgesellschafter</span></p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <span class="timeline-year">01/2026</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t7.title">Exit Management</span>
-                                        <p class="timeline-text" data-i18n="about.timeline.t7.text">Abgabe der Geschäftsführung</p>
-                                        <p class="timeline-detail"><span class="hl" data-i18n="about.timeline.t7.detail">Vollständiger Exit</span></p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item highlight">
-                                    <span class="timeline-year">02/2026</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t8.title">Neustart</span>
-                                        <p class="timeline-text"><span class="hl">OYSI GmbH</span></p>
-                                        <p class="timeline-detail" data-i18n="about.timeline.t8.detail">Technische Chemie & Digital</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="experience-badge">
-                        <span class="number">30+</span>
-                        <span class="label" data-i18n="about.experience">Jahre Erfahrung</span>
-                    </div>
+                <div class="about-cta">
+                    <a href="/about/" class="btn btn-highlight-secondary">Discover Our Story →</a>
                 </div>
             </div>
         </div>
@@ -4000,7 +4028,7 @@
                     <p class="card-solution">Complete range from a single source – already REACH-registered and documented.</p>
                     <div class="card-result">
                         <span class="result-label">Result:</span>
-                        <span>No supplier hopping, no documentation gaps</span>
+                        <span><strong>1</strong> contact · <strong>0</strong> documentation gaps</span>
                     </div>
                 </div>
 
@@ -4018,7 +4046,7 @@
                     <p class="card-solution">Safety data sheets, GHS labels, ADR documents – all compliant and up to date.</p>
                     <div class="card-result">
                         <span class="result-label">Result:</span>
-                        <span>No authority objections, no delays</span>
+                        <span>SDS in <strong>24h</strong> · <strong>0</strong> objections</span>
                     </div>
                 </div>
 
@@ -4040,7 +4068,7 @@
                     <p class="card-solution">EU 2024/1781 compliant product identity – scan the QR code, all data immediately available.</p>
                     <div class="card-result">
                         <span class="result-label">Result:</span>
-                        <span>Future-proof, audit-ready, scalable</span>
+                        <span>Setup in <strong>&lt;5 days</strong> · audit-ready from day 1</span>
                     </div>
                 </div>
 
@@ -4062,9 +4090,14 @@
                     <p class="card-solution">3,800+ substances with CAS, GHS pictograms, H/P statements – instantly accessible.</p>
                     <div class="card-result">
                         <span class="result-label">Result:</span>
-                        <span>Faster research, fewer errors</span>
+                        <span>Ø <strong>3 sec</strong> response time · <strong>3,800+</strong> substances</span>
                     </div>
                 </div>
+            </div>
+
+            <!-- Internal Link -->
+            <div style="text-align: center; margin-top: 32px;">
+                <a href="/services/" style="color: var(--oysi-accent); text-decoration: none; font-size: 0.9rem;">View all services in detail →</a>
             </div>
         </div>
     </section>
@@ -4246,35 +4279,35 @@
                             <span class="usp-check">✓</span>
                             <span class="usp-text">
                                 All-in-one compliance documentation
-                                <span class="usp-metric">→ Avg. 60% less coordination for SDS creation <span class="metric-note">(project-based; varies by complexity)</span></span>
+                                <span class="usp-metric">→ <strong>Audit-ready in 6 weeks</strong> · Avg. 60% less coordination <span class="metric-note">(project-based)</span></span>
                             </span>
                         </li>
                         <li class="usp-item">
                             <span class="usp-check">✓</span>
                             <span class="usp-text">
                                 Digital Product Passport ready
-                                <span class="usp-metric">→ EU 2024/1781 compliant, no internal IT resources needed</span>
+                                <span class="usp-metric">→ <strong>Setup in &lt;5 days</strong> · EU 2024/1781 compliant, 0 IT resources needed</span>
                             </span>
                         </li>
                         <li class="usp-item">
                             <span class="usp-check">✓</span>
                             <span class="usp-text">
                                 Substance data instantly available
-                                <span class="usp-metric">→ 3,800+ substances with CAS, GHS, H/P statements in seconds</span>
+                                <span class="usp-metric">→ <strong>3,800+ substances</strong> with CAS, GHS, H/P statements · Response in avg. 3 seconds</span>
                             </span>
                         </li>
                         <li class="usp-item">
                             <span class="usp-check">✓</span>
                             <span class="usp-text">
                                 ADR-compliant logistics Europe-wide
-                                <span class="usp-metric">→ Hazmat transport DE, FR, AT, CH, BE, LU, NL</span>
+                                <span class="usp-metric">→ <strong>70% fewer regulatory inquiries</strong> · DE, FR, AT, CH, BE, LU, NL <span class="metric-note">(project-based)</span></span>
                             </span>
                         </li>
                         <li class="usp-item">
                             <span class="usp-check">✓</span>
                             <span class="usp-text">
                                 Expert advice, not call centers
-                                <span class="usp-metric">→ Direct from founder with 30+ years experience</span>
+                                <span class="usp-metric">→ <strong>Response in &lt;4h</strong> (business days) · Direct from founder with 30+ years experience</span>
                             </span>
                         </li>
                     </ul>
@@ -4357,6 +4390,65 @@
                 </div>
             </div>
 
+            <!-- Trust & Transparency -->
+            <div class="trust-transparency reveal">
+                <div class="trust-inner">
+                    <div class="trust-portrait">
+                        <div class="trust-portrait-frame">
+                            <div class="trust-portrait-inner">
+                                <img src="https://cdn.oysi.tech/images/olivier-hoefer-portrait.png"
+                                     alt="Olivier Höfer, Founder of OYSI GmbH"
+                                     width="140"
+                                     height="140"
+                                     loading="lazy">
+                            </div>
+                        </div>
+                        <div class="trust-verified" title="Verified Profile">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="trust-content">
+                        <div class="trust-header">
+                            <div class="trust-shield">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <span class="trust-label">Discretion & Transparency</span>
+                        </div>
+                        <p class="trust-message">
+                            In the chemical industry, <strong>discretion is our currency</strong>. We don't display client logos – we protect their data. My expertise and track record, however, are transparent.
+                        </p>
+                        <div class="trust-founder">
+                            <span class="trust-founder-name">Olivier Höfer</span>
+                            <span class="trust-founder-role">Founder & Managing Director</span>
+                        </div>
+                        <div class="trust-actions">
+                            <a href="https://www.linkedin.com/in/olivier-h%C3%B6fer/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="linkedin-btn"
+                               aria-label="Open Olivier Höfer's LinkedIn profile">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/>
+                                </svg>
+                                Verify my background on LinkedIn
+                            </a>
+                            <span class="trust-hint">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                                    <polyline points="15 3 21 3 21 9"/>
+                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                </svg>
+                                Opens in new tab
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Customer Segments -->
             <div class="segments-section reveal">
                 <h3 class="segments-title">Who We Work With</h3>
@@ -4423,7 +4515,7 @@
             <div class="section-header reveal">
                 <span class="section-label">Strategic Advisory</span>
                 <h2 class="section-title" id="contact-title">Have Your Project Confidentially Evaluated</h2>
-                <p class="section-subtitle">Personal initial assessment by the CEO – no waiting, no call centers.</p>
+                <p class="section-subtitle">Personal initial assessment by the CEO – <strong>response in 48h</strong>, no call centers.</p>
             </div>
 
             <div class="contact-grid">
@@ -4522,6 +4614,26 @@
     </section>
 
     </main>
+
+    <!-- SEO Text Block -->
+    <section class="seo-block" aria-label="About OYSI">
+        <div class="container">
+            <h3>OYSI – Your Partner for Technical Chemistry in Europe</h3>
+            <p>
+                OYSI is your specialist for <strong>REACH-compliant chemicals</strong>, <strong>safety data sheets (SDS)</strong>,
+                <strong>hazardous goods logistics</strong> and the <strong>Digital Product Passport (DPP)</strong> according to EU 2024/1781.
+                With 30 years of experience in <strong>B2B chemical trading</strong>, we support companies in
+                Germany, France and throughout Europe with <strong>compliance documentation</strong>, <strong>GHS labeling</strong>
+                and <strong>ADR transport</strong>.
+            </p>
+            <p>
+                Industry, laboratory or trade – we deliver <strong>technical chemicals</strong> with complete documentation:
+                CAS numbers, H and P statements, exposure scenarios and transport documents.
+                Headquartered in Saarbrücken, Europe-wide service.
+                <a href="/faq/" style="color: var(--oysi-text-primary); text-decoration: underline; font-weight: 500;">Frequently Asked Questions →</a>
+            </p>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer" role="contentinfo" itemscope itemtype="https://schema.org/WPFooter">
@@ -6204,5 +6316,10 @@
 
     })();
     </script>
+
+    <!-- Sticky CTA Mobile -->
+    <div class="sticky-cta-mobile">
+        <a href="#kontakt" class="btn btn-highlight">Free Assessment</a>
+    </div>
 </body>
 </html>
