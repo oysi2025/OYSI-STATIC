@@ -7,13 +7,55 @@
 
 ## Leçons
 
-_Aucune leçon pour l'instant - ce fichier sera mis à jour automatiquement._
+### 2026-02-02: CSS Minification überschreibt Sprachinhalte
+
+**Problem:** Das CSS-Minify-Skript hat versehentlich deutschen Inhalt in FR/EN Dateien kopiert.
+
+**Ursache:** Skript hat nicht nur CSS minifiziert, sondern ganze Dateien überschrieben.
+
+**Lösung:**
+- Immer Backup vor Batch-Operationen prüfen
+- Nach Skript-Ausführung Stichproben der Inhalte verifizieren
+- Sprachversionen separat behandeln
+
+### 2026-02-02: EXIF-Orientierung bei WebP-Konvertierung
+
+**Problem:** Bilder waren um 90° verdreht nach WebP-Konvertierung.
+
+**Ursache:** `ImageOps.exif_transpose()` wurde nicht angewendet.
+
+**Lösung:**
+```python
+from PIL import Image, ImageOps
+img = Image.open('photo.jpeg')
+img = ImageOps.exif_transpose(img)  # WICHTIG!
+img.save('photo.webp', 'WEBP', quality=85)
+```
+
+### 2026-02-02: Dateiberechtigungen für CDN
+
+**Problem:** Neue Dateien auf CDN waren nicht lesbar (HTTP 403/404).
+
+**Ursache:** Dateien wurden mit `rw-r-----` (640) erstellt statt `rw-r--r--` (644).
+
+**Lösung:** `chmod 644` für alle Web-Assets.
+
+### 2026-02-02: CDN-Cache bei neuen Dateien
+
+**Problem:** Neue Dateien (favicon.svg) wurden mit 404 gecacht.
+
+**Lösung:** Cache-Busting-Parameter verwenden (`?v=2`).
 
 ---
 
 ## Patterns spécifiques à oysi-static
 
-_À compléter au fil du projet._
+| Pattern | Beschreibung |
+|---------|--------------|
+| Sprachversionen | Separate HTML-Dateien in `/de/`, `/fr/`, `/en/` |
+| Bilder | WebP auf CDN (`cdn.oysi.tech/images/`) |
+| Favicons | CDN unter `/oysi/` |
+| CSS | Inline in jeder HTML-Datei (minifiziert) |
 
 ---
 
@@ -21,11 +63,17 @@ _À compléter au fil du projet._
 
 | ❌ Ne pas faire | ✅ Faire à la place |
 |----------------|---------------------|
-| _À compléter_ | _À compléter_ |
+| Batch-Skripte ohne Backup | `public.backup.YYYYMMDD/` erstellen |
+| Bilder ohne EXIF-Transpose | Immer `ImageOps.exif_transpose()` |
+| Neue CDN-Dateien ohne chmod | `chmod 644` nach Upload |
+| Statische Assets ohne Version | Cache-Busting `?v=X` hinzufügen |
 
 ---
 
 ## Checklist de review
 
 Basée sur les leçons apprises pour ce service :
-- [ ] _À compléter après les premières sessions_
+- [ ] Sprachversionen (DE/FR/EN) haben unterschiedliche Inhalte
+- [ ] Bilder sind korrekt orientiert (nicht verdreht)
+- [ ] CDN-Dateien haben 644 Berechtigungen
+- [ ] Neue Assets haben Cache-Busting-Parameter
