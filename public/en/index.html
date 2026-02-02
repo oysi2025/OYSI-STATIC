@@ -4958,8 +4958,12 @@
             resizeTimeout = setTimeout(cacheSectionPositions, 150);
         }, { passive: true });
 
-        // Initial cache after DOM is ready
-        requestAnimationFrame(cacheSectionPositions);
+        // Initial cache after page is fully loaded (avoid forced reflow during initial render)
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(cacheSectionPositions, { timeout: 2000 });
+        } else {
+            setTimeout(cacheSectionPositions, 100);
+        }
 
         // Unified scroll handler with requestAnimationFrame throttling
         function onScroll() {
