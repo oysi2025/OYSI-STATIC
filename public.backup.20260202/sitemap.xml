@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Homepage German (Default) -->
+  <url>
+    <loc>https://oysi.gmbh/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://oysi.gmbh/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://oysi.gmbh/fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oysi.gmbh/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oysi.gmbh/"/>
+  </url>
+  <!-- Homepage French -->
+  <url>
+    <loc>https://oysi.gmbh/fr/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://oysi.gmbh/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://oysi.gmbh/fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oysi.gmbh/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oysi.gmbh/"/>
+  </url>
+  <!-- Homepage English -->
+  <url>
+    <loc>https://oysi.gmbh/en/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://oysi.gmbh/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://oysi.gmbh/fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oysi.gmbh/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oysi.gmbh/"/>
+  </url>
+
+  <!-- Über uns / About -->
+  <url>
+    <loc>https://oysi.gmbh/about/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Leistungen / Services -->
+  <url>
+    <loc>https://oysi.gmbh/services/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: B2B-Chemikalienhandel -->
+  <url>
+    <loc>https://oysi.gmbh/services/b2b-chemie/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: REACH-Services -->
+  <url>
+    <loc>https://oysi.gmbh/services/reach/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: Digital Product Passport -->
+  <url>
+    <loc>https://oysi.gmbh/services/dpp/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Kontakt / Contact -->
+  <url>
+    <loc>https://oysi.gmbh/contact/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- FAQ -->
+  <url>
+    <loc>https://oysi.gmbh/faq/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Partner -->
+  <url>
+    <loc>https://oysi.gmbh/partner/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Wissen & Insights / Blog -->
+  <url>
+    <loc>https://oysi.gmbh/blog/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Impressum / Legal -->
+  <url>
+    <loc>https://oysi.gmbh/legal/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Datenschutz / Privacy -->
+  <url>
+    <loc>https://oysi.gmbh/privacy/</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>

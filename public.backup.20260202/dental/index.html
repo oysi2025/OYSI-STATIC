@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDV44WVP0Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GDV44WVP0Z');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Dental | Premium Zahntechnik</title>
+    <meta name="description" content="New Dental - Exzellenz in der Zahntechnik. Präzision trifft Ästhetik für Ihr perfektes Lächeln.">
+    <meta name="theme-color" content="#095A7D">
+    <meta name="msapplication-TileColor" content="#095A7D">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Legacy variables (mapped to OYSI colors) */
+            --gold: #17ACBA;
+            --gold-light: #52CCCD;
+            --gold-dark: #095A7D;
+            --navy: #095A7D;
+            --navy-light: #027897;
+            --white: #ffffff;
+            --off-white: #F0ECE6;
+            --gray: #2D3748;
+            --light-gray: #D8D3CC;
+
+            /* OYSI Corporate Identity Colors */
+            --oysi-primary: #095A7D;
+            --oysi-secondary: #027897;
+            --oysi-accent: #17ACBA;
+            --oysi-accent-light: #52CCCD;
+            --oysi-highlight: #EF655E;
+            --oysi-bg-main: #F0ECE6;
+            --oysi-bg-alt: #D8D3CC;
+            --oysi-text-primary: #095A7D;
+            --oysi-text-body: #2D3748;
+            --oysi-text-muted: #8A949B;
+
+            /* Semantic mappings */
+            --bg-primary: #095A7D;
+            --bg-secondary: #027897;
+            --accent-primary: #17ACBA;
+            --accent-secondary: #52CCCD;
+            --safety-green: #17ACBA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--oysi-bg-main);
+            color: var(--oysi-text-body);
+            overflow-x: hidden;
+        }
+
+        /* ========== PRELOADER ========== */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-content {
+            text-align: center;
+        }
+
+        .preloader-tooth {
+            font-size: 4rem;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .preloader-text {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            letter-spacing: 4px;
+        }
+
+        .preloader-bar {
+            width: 200px;
+            height: 2px;
+            background: var(--navy-light);
+            margin: 1.5rem auto 0;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .preloader-bar::after {
+            content: '';
+            display: block;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            animation: loading 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(350%); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        /* ========== NAVIGATION ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(26, 35, 50, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            filter: drop-shadow(0 0 10px rgba(23, 172, 186, 0.3));
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--oysi-highlight), #d94d47);
+            color: var(--white) !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(239, 101, 94, 0.4);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image:
+                radial-gradient(circle at 20% 80%, var(--gold) 1px, transparent 1px),
+                radial-gradient(circle at 80% 20%, var(--gold) 1px, transparent 1px),
+                radial-gradient(circle at 40% 40%, var(--gold) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(23, 172, 186, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            right: -200px;
+            transform: translateY(-50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateY(-50%) scale(1); opacity: 0.5; }
+            50% { transform: translateY(-50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(23, 172, 186, 0.1);
+            border: 1px solid rgba(23, 172, 186, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            color: var(--oysi-accent);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--oysi-highlight), #d94d47);
+            color: var(--white);
+            box-shadow: 0 10px 40px rgba(239, 101, 94, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(239, 101, 94, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .hero-visual {
+            position: relative;
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideLeft 1s ease forwards;
+            animation-delay: 0.8s;
+        }
+
+        @keyframes slideLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .hero-tooth-3d {
+            font-size: 20rem;
+            display: block;
+            text-align: center;
+            filter: drop-shadow(0 30px 60px rgba(23, 172, 186, 0.3));
+            animation: toothFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes toothFloat {
+            0%, 100% { transform: translateY(0) rotateY(0deg); }
+            25% { transform: translateY(-20px) rotateY(10deg); }
+            50% { transform: translateY(0) rotateY(0deg); }
+            75% { transform: translateY(-10px) rotateY(-10deg); }
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 20px;
+            height: 20px;
+            top: 10%;
+            left: 10%;
+            animation: floatRandom 8s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 15px;
+            height: 15px;
+            top: 70%;
+            left: 20%;
+            animation: floatRandom 6s ease-in-out infinite reverse;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 25px;
+            height: 25px;
+            top: 20%;
+            right: 15%;
+            animation: floatRandom 10s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(4) {
+            width: 12px;
+            height: 12px;
+            bottom: 20%;
+            right: 25%;
+            animation: floatRandom 7s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatRandom {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(20px, -30px); }
+            50% { transform: translate(-10px, 20px); }
+            75% { transform: translate(30px, 10px); }
+        }
+
+        /* ========== STATS SECTION ========== */
+        .stats {
+            background: var(--oysi-bg-alt);
+            padding: 4rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .stat-item.visible {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--oysi-text-body);
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* ========== SERVICES SECTION ========== */
+        .services {
+            padding: 8rem 5%;
+            background: var(--oysi-bg-main);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            color: var(--gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--oysi-text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--oysi-text-body);
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 60px rgba(9, 90, 125, 0.05);
+            border: 1px solid var(--oysi-bg-alt);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .service-card.visible {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.1);
+            border-color: transparent;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            filter: grayscale(20%);
+            transition: all 0.5s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            filter: grayscale(0%);
+        }
+
+        .service-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--oysi-text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            font-size: 0.95rem;
+            color: var(--oysi-text-body);
+            line-height: 1.7;
+        }
+
+        /* ========== SHOWCASE SECTION ========== */
+        .showcase {
+            padding: 8rem 5%;
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showcase-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(23, 172, 186, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(23, 172, 186, 0.1) 0%, transparent 50%);
+        }
+
+        .showcase .section-header {
+            position: relative;
+            z-index: 1;
+        }
+
+        .showcase .section-title {
+            color: var(--white);
+        }
+
+        .showcase .section-description {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .showcase-slider {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            padding: 2rem 0;
+        }
+
+        .showcase-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .showcase-item {
+            flex: 0 0 350px;
+            scroll-snap-align: start;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        .showcase-item:hover {
+            transform: scale(1.02);
+            border-color: var(--oysi-accent);
+            box-shadow: 0 20px 60px rgba(23, 172, 186, 0.2);
+        }
+
+        .showcase-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--navy-light), var(--navy));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showcase-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .showcase-item:hover .showcase-image::after {
+            left: 100%;
+        }
+
+        .showcase-content {
+            padding: 1.5rem;
+        }
+
+        .showcase-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .showcase-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ========== QUALITY SECTION ========== */
+        .quality {
+            padding: 8rem 5%;
+            background: var(--oysi-bg-alt);
+        }
+
+        .quality-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .quality-visual {
+            position: relative;
+        }
+
+        .quality-main-image {
+            font-size: 15rem;
+            display: block;
+            text-align: center;
+            filter: drop-shadow(0 30px 60px rgba(9, 90, 125, 0.2));
+        }
+
+        .quality-badge {
+            position: absolute;
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: floatBadge 4s ease-in-out infinite;
+        }
+
+        @keyframes floatBadge {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .quality-badge.badge-1 {
+            top: 10%;
+            left: 0;
+            animation-delay: 0s;
+        }
+
+        .quality-badge.badge-2 {
+            bottom: 20%;
+            right: 0;
+            animation-delay: 2s;
+        }
+
+        .quality-badge-icon {
+            font-size: 2rem;
+        }
+
+        .quality-badge-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--oysi-text-primary);
+        }
+
+        .quality-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--oysi-text-primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .quality-text p {
+            font-size: 1.05rem;
+            color: var(--oysi-text-body);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .quality-features {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .quality-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .quality-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .quality-feature-text h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--oysi-text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .quality-feature-text p {
+            font-size: 0.9rem;
+            color: var(--oysi-text-body);
+            margin: 0;
+        }
+
+        /* ========== TESTIMONIALS ========== */
+        .testimonials {
+            padding: 8rem 5%;
+            background: var(--oysi-bg-main);
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--oysi-bg-alt);
+            padding: 2.5rem;
+            border-radius: 20px;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(9, 90, 125, 0.08);
+        }
+
+        .testimonial-quote {
+            font-size: 4rem;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 1rem;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            color: var(--oysi-text-body);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--oysi-accent), var(--oysi-accent-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .testimonial-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--oysi-text-primary);
+        }
+
+        .testimonial-info span {
+            font-size: 0.85rem;
+            color: var(--oysi-text-muted);
+        }
+
+        /* ========== CTA SECTION ========== */
+        .cta {
+            padding: 8rem 5%;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(23, 172, 186, 0.1) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ========== CONTACT SECTION ========== */
+        .contact {
+            padding: 8rem 5%;
+            background: var(--oysi-bg-alt);
+        }
+
+        .contact-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--oysi-text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info > p {
+            font-size: 1.05rem;
+            color: var(--oysi-text-body);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-details {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .contact-item-text {
+            font-size: 1rem;
+            color: var(--oysi-text-primary);
+        }
+
+        .contact-item-text a {
+            color: var(--oysi-text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item-text a:hover {
+            color: var(--oysi-accent);
+        }
+
+        .contact-form-container {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(9, 90, 125, 0.05);
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--oysi-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid var(--oysi-bg-alt);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--oysi-accent);
+            box-shadow: 0 0 0 4px rgba(23, 172, 186, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, var(--oysi-highlight), #d94d47);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(239, 101, 94, 0.4);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            max-width: 300px;
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .footer-column ul {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--oysi-accent);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-bottom a {
+            color: var(--oysi-accent);
+            text-decoration: none;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text {
+                order: 2;
+            }
+
+            .hero-visual {
+                order: 1;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-description {
+                margin: 0 auto 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-tooth-3d {
+                font-size: 15rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quality-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .cta h2 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                margin: 0 auto;
+            }
+        }
+
+        /* ========== SCROLL REVEAL ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-tooth">🦷</div>
+            <div class="preloader-text">NEW DENTAL</div>
+            <div class="preloader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <span class="logo-icon">🦷</span>
+            <span class="logo-text">New<span>Dental</span></span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#services">Leistungen</a></li>
+            <li><a href="#showcase">Portfolio</a></li>
+            <li><a href="#quality">Qualität</a></li>
+            <li><a href="#testimonials">Referenzen</a></li>
+            <li><a href="#contact" class="nav-cta">Kontakt</a></li>
+        </ul>
+        <button class="mobile-menu-btn" aria-label="Menü">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-pattern"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Premium Zahntechnik
+                </div>
+                <h1>Präzision trifft<br><span class="highlight">Ästhetik</span></h1>
+                <p class="hero-description">
+                    Willkommen bei New Dental – Ihrem Partner für exzellente zahntechnische Lösungen.
+                    Wir verbinden modernste Technologie mit handwerklicher Perfektion für Ihr perfektes Lächeln.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        Beratung anfragen
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#services" class="btn btn-secondary">Unsere Leistungen</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <div class="floating-elements">
+                        <div class="floating-element"></div>
+                        <div class="floating-element"></div>
+                        <div class="floating-element"></div>
+                        <div class="floating-element"></div>
+                    </div>
+                    <span class="hero-tooth-3d">🦷</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Jahre Erfahrung</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15k+</div>
+                <div class="stat-label">Zufriedene Patienten</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99%</div>
+                <div class="stat-label">Kundenzufriedenheit</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Partner-Praxen</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <span class="section-tag">Unsere Leistungen</span>
+            <h2 class="section-title">Exzellenz in jeder Disziplin</h2>
+            <p class="section-description">
+                Von der klassischen Prothetik bis zu innovativen CAD/CAM-Lösungen –
+                wir bieten das gesamte Spektrum moderner Zahntechnik.
+            </p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">👑</span>
+                <h3 class="service-title">Kronen & Brücken</h3>
+                <p class="service-description">
+                    Hochwertige Vollkeramik- und Zirkonkronen sowie Brücken in Premiumqualität
+                    für natürliche Ästhetik und optimale Funktion.
+                </p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">💎</span>
+                <h3 class="service-title">Veneers</h3>
+                <p class="service-description">
+                    Hauchdünne Keramikschalen für ein makelloses Lächeln.
+                    Individuelle Farbgestaltung und perfekte Passform.
+                </p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🔩</span>
+                <h3 class="service-title">Implantologie</h3>
+                <p class="service-description">
+                    Präzise Implantat-Suprastrukturen und individuelle Abutments
+                    für alle gängigen Implantatsysteme.
+                </p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🖥️</span>
+                <h3 class="service-title">CAD/CAM</h3>
+                <p class="service-description">
+                    Digitale Zahntechnik auf höchstem Niveau. 3D-Scan, Design
+                    und Fertigung für maximale Präzision.
+                </p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">😊</span>
+                <h3 class="service-title">Totalprothesen</h3>
+                <p class="service-description">
+                    Individuell angepasste Vollprothesen mit natürlicher Ästhetik
+                    und optimalem Tragekomfort.
+                </p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">✨</span>
+                <h3 class="service-title">Bleaching-Schienen</h3>
+                <p class="service-description">
+                    Maßgefertigte Bleaching-Trays für professionelles
+                    Zahnaufhellen zu Hause.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section class="showcase" id="showcase">
+        <div class="showcase-bg"></div>
+        <div class="section-header">
+            <span class="section-tag">Portfolio</span>
+            <h2 class="section-title">Unsere Arbeiten</h2>
+            <p class="section-description">
+                Ein Einblick in ausgewählte Projekte, die unsere Expertise und
+                Leidenschaft für perfekte Zahntechnik widerspiegeln.
+            </p>
+        </div>
+        <div class="showcase-slider">
+            <div class="showcase-item">
+                <div class="showcase-image">👑</div>
+                <div class="showcase-content">
+                    <h3 class="showcase-title">Zirkon-Vollkrone</h3>
+                    <p class="showcase-desc">Monolithische Zirkonkrone mit natürlicher Transluzenz</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-image">💎</div>
+                <div class="showcase-content">
+                    <h3 class="showcase-title">Veneer-Restauration</h3>
+                    <p class="showcase-desc">8er Set Keramik-Veneers für ein Hollywood-Lächeln</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-image">🔩</div>
+                <div class="showcase-content">
+                    <h3 class="showcase-title">All-on-4 Versorgung</h3>
+                    <p class="showcase-desc">Komplette Implantat-gestützte Rehabilitation</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-image">🌉</div>
+                <div class="showcase-content">
+                    <h3 class="showcase-title">Keramikbrücke</h3>
+                    <p class="showcase-desc">4-gliedrige Brücke in Lithiumdisilikat</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-image">😁</div>
+                <div class="showcase-content">
+                    <h3 class="showcase-title">Smile Design</h3>
+                    <p class="showcase-desc">Digitale Planung und Umsetzung</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Section -->
+    <section class="quality" id="quality">
+        <div class="quality-content">
+            <div class="quality-visual">
+                <div class="quality-badge badge-1">
+                    <span class="quality-badge-icon">🏆</span>
+                    <span class="quality-badge-text">Zertifizierte<br>Qualität</span>
+                </div>
+                <span class="quality-main-image">🦷</span>
+                <div class="quality-badge badge-2">
+                    <span class="quality-badge-icon">🔬</span>
+                    <span class="quality-badge-text">Modernste<br>Technologie</span>
+                </div>
+            </div>
+            <div class="quality-text">
+                <h2>Warum New Dental?</h2>
+                <p>
+                    Wir stehen für kompromisslose Qualität und innovative Lösungen.
+                    Unser Team aus erfahrenen Zahntechnikern verbindet traditionelles
+                    Handwerk mit modernster digitaler Technologie.
+                </p>
+                <div class="quality-features">
+                    <div class="quality-feature">
+                        <div class="quality-feature-icon">🎯</div>
+                        <div class="quality-feature-text">
+                            <h4>Höchste Präzision</h4>
+                            <p>CAD/CAM-Technologie mit μm-genauer Fertigung</p>
+                        </div>
+                    </div>
+                    <div class="quality-feature">
+                        <div class="quality-feature-icon">⚡</div>
+                        <div class="quality-feature-text">
+                            <h4>Schnelle Lieferung</h4>
+                            <p>Express-Service für dringende Fälle</p>
+                        </div>
+                    </div>
+                    <div class="quality-feature">
+                        <div class="quality-feature-icon">🤝</div>
+                        <div class="quality-feature-text">
+                            <h4>Persönliche Betreuung</h4>
+                            <p>Direkter Kontakt zu Ihrem Zahntechniker</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <span class="section-tag">Referenzen</span>
+            <h2 class="section-title">Was unsere Partner sagen</h2>
+            <p class="section-description">
+                Vertrauen basiert auf Erfahrung. Lesen Sie, was Zahnärzte und
+                Praxen über die Zusammenarbeit mit uns berichten.
+            </p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">
+                    Die Qualität der Arbeiten ist durchweg exzellent. Besonders die
+                    Passgenauigkeit und Ästhetik der Zirkonkronen überzeugt mich und meine Patienten.
+                </p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">SM</div>
+                    <div class="testimonial-info">
+                        <h4>Dr. Stefan Müller</h4>
+                        <span>Zahnarztpraxis Müller, München</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">
+                    Schnelle Lieferzeiten und ein fantastischer Kundenservice.
+                    Die digitale Zusammenarbeit via Intraoralscanner funktioniert reibungslos.
+                </p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">KW</div>
+                    <div class="testimonial-info">
+                        <h4>Dr. Kathrin Weber</h4>
+                        <span>Zahnklinik am Park, Berlin</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">
+                    Seit über 10 Jahren mein zuverlässiger Partner. Die individuelle Beratung
+                    und das Eingehen auf Sonderwünsche schätze ich besonders.
+                </p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">TH</div>
+                    <div class="testimonial-info">
+                        <h4>Dr. Thomas Hoffmann</h4>
+                        <span>Praxis Dr. Hoffmann, Hamburg</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+            <h2>Bereit für Premium-Zahntechnik?</h2>
+            <p>
+                Lassen Sie uns gemeinsam Lächeln perfektionieren.
+                Kontaktieren Sie uns für eine unverbindliche Beratung.
+            </p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Jetzt anfragen</a>
+                <a href="tel:+4968130988375" class="btn btn-secondary">+49 681 / 309 883 75</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Kontaktieren Sie uns</h2>
+                <p>
+                    Haben Sie Fragen oder möchten Sie eine Zusammenarbeit besprechen?
+                    Wir freuen uns auf Ihre Nachricht.
+                </p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div class="contact-item-text">
+                            Halbergstr. 4<br>66121 Saarbrücken
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📞</div>
+                        <div class="contact-item-text">
+                            <a href="tel:+4968130988375">+49 681 / 309 883 75</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">✉️</div>
+                        <div class="contact-item-text">
+                            <a href="mailto:info@newdental.de">info@newdental.de</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">🕐</div>
+                        <div class="contact-item-text">
+                            Mo - Fr: 8:00 - 18:00 Uhr
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-container">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Ihr Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="praxis">Praxis</label>
+                            <input type="text" id="praxis" name="praxis" placeholder="Praxisname">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">E-Mail</label>
+                            <input type="email" id="email" name="email" required placeholder="ihre@email.de">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+49 123 456789">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Nachricht</label>
+                        <textarea id="message" name="message" required placeholder="Wie können wir Ihnen helfen?"></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Nachricht senden</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <span class="logo-icon">🦷</span>
+                    <span class="logo-text">New<span>Dental</span></span>
+                </a>
+                <p>
+                    Premium Zahntechnik aus Saarbrücken.
+                    Präzision, Qualität und Innovation für Ihr perfektes Lächeln.
+                </p>
+            </div>
+            <div class="footer-column">
+                <h4>Leistungen</h4>
+                <ul>
+                    <li><a href="#services">Kronen & Brücken</a></li>
+                    <li><a href="#services">Veneers</a></li>
+                    <li><a href="#services">Implantologie</a></li>
+                    <li><a href="#services">CAD/CAM</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Unternehmen</h4>
+                <ul>
+                    <li><a href="#quality">Über uns</a></li>
+                    <li><a href="#showcase">Portfolio</a></li>
+                    <li><a href="#testimonials">Referenzen</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Rechtliches</h4>
+                <ul>
+                    <li><a href="/">Impressum</a></li>
+                    <li><a href="/">Datenschutz</a></li>
+                    <li><a href="/">AGB</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 New Dental – Ein Projekt der <a href="https://oysi.gmbh">OYSI GmbH</a>
+        </div>
+    </footer>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('fade-out');
+            }, 1500);
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe stat items
+        document.querySelectorAll('.stat-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Observe service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Counter animation for stats
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = counter.innerText;
+                    const hasPlus = target.includes('+');
+                    const hasPercent = target.includes('%');
+                    const hasK = target.includes('k');
+
+                    let num = parseInt(target.replace(/[^0-9]/g, ''));
+                    let current = 0;
+                    const increment = num / 50;
+
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < num) {
+                            let display = Math.floor(current);
+                            if (hasK) display = display + 'k';
+                            if (hasPlus) display = display + '+';
+                            if (hasPercent) display = display + '%';
+                            counter.innerText = display;
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+
+                    updateCounter();
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-number').forEach(stat => {
+            counterObserver.observe(stat);
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('.form-submit');
+            const originalText = btn.innerText;
+
+            btn.innerText = 'Wird gesendet...';
+            btn.disabled = true;
+
+            // Simulate form submission
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            btn.innerText = 'Erfolgreich gesendet!';
+            btn.style.background = 'linear-gradient(135deg, #17ACBA, #095A7D)';
+
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = '';
+                btn.disabled = false;
+                e.target.reset();
+            }, 3000);
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.scrollY;
+            if (scrolled < window.innerHeight) {
+                hero.style.backgroundPosition = `center ${scrolled * 0.5}px`;
+            }
+        });
+    </script>
+
+</body>
+</html>
