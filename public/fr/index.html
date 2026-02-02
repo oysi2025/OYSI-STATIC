@@ -91,10 +91,10 @@
          CANONICAL & HREFLANG (International SEO)
     ============================================ -->
     <link rel="canonical" href="https://oysi.gmbh/fr/">
-    <link rel="alternate" hreflang="de" href="https://oysi.gmbh/fr/">
+    <link rel="alternate" hreflang="de" href="https://oysi.gmbh/de/">
     <link rel="alternate" hreflang="fr" href="https://oysi.gmbh/fr/">
     <link rel="alternate" hreflang="en" href="https://oysi.gmbh/en/">
-    <link rel="alternate" hreflang="x-default" href="https://oysi.gmbh/fr/">
+    <link rel="alternate" hreflang="x-default" href="https://oysi.gmbh/de/">
 
     <!-- ============================================
          OPEN GRAPH / FACEBOOK (Social SEO)
@@ -1860,94 +1860,104 @@
             margin: 0;
         }
 
-        /* Timeline Component */
-        .timeline-wrapper {
-            max-height: 220px;
-            overflow: hidden;
-            position: relative;
+        /* Journey Teaser Component (replaces full Timeline) */
+        .journey-teaser {
             margin-top: 24px;
             padding-top: 24px;
             border-top: 1px solid var(--border-subtle);
-            mask-image: linear-gradient(to bottom,
-                transparent 0%,
-                black 10%,
-                black 90%,
-                transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom,
-                transparent 0%,
-                black 10%,
-                black 90%,
-                transparent 100%);
+            text-align: center;
         }
 
-        .timeline {
+        .journey-path {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .journey-point {
             display: flex;
             flex-direction: column;
-            gap: 1.25rem;
-            animation: scrollTimeline 15s linear infinite;
+            align-items: center;
+            gap: 4px;
+            min-width: 80px;
         }
 
-        .timeline:hover {
-            animation-play-state: paused;
+        .journey-year {
+            font-family: var(--font-mono);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--oysi-text-primary);
         }
 
-        @keyframes scrollTimeline {
-            0%, 10% { transform: translateY(0); }
-            90%, 100% { transform: translateY(calc(-100% + 220px)); }
+        .journey-point.highlight .journey-year {
+            color: var(--oysi-accent);
         }
 
-        .timeline-item {
+        .journey-label {
+            font-size: 0.8rem;
+            color: var(--oysi-text-muted);
+            white-space: nowrap;
+        }
+
+        .journey-connector {
             display: flex;
-            gap: 1rem;
-            align-items: flex-start;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            max-width: 140px;
         }
 
-        .timeline-year {
+        .journey-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--oysi-text-muted), var(--oysi-accent));
+        }
+
+        .journey-badge {
             font-family: var(--font-mono);
             font-size: 1.1rem;
             font-weight: 700;
-            color: var(--accent-primary);
-            min-width: 50px;
-            text-align: right;
+            color: var(--oysi-accent);
+            background: rgba(23, 172, 186, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
         }
 
-        .timeline-content {
-            padding-left: 1rem;
-            border-left: 2px solid rgba(23, 172, 186, 0.4);
-        }
-
-        .timeline-title {
-            font-weight: 600;
-            color: var(--oysi-text-primary);
-            font-size: 0.95rem;
-        }
-
-        .timeline-text {
+        .journey-cta {
+            display: inline-block;
+            padding: 12px 24px;
+            background: transparent;
+            color: var(--oysi-accent);
+            border: 1px solid var(--oysi-accent);
+            border-radius: 6px;
             font-size: 0.9rem;
-            color: var(--oysi-text-body);
-            margin-top: 0.2rem;
-            margin-bottom: 0;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
         }
 
-        .timeline-detail {
-            font-size: 0.8rem;
-            color: var(--oysi-text-muted);
-            margin-top: 0.15rem;
-            margin-bottom: 0;
+        .journey-cta:hover {
+            background: var(--oysi-accent);
+            color: #ffffff;
         }
 
-        .timeline-text .hl,
-        .timeline-detail .hl {
-            color: var(--oysi-accent);
-        }
-
-        /* Highlight for current timeline entry */
-        .timeline-item.highlight .timeline-year {
-            color: var(--oysi-accent);
-        }
-
-        .timeline-item.highlight .timeline-content {
-            border-left-color: var(--oysi-accent);
+        @media (max-width: 480px) {
+            .journey-path {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .journey-connector {
+                order: 3;
+                width: 100%;
+                max-width: 100%;
+                justify-content: center;
+            }
+            .journey-line {
+                display: none;
+            }
         }
 
         @media (max-width: 1024px) {
@@ -3606,81 +3616,45 @@
                     </div>
 
                     <div class="ghs-strip" title="GHS-Piktogramme">
-                        <img src="https://cdn.oysi.tech/ghs/GHS02.svg" alt="GHS02 Entzündbar" title="GHS02 - Entzündbar" width="36" height="36" loading="lazy">
-                        <img src="https://cdn.oysi.tech/ghs/GHS05.svg" alt="GHS05 Ätzend" title="GHS05 - Ätzend" width="36" height="36" loading="lazy">
-                        <img src="https://cdn.oysi.tech/ghs/GHS06.svg" alt="GHS06 Giftig" title="GHS06 - Giftig" width="36" height="36" loading="lazy">
-                        <img src="https://cdn.oysi.tech/ghs/GHS07.svg" alt="GHS07 Reizend" title="GHS07 - Reizend" width="36" height="36" loading="lazy">
-                        <img src="https://cdn.oysi.tech/ghs/GHS09.svg" alt="GHS09 Umweltgefährlich" title="GHS09 - Umweltgefährlich" width="36" height="36" loading="lazy">
+                        <img src="https://cdn.oysi.tech/ghs/GHS02.svg" alt="GHS02 Entzündbar" title="GHS02 - Entzündbar" width="36" height="36" loading="lazy" decoding="async">
+                        <img src="https://cdn.oysi.tech/ghs/GHS05.svg" alt="GHS05 Ätzend" title="GHS05 - Ätzend" width="36" height="36" loading="lazy" decoding="async">
+                        <img src="https://cdn.oysi.tech/ghs/GHS06.svg" alt="GHS06 Giftig" title="GHS06 - Giftig" width="36" height="36" loading="lazy" decoding="async">
+                        <img src="https://cdn.oysi.tech/ghs/GHS07.svg" alt="GHS07 Reizend" title="GHS07 - Reizend" width="36" height="36" loading="lazy" decoding="async">
+                        <img src="https://cdn.oysi.tech/ghs/GHS09.svg" alt="GHS09 Umweltgefährlich" title="GHS09 - Umweltgefährlich" width="36" height="36" loading="lazy" decoding="async">
                     </div>
                 </div>
 
                 <div class="about-visual reveal reveal-delay-2">
                     <div class="about-image-frame">
                         <div class="founder-info">
-                            <img class="founder-avatar" src="https://cdn.oysi.tech/images/olivier-hoefer-portrait.png" alt="Olivier Höfer" loading="lazy">
+                            <img class="founder-avatar" src="https://cdn.oysi.tech/images/olivier-hoefer-portrait.png" alt="Olivier Höfer" loading="lazy" decoding="async">
                             <div class="founder-details">
                                 <h4>Olivier Höfer</h4>
                                 <p data-i18n="about.founderRole">Geschäftsführer & Gründer</p>
                             </div>
                         </div>
 
-                        <!-- Timeline -->
-                        <div class="timeline-wrapper">
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <span class="timeline-year">1995</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t1.title">Ursprung</span>
-                                        <p class="timeline-text" data-i18n="about.timeline.t1.text">Start in einer Garage</p>
-                                        <p class="timeline-detail">Luisenthalerstraße, <span class="hl">Saarbrücken</span></p>
-                                    </div>
+                        <!-- Journey Teaser (full timeline on about page) -->
+                        <div class="journey-teaser">
+                            <div class="journey-path">
+                                <div class="journey-point">
+                                    <span class="journey-year">1995</span>
+                                    <span class="journey-label">Garage à Sarrebruck</span>
                                 </div>
-                                <div class="timeline-item">
-                                    <span class="timeline-year">2005</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t2.title">Gründung</span>
-                                        <p class="timeline-text" data-i18n="about.timeline.t2.text">Firmengründung</p>
-                                        <p class="timeline-detail"><span class="hl">Höfer Chemie GmbH</span></p>
-                                    </div>
+                                <div class="journey-connector">
+                                    <span class="journey-line"></span>
+                                    <span class="journey-badge">30+</span>
+                                    <span class="journey-line"></span>
                                 </div>
-                                <div class="timeline-item">
-                                    <span class="timeline-year">2009</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t3.title">Industrialisierung</span>
-                                        <p class="timeline-text" data-i18n="about.timeline.t3.text">Eigene Produktion & Logistik</p>
-                                        <p class="timeline-detail"><span data-i18n="about.timeline.t3.location">Standort</span> <span class="hl">Sulzbach</span></p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <span class="timeline-year">2018</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t4.title">Produktionsstandort</span>
-                                        <p class="timeline-text" data-i18n="about.timeline.t4.text">Neubau in Kleinblittersdorf</p>
-                                        <p class="timeline-detail"><span class="hl">11.500 m²</span> <span data-i18n="about.timeline.t4.unit">Produktionsfläche</span></p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <span class="timeline-year">2021</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t5.title">Logistikzentrum</span>
-                                        <p class="timeline-text" data-i18n="about.timeline.t5.text">Inbetriebnahme Logistik</p>
-                                        <p class="timeline-detail"><span class="hl">10.500 m²</span> <span data-i18n="about.timeline.t5.unit">Lager- & Versandfläche</span></p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item highlight">
-                                    <span class="timeline-year">2026</span>
-                                    <div class="timeline-content">
-                                        <span class="timeline-title" data-i18n="about.timeline.t8.title">OYSI GmbH</span>
-                                        <p class="timeline-text">Neues Unternehmen, bewährte Expertise</p>
-                                        <p class="timeline-detail"><span class="hl">Technische Chemie & Digital</span></p>
-                                    </div>
+                                <div class="journey-point highlight">
+                                    <span class="journey-year">2026</span>
+                                    <span class="journey-label">OYSI GmbH</span>
                                 </div>
                             </div>
+                            <a href="/fr/about.html" class="journey-cta">
+                                Découvrir notre histoire →
+                            </a>
                         </div>
-                    </div>
-                    <div class="experience-badge">
-                        <span class="number">30+</span>
-                        <span class="label" data-i18n="about.experience">Jahre Erfahrung</span>
                     </div>
                 </div>
             </div>
