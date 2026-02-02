@@ -10,7 +10,7 @@ Corporate Landingpage für die OYSI GmbH (https://oysi.gmbh) mit Kontaktformular
 |--------|---------|
 | **URL** | https://oysi.gmbh |
 | **Sprachen** | DE (index.html), FR (/fr/), EN (/en/) - separate HTML-Dateien |
-| **Letztes Audit** | ✅ 1. Februar 2026 (WCAG 2.2 AA, Security, CWV) |
+| **Letztes Audit** | ✅ 31. Januar 2026 (WCAG 2.2 AA, Security, CWV) |
 | **Passwort-Schutz** | ❌ Entfernt (Januar 2026) |
 | **CDN** | https://cdn.oysi.tech (Logos, Favicons, OG-Images) |
 | **Reverse Proxy** | Traefik (kein direkter Port-Zugriff) |
@@ -55,47 +55,74 @@ docker compose down
 docker exec oysi_static wget -q --spider http://127.0.0.1/
 ```
 
-## Projektstruktur
+## Projektstruktur (Stand: Februar 2026)
 
 ```
 oysi-static/
 ├── public/
-│   ├── index.html           # Homepage (Master)
-│   ├── fr/index.html        # Homepage FR (generiert)
-│   ├── en/index.html        # Homepage EN (generiert)
-│   ├── about/index.html     # Über uns
-│   ├── services/index.html  # Leistungen
-│   ├── contact/index.html   # Kontakt
-│   ├── faq/index.html       # FAQ
-│   ├── partner/index.html   # Partner
-│   ├── legal/index.html     # Impressum
-│   ├── privacy/index.html   # Datenschutz
-│   ├── dental/index.html    # Dental Landing Page
-│   ├── sitemap.xml          # Sitemap (alle Seiten)
+│   ├── de/                  # Deutsche Seiten (Master)
+│   │   ├── index.html       # Homepage
+│   │   ├── about.html       # Über uns
+│   │   ├── services.html    # Leistungen
+│   │   ├── dpp.html         # Digital Product Passport
+│   │   ├── outcomes.html    # Referenzen & Case Studies (NEU)
+│   │   ├── seo-block.html   # Pillar Page (NEU, in Arbeit)
+│   │   ├── faq.html         # FAQ
+│   │   ├── contact.html     # Kontakt
+│   │   ├── legal.html       # Impressum
+│   │   └── privacy.html     # Datenschutz
+│   ├── fr/                  # Französische Seiten (Struktur identisch)
+│   ├── en/                  # Englische Seiten (Struktur identisch)
+│   ├── archive/             # Alte Seiten (Backup)
+│   ├── sitemap.xml          # 30 URLs mit hreflang
 │   └── robots.txt
 ├── backend/
 │   ├── main.py              # FastAPI Kontaktformular-API
 │   ├── requirements.txt
 │   └── Dockerfile
-├── nginx.conf               # Reverse Proxy mit Sprachrouting
+├── nginx.conf               # Sprachrouting + 301 Redirects
 ├── docker-compose.yml       # Service-Orchestrierung (Traefik Labels)
-├── build-i18n.sh            # ⚠️ Nach Änderungen an index.html ausführen!
 ├── .env                     # SMTP-Zugangsdaten (NICHT in Git!)
 └── CLAUDE.md
 ```
 
-### Seitenstruktur (Multi-Page, Stand: 31. Januar 2026)
+### URL-Struktur (Stand: Februar 2026)
 
-| Seite | URL | Beschreibung | SEO |
-|-------|-----|--------------|-----|
-| **Homepage** | `/` | Hero, Services-Übersicht, CTA | ✅ Vollständig (12 Schemas) |
-| **Über uns** | `/about/` | Timeline, Firmengeschichte, Statistiken | ✅ OG, Twitter, Breadcrumb |
-| **Leistungen** | `/services/` | 4 Kernkompetenzen mit Details | ✅ OG, Twitter, Service Schema |
-| **Kontakt** | `/contact/` | Kontaktformular + Kontaktdaten | ✅ OG, Twitter, LocalBusiness |
-| **FAQ** | `/faq/` | Accordion mit häufigen Fragen (SEO) | ✅ OG, Twitter, FAQPage (7 Q&A) |
-| **Partner** | `/partner/` | Partnerschaftsmodelle + Benefits | ✅ OG, Twitter, Breadcrumb |
-| **Impressum** | `/legal/` | Pflichtangaben nach § 5 TMG | ✅ OG, Twitter, Breadcrumb |
-| **Datenschutz** | `/privacy/` | Vollständige DSGVO-Erklärung (7 Abschnitte) | ✅ OG, Twitter, Breadcrumb |
+**Root** → 302 Redirect zu `/de/`
+
+| Seite | DE | FR | EN |
+|-------|----|----|-----|
+| **Homepage** | `/de/` | `/fr/` | `/en/` |
+| **Über uns** | `/de/about.html` | `/fr/about.html` | `/en/about.html` |
+| **Leistungen** | `/de/services.html` | `/fr/services.html` | `/en/services.html` |
+| **DPP** | `/de/dpp.html` | `/fr/dpp.html` | `/en/dpp.html` |
+| **Outcomes** | `/de/outcomes.html` | `/fr/outcomes.html` | `/en/outcomes.html` |
+| **SEO-Block** | `/de/seo-block.html` | `/fr/seo-block.html` | `/en/seo-block.html` |
+| **FAQ** | `/de/faq.html` | `/fr/faq.html` | `/en/faq.html` |
+| **Kontakt** | `/de/contact.html` | `/fr/contact.html` | `/en/contact.html` |
+| **Impressum** | `/de/legal.html` | `/fr/legal.html` | `/en/legal.html` |
+| **Datenschutz** | `/de/privacy.html` | `/fr/privacy.html` | `/en/privacy.html` |
+
+### 301 Redirects (SEO-Migration)
+
+Alte URLs werden automatisch auf neue umgeleitet:
+- `/about/` → `/de/about.html`
+- `/services/` → `/de/services.html`
+- `/services/dpp/` → `/de/dpp.html`
+- `/contact/` → `/de/contact.html`
+- `/faq/` → `/de/faq.html`
+- `/legal/` → `/de/legal.html`
+- `/privacy/` → `/de/privacy.html`
+
+### Neue Seiten (Februar 2026)
+
+**outcomes.html** – Referenzen & Case Studies
+- KPI-Grid: 6 Wo. Audit-ready, −70% Behördenrückfragen, 50% schnellere Freigaben, 3.800+ Produkte, 0 Blockierer
+- 3 Case Studies: Chemiehandel, Labor & Produktion, Logistik & Gefahrgut
+- Schema.org: ItemList mit 3 Articles
+
+**seo-block.html** – Pillar Page (in Arbeit)
+- Geplant: REACH Compliance Guide 2026
 
 ### Datenschutzseite (Stand: 31. Januar 2026)
 
@@ -603,68 +630,37 @@ EMAIL_RECIPIENT=olivier.hoefer@oysi.gmbh
 ### 1. Hero
 - Großes Logo mit Glow-Effekt
 - Stats-Counter (animiert)
-- **KPI-Bar**: 4 messbare Outcomes direkt unter Hero-CTAs
-  - `−60%` Koordinationsaufwand bei SDB-Erstellung* (mit Disclaimer)
+- **KPI-Bar** (neu 01/2026): 4 messbare Outcomes direkt unter Hero-CTAs
+  - `−60%` Koordinationsaufwand bei SDB-Erstellung
   - `24h` Lieferzeit für Compliance-Dokumente
   - `3.800+` Substanzen sofort abrufbar
   - `0` IT-Ressourcen für DPP nötig
 - **CTAs** (Hierarchie):
-  - Primary: `Kostenfreie Compliance-Ersteinschätzung` (Coral mit Pulse-Animation)
-  - Secondary: `DPP-Architektur besprechen` (Teal-Border)
-  - Outline: `Substanzdatenbank testen` (extern)
+  - Primary: `Kostenfreie Ersteinschätzung` (Coral mit Pulse-Animation)
+  - Secondary: `Lexikon entdecken`
 - Hexagon-Molekül-Hintergrund (SVG Pattern)
 
-### 1b. Trust-Layer (neu 02/2026)
-- Direkt unter Hero, Petrol Blue Background
-- **Inhalt:** "Fundiert durch Praxis aus:"
-  - Industrielle Chemieproduktion
-  - Gefahrstofflogistik (ADR/IMDG)
-  - E-Commerce-Skalierung
-  - Regulatorische Verantwortung (REACH, CLP, GHS)
-- **Proof:** "3.800+ Produkte im europäischen Markt betreut"
-
-### 1c. Outcome-Block (neu 02/2026)
-- "Was unsere Kunden konkret erreichen"
-- 3 konkrete Business-Outcomes (Freigabezeiten, Rückfragen, Datenbasis)
-
-### 1d. Target-Block (neu 02/2026)
-- "Relevant für:" mit 3 Zielgruppen-Badges
-- Chemiehandel & Industrie
-- Unternehmen mit Zulassungs- & DPP-Pflichten
-- Verantwortliche für Compliance & Produktfreigabe
-
 ### 2. Über uns
-- **Positionierungs-Statement:** "OYSI ist keine Beratung – wir kommen aus der operativen Realität"
-- **Bullet-Logik:** "Das Fundament" + "Was OYSI 2026 anders macht"
 - Auto-Scroll Timeline (8 Meilensteine, Zwei-Zeilen-Layout)
 - Gründer-Info mit E-E-A-T Schema
-- Trust-Badges + GHS-Piktogramm Strip
+- Trust-Badges
+- GHS-Piktogramm Strip
 
 ### 3. Leistungen
 - 4 Service-Karten mit SVG-Icons
-- **SEO-optimierte H2-Titel**:
+- **SEO-optimierte H2-Titel** (neu 01/2026):
   - `REACH-konforme Chemikalien & Compliance in Europa`
   - `Digitaler Produktpass (DPP) für Chemikalien – EU-konform`
-- **Section-CTA:** `Projekt vertraulich vorstellen` (Secondary)
 
 ### 4. Digital Solutions
 - Browser-Frames für dpp.oysi.gmbh und oysi.eu
-- **Section-CTA:** `DPP-Architektur besprechen` (Secondary)
 
 ### 5. Branchen (Segmentierung)
 - Problem → Lösung Pattern pro Segment
 - 4 Industrie-SVG-Icons (Barrel, Test Tubes, Spray Bottle, Gear)
-- Kein Section-CTA mehr (entfernt 02/2026)
 
 ### 6. Warum OYSI
-- **Abgrenzung:** "OYSI ist keine Beratung – wir kommen aus der operativen Verantwortung"
-- USP-Liste mit Checkmarks + 60%-Metrik (mit Disclaimer)
-- **Mini-Case Study (neu 02/2026):**
-  - Überschrift: "Praxisbeispiel aus dem operativen Chemiehandel (anonymisiert)"
-  - 3-Spalten: Ausgangslage → Maßnahme → Ergebnis
-  - Disclaimer unter Ergebnis
-- **Finaler CTA (Primary):** `Kostenfreie Compliance-Ersteinschätzung`
-- **Erwartungsmanagement:** "Unverbindlich. Vertraulich. Klare Einschätzung in wenigen Tagen."
+- USP-Liste mit Checkmarks
 
 ### 7. Kontakt (Premium B2B - neu 01/2026)
 
@@ -685,23 +681,7 @@ EMAIL_RECIPIENT=olivier.hoefer@oysi.gmbh
 - ARIA-Attribute für Accessibility
 - Rate Limiting (3 Anfragen/10 Min)
 
-### 8. SEO-Text-Block (neu 02/2026)
-- **Position:** Nach Kontakt-Section, vor Footer
-- **Zweck:** Keyword-Relevanz für organische Sichtbarkeit
-- **Design:** Dezent, kleinere Schrift, gedämpfte Farben (`--oysi-bg-alt`)
-- **Responsive:** Angepasst für 768px und 480px Breakpoints
-
-**Target Keywords (DE):**
-- REACH-konforme Chemikalien
-- Sicherheitsdatenblätter (SDB)
-- Digitaler Produktpass (DPP)
-- EU 2024/1781
-- B2B-Chemikalienhandel
-- Gefahrstofflogistik
-- GHS-Kennzeichnung
-- ADR-Transport
-
-### 9. Footer
+### 8. Footer
 - Links, Legal (HRB 109351, DE368627554)
 - Cookie-Einstellungen Link
 
@@ -738,79 +718,6 @@ Alle Icons verwenden `stroke="currentColor"` und erben die Farbe von `.service-i
 Bei Änderungen an CSS oder JavaScript müssen ALLE Dateien aktualisiert werden!
 
 Die deutsche Version (`index.html`) verwendet KEIN client-seitiges i18n mehr - der Inhalt ist direkt auf Deutsch im HTML.
-
----
-
-## Changelog
-
-### 1. Februar 2026 - Trust & Conversion Optimization
-
-**SEO-Text-Block (Pre-Footer):**
-- Neuer SEO-Block mit starken Keywords nach Kontakt-Section
-- Target: REACH, SDB, DPP, GHS, ADR, B2B-Chemikalienhandel
-- Dezentes Design (gedämpfte Farben, kleinere Schrift)
-- Mobile-responsive (768px + 480px Breakpoints)
-- Alle 3 Sprachversionen (DE/FR/EN) implementiert
-
-**SEO Meta-Optimierung (2025/2026 Best Practices):**
-- **Title Tag (DE):** `B2B-Chemikalien mit REACH-Compliance | OYSI GmbH` (48 Zeichen)
-- **Meta Description (DE):** 158 Zeichen (vorher 208 – zu lang!)
-- **H1:** "Chemikalien-Compliance von REACH bis DPP" (Keyword-Integration)
-- **OG Tags:** Konsistent mit Title/Description
-- Alle 3 Sprachversionen aktualisiert (DE/FR/EN)
-
-**Trust-Signale (Post-Hero):**
-- **Trust-Layer:** Erfahrungsbereiche direkt unter Hero (Chemieproduktion, Gefahrstofflogistik, E-Commerce, Regulierung)
-- **Outcome-Block:** "Was unsere Kunden konkret erreichen" (Freigabezeiten, Rückfragen, Datenbasis)
-- **Target-Block:** "Relevant für" Zielgruppen-Badges (Chemiehandel, DPP-Pflichten, Compliance-Verantwortliche)
-
-**CTA-Hierarchie (1 Primary pro Viewport):**
-- Neue CSS-Klasse `.btn-highlight-secondary` (Teal-Border, dezent)
-- Section-CTAs auf Secondary umgestellt
-- Nur finaler CTA in "Warum OYSI" bleibt Primary (Coral)
-- CTA-Dopplungen im unteren Funnel entfernt
-
-**About-Section Restrukturierung:**
-- Positionierungs-Statement: "OYSI ist keine Beratung – wir kommen aus der operativen Realität"
-- Bullet-Logik statt Fließtext ("Das Fundament", "Was OYSI 2026 anders macht")
-- Scanbare Zwischenüberschriften als Anker
-
-**Mini-Case Study (Warum OYSI):**
-- Überschrift: "Praxisbeispiel aus dem operativen Chemiehandel (anonymisiert)"
-- 3-Spalten-Layout: Ausgangslage → Maßnahme → Ergebnis
-- Disclaimer unter Ergebnis: "(Erfahrungswerte aus vergleichbaren Projekten...)"
-
-**60%-KPI Absicherung:**
-- Tooltip auf KPI-Bar mit Methodik-Hinweis
-- Klammer-Disclaimer in USP-Section
-- Neue CSS-Klasse `.metric-note` für dezente Hinweise
-
-**Finaler CTA mit Erwartungsmanagement:**
-- Text: "Kostenfreie Compliance-Ersteinschätzung"
-- Subtext: "Unverbindlich. Vertraulich. Klare Einschätzung in wenigen Tagen."
-- Neue CSS-Klasse `.cta-subtext`
-
-**Abgrenzung in "Warum OYSI":**
-- Positionierungs-Satz nach H2-Titel
-- Neue CSS-Klasse `.usp-positioning`
-
-**Sticky CTA Mobile:**
-- Fixierter Primary-CTA am unteren Bildschirmrand auf Mobilgeräten (<768px)
-- CSS: `.sticky-cta-mobile` mit `position: fixed; bottom: 0`
-- Footer-Padding angepasst (`padding-bottom: 80px` auf Mobile)
-- Scroll-to-top Button Position angepasst
-- Texte: DE "Kostenlose Ersteinschätzung", FR "Évaluation gratuite", EN "Free Assessment"
-
-**Interne Verlinkung (SEO):**
-- About-Section: Link zu `/about/` ("Mehr über unsere Geschichte →")
-- Services-Section: Link zu `/services/` ("Alle Leistungen im Detail →")
-- SEO-Block: Link zu `/faq/` ("Häufige Fragen →")
-- Alle 3 Sprachversionen (DE/FR/EN) implementiert
-
-**CSP-Fixes (Content Security Policy):**
-- `connect-src` um `https://*.google-analytics.com` erweitert (GA4 region1 Endpoint)
-- `frame-ancestors` aus meta-Tag entfernt (funktioniert nur via HTTP-Header)
-- Preload für og-image.jpg entfernt (Warnung "not used within a few seconds")
 
 ---
 
@@ -877,3 +784,21 @@ Die deutsche Version (`index.html`) verwendet KEIN client-seitiges i18n mehr - d
 - Client-seitiges i18n auf deutscher Hauptseite deaktiviert
 - Jede Sprache hat nun dedizierte HTML-Datei mit nativen Inhalten
 - Language-Switcher verlinkt direkt auf `/`, `/fr/`, `/en/`
+
+---
+
+## Task Management
+
+> Hérite des règles de `/home/ubuntu/.claude/GLOBAL_CLAUDE.md`
+
+### Tâches en cours
+Voir `tasks/todo.md`
+
+### Leçons apprises
+Voir `tasks/lessons.md`
+
+### Checklist avant session
+- [ ] Lire `tasks/lessons.md`
+- [ ] Vérifier `tasks/todo.md`
+- [ ] `git status`
+- [ ] `docker-compose ps`

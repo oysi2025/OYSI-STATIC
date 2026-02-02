@@ -14,9 +14,10 @@ x-defaults: &service-defaults
 services:
   site-vitrine:
     <<: *service-defaults
-    image: nginx:alpine
+    image: nginx:1.28-alpine
     container_name: oysi_static
     mem_limit: 256m
+    cpus: "0.5"
     mem_reservation: 64m
     expose:
       - "80"
@@ -57,6 +58,7 @@ services:
     build: ./backend
     container_name: oysi_static_backend
     mem_limit: 256m
+    cpus: "0.5"
     mem_reservation: 64m
     env_file:
       - .env
