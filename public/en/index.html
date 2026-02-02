@@ -4928,7 +4928,7 @@
         });
 
         // ============================================
-        // NAVIGATION
+        // NAVIGATION (Performance-optimized)
         // ============================================
         const nav = document.getElementById('nav');
         const navToggle = document.getElementById('navToggle');
@@ -4936,26 +4936,66 @@
         const navLinks = document.querySelectorAll('.nav-link');
         const scrollToTopBtn = document.getElementById('scrollToTop');
 
-        // Scroll-Effekt für Navigation + Scroll-to-Top Button
-        window.addEventListener('scroll', () => {
-            // Navigation scrolled state
-            if (nav) {
-                if (window.scrollY > 50) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-            }
+        // Cache for section positions (avoid forced reflows)
+        let sectionCache = [];
+        let navHeight = 80;
+        let ticking = false;
 
-            // Scroll-to-Top Button visibility
-            if (scrollToTopBtn) {
-                if (window.scrollY > 500) {
-                    scrollToTopBtn.classList.add('visible');
-                } else {
-                    scrollToTopBtn.classList.remove('visible');
+        function cacheSectionPositions() {
+            navHeight = nav ? nav.offsetHeight : 80;
+            const sections = document.querySelectorAll('section[id]');
+            sectionCache = Array.from(sections).map(section => ({
+                id: section.getAttribute('id'),
+                top: section.offsetTop,
+                height: section.offsetHeight
+            }));
+        }
+
+        // Cache positions on load and resize (debounced)
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(cacheSectionPositions, 150);
+        }, { passive: true });
+
+        // Initial cache after DOM is ready
+        requestAnimationFrame(cacheSectionPositions);
+
+        // Unified scroll handler with requestAnimationFrame throttling
+        function onScroll() {
+            if (ticking) return;
+            ticking = true;
+
+            requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+
+                // Navigation scrolled state
+                if (nav) {
+                    nav.classList.toggle('scrolled', scrollY > 50);
                 }
-            }
-        });
+
+                // Scroll-to-Top Button visibility
+                if (scrollToTopBtn) {
+                    scrollToTopBtn.classList.toggle('visible', scrollY > 500);
+                }
+
+                // Active link based on scroll position (using cached values)
+                const scrollPos = scrollY + navHeight + 100;
+                for (const section of sectionCache) {
+                    if (scrollPos >= section.top && scrollPos < section.top + section.height) {
+                        navLinks.forEach(link => {
+                            const isActive = link.getAttribute('href') === `#${section.id}`;
+                            link.classList.toggle('active', isActive);
+                        });
+                        break;
+                    }
+                }
+
+                ticking = false;
+            });
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
 
         // Scroll-to-Top Button click handler
         if (scrollToTopBtn) {
@@ -5006,30 +5046,6 @@
                 }
             });
         });
-
-        // Aktiver Link basierend auf Scroll-Position
-        const sections = document.querySelectorAll('section[id]');
-
-        function updateActiveLink() {
-            const scrollPos = window.scrollY + (nav ? nav.offsetHeight : 80) + 100;
-
-            sections.forEach(section => {
-                const top = section.offsetTop;
-                const height = section.offsetHeight;
-                const id = section.getAttribute('id');
-
-                if (scrollPos >= top && scrollPos < top + height) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }
-
-        window.addEventListener('scroll', updateActiveLink);
 
         // ============================================
         // COUNTER ANIMATION
@@ -5803,10 +5819,12 @@
                 // Enable focus trap
                 enableFocusTrap(banner);
 
-                // Focus management for accessibility
+                // Focus management for accessibility (use rAF to avoid forced reflow)
                 const acceptBtn = document.getElementById('cookie-accept');
                 if (acceptBtn) {
-                    setTimeout(() => acceptBtn.focus(), 100);
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => acceptBtn.focus());
+                    });
                 }
             }
         }
