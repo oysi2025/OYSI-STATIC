@@ -1941,6 +1941,127 @@
             border-left-color: var(--oysi-accent);
         }
 
+        /* Journey Teaser */
+        .journey-teaser {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        .journey-path-link {
+            display: block;
+            text-decoration: none;
+            border-radius: 12px;
+            padding: 12px;
+            margin: -12px;
+            transition: background-color 0.2s ease;
+        }
+
+        .journey-path-link:hover {
+            background: rgba(23, 172, 186, 0.08);
+        }
+
+        .journey-path-link:hover .journey-year {
+            color: var(--oysi-accent);
+        }
+
+        .journey-path-link:hover .journey-label {
+            color: var(--oysi-text-body);
+        }
+
+        .journey-path {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .journey-point {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            min-width: 80px;
+        }
+
+        .journey-year {
+            font-family: var(--font-mono);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--oysi-text-primary);
+        }
+
+        .journey-point.highlight .journey-year {
+            color: var(--oysi-accent);
+        }
+
+        .journey-label {
+            font-size: 0.8rem;
+            color: var(--oysi-text-muted);
+            white-space: nowrap;
+        }
+
+        .journey-connector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            max-width: 140px;
+        }
+
+        .journey-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--oysi-text-muted), var(--oysi-accent));
+        }
+
+        .journey-badge {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--oysi-accent);
+            background: rgba(23, 172, 186, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .journey-cta {
+            display: inline-block;
+            padding: 12px 24px;
+            background: transparent;
+            color: var(--oysi-accent);
+            border: 1px solid var(--oysi-accent);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .journey-cta:hover {
+            background: var(--oysi-accent);
+            color: #ffffff;
+        }
+
+        @media (max-width: 480px) {
+            .journey-path {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .journey-connector {
+                order: 3;
+                width: 100%;
+                max-width: 100%;
+                justify-content: center;
+            }
+            .journey-line {
+                display: none;
+            }
+        }
+
         @media (max-width: 1024px) {
             .about-grid {
                 grid-template-columns: 1fr;
@@ -3595,6 +3716,30 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Journey Teaser (full timeline on about page) -->
+                        <div class="journey-teaser">
+                            <a href="/en/about.html" class="journey-path-link">
+                                <div class="journey-path">
+                                    <div class="journey-point">
+                                        <span class="journey-year">1995</span>
+                                        <span class="journey-label">Founded in a garage</span>
+                                    </div>
+                                    <div class="journey-connector">
+                                        <span class="journey-line"></span>
+                                        <span class="journey-badge">30 years</span>
+                                        <span class="journey-line"></span>
+                                    </div>
+                                    <div class="journey-point highlight">
+                                        <span class="journey-year">2026</span>
+                                        <span class="journey-label">OYSI GmbH</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="/en/about.html" class="journey-cta">
+                                Discover our story →
+                            </a>
                         </div>
                     </div>
                     <div class="experience-badge">
