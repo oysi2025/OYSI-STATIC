@@ -604,14 +604,32 @@ JavaScript baut zur Laufzeit die echte E-Mail und den `mailto:`-Link zusammen. B
 }
 ```
 
-## Umgebungsvariablen (.env)
+## SOPS Secret Management
 
-```env
-EMAIL_PASSWORD=xxx          # SMTP-Passwort (erforderlich)
-SMTP_SERVER=smtp.mail.ovh.net
-EMAIL_SENDER=info@oysi.tech
-EMAIL_RECIPIENT=olivier.hoefer@oysi.gmbh
+Backend-Secrets sind mit SOPS + age verschlüsselt.
+
+### Dateien
+
+| Datei | Zweck |
+|-------|-------|
+| `secrets/.env.enc.yaml` | Verschlüsselte Secrets |
+| `backend/scripts/entrypoint-sops.sh` | Runtime-Decrypt im Container |
+
+### Secrets bearbeiten
+
+```bash
+export SOPS_AGE_KEY_FILE=/home/ubuntu/infrastructure/keys/sops.key
+sops secrets/.env.enc.yaml
 ```
+
+### Enthaltene Secrets
+
+| Variable | Beschreibung |
+|----------|--------------|
+| `EMAIL_PASSWORD` | SMTP-Passwort (erforderlich) |
+| `SMTP_SERVER` | SMTP Server (smtp.mail.ovh.net) |
+| `EMAIL_SENDER` | Absender-Adresse |
+| `EMAIL_RECIPIENT` | Empfänger für Kontaktformular |
 
 ## Netzwerk & Deployment
 

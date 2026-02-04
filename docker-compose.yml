@@ -63,8 +63,9 @@ services:
     mem_limit: 256m
     cpus: "0.5"
     mem_reservation: 64m
-    env_file:
-      - .env
+    volumes:
+      - ./secrets:/app/secrets:ro
+      - /home/ubuntu/infrastructure/keys/sops.key:/run/secrets/sops-key:ro
     expose:
       - "8000"
     networks:
