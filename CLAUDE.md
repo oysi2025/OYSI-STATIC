@@ -805,6 +805,17 @@ Die deutsche Version (`index.html`) verwendet KEIN client-seitiges i18n mehr - d
 
 ---
 
+## Logs
+
+Logs werden zentral in Loki gesammelt. Zugriff:
+
+- **Grafana Explore:** `{filename=~".*oysi_static.*"}`
+- **Dashboard:** https://grafana.oysi.tech/d/logs-overview
+
+> `docker logs` nur für Debugging. Für Analyse -> Loki/Grafana verwenden.
+
+---
+
 ## Task Management
 
 > Hérite des règles de `/home/ubuntu/.claude/GLOBAL_CLAUDE.md`
