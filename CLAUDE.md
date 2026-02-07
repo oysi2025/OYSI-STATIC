@@ -606,30 +606,11 @@ JavaScript baut zur Laufzeit die echte E-Mail und den `mailto:`-Link zusammen. B
 
 ## SOPS Secret Management
 
-Backend-Secrets sind mit SOPS + age verschlüsselt.
+> Siehe `/.claude/SOPS.md` fuer Architektur und Befehle.
 
-### Dateien
-
-| Datei | Zweck |
-|-------|-------|
-| `secrets/.env.enc.yaml` | Verschlüsselte Secrets |
-| `backend/scripts/entrypoint-sops.sh` | Runtime-Decrypt im Container |
-
-### Secrets bearbeiten
-
-```bash
-export SOPS_AGE_KEY_FILE=/home/ubuntu/infrastructure/keys/sops.key
-sops secrets/.env.enc.yaml
-```
-
-### Enthaltene Secrets
-
-| Variable | Beschreibung |
-|----------|--------------|
-| `EMAIL_PASSWORD` | SMTP-Passwort (erforderlich) |
-| `SMTP_SERVER` | SMTP Server (smtp.mail.ovh.net) |
-| `EMAIL_SENDER` | Absender-Adresse |
-| `EMAIL_RECIPIENT` | Empfänger für Kontaktformular |
+| Datei | Inhalt |
+|-------|--------|
+| `secrets/.env.enc.yaml` | EMAIL_PASSWORD, SMTP_SERVER, EMAIL_SENDER, EMAIL_RECIPIENT |
 
 ## Netzwerk & Deployment
 
@@ -807,27 +788,11 @@ Die deutsche Version (`index.html`) verwendet KEIN client-seitiges i18n mehr - d
 
 ## Logs
 
-Logs werden zentral in Loki gesammelt. Zugriff:
-
-- **Grafana Explore:** `{filename=~".*oysi_static.*"}`
-- **Dashboard:** https://grafana.oysi.tech/d/logs-overview
-
-> `docker logs` nur für Debugging. Für Analyse -> Loki/Grafana verwenden.
+- **Loki:** `{filename=~".*oysi_static.*"}` → [Grafana Explore](https://grafana.oysi.tech/explore)
+- **Docker:** `docker logs oysi_static --tail 50`
 
 ---
 
 ## Task Management
 
-> Hérite des règles de `/home/ubuntu/.claude/GLOBAL_CLAUDE.md`
-
-### Tâches en cours
-Voir `tasks/todo.md`
-
-### Leçons apprises
-Voir `tasks/lessons.md`
-
-### Checklist avant session
-- [ ] Lire `tasks/lessons.md`
-- [ ] Vérifier `tasks/todo.md`
-- [ ] `git status`
-- [ ] `docker-compose ps`
+Siehe `tasks/todo.md` | `tasks/lessons.md` | Regeln: `/.claude/GLOBAL_CLAUDE.md`
