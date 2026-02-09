@@ -18,8 +18,11 @@ fi
 # Set SOPS key file
 export SOPS_AGE_KEY_FILE="/run/secrets/sops-key"
 
-# Decrypt and export secrets
+# Decrypt into a variable first so sops exits cleanly before exec replaces this shell.
+# Process substitution < <(sops ...) leaves sops as a zombie because exec never waits on it.
 echo "[SOPS] Decrypting secrets..."
+SOPS_OUTPUT="$(sops -d --output-type dotenv /app/secrets/.env.enc.yaml)"
+
 while IFS= read -r line; do
     # Skip empty lines and comments
     [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
@@ -27,7 +30,8 @@ while IFS= read -r line; do
     key="${line%%=*}"
     value="${line#*=}"
     export "$key=$value"
-done < <(sops -d --output-type dotenv /app/secrets/.env.enc.yaml)
+done <<< "$SOPS_OUTPUT"
+unset SOPS_OUTPUT
 
 echo "[SOPS] Secrets loaded successfully"
 
