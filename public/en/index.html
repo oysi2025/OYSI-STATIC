@@ -46,8 +46,8 @@
     <!-- ============================================
          PRIMARY META TAGS (SEO 2025/2026)
     ============================================ -->
-    <title>B2B Chemical Supplier Europe | REACH-Compliant Acids, Bases, Solvents | OYSI</title>
-    <meta name="description" content="Industrial chemicals from a REACH-compliant European supplier: acids, bases, solvents & specialty chemicals. 3,800+ substances with Digital Product Passport (DPP). 30 years expertise.">
+    <title>OYSI GmbH – B2B Chemical Supplier Europe | REACH & DPP Compliant</title>
+    <meta name="description" content="OYSI GmbH: European B2B chemical supplier with 3,800+ REACH-compliant substances. Digital Product Passport (DPP), QR-code traceability, acids, bases & solvents. 30 years expertise.">
     <meta name="keywords" content="buy acids, buy bases, solvents B2B, REACH compliant chemicals, technical chemistry, industrial chemicals, laboratory chemicals, technical alcohols, specialty chemicals, Digital Product Passport, GHS labeling, safety data sheets">
     <meta name="author" content="OYSI GmbH">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -101,7 +101,7 @@
     ============================================ -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://oysi.gmbh/en/">
-    <meta property="og:title" content="Acids, Bases & Solvents | OYSI GmbH">
+    <meta property="og:title" content="OYSI GmbH – B2B Chemical Supplier Europe | REACH & DPP Compliant">
     <meta property="og:description" content="REACH-compliant chemicals for industry & laboratory. Acids, bases, solvents, alcohols & specialty chemicals. 30 years expertise, Europe-wide delivery.">
     <meta property="og:image" content="https://cdn.oysi.tech/oysi/og-image.jpg">
     <meta property="og:image:secure_url" content="https://cdn.oysi.tech/oysi/og-image.jpg">
@@ -791,9 +791,7 @@
             color: var(--text-secondary);
             line-height: 1.6;
             overflow-x: hidden;
-            /* Performance: Enable GPU compositing */
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
+            /* GPU compositing removed: breaks position:fixed on cookie banner */
         }
 
         /* ============================================
@@ -5296,9 +5294,9 @@
                 </div>
 
                 <div class="cookie-banner-footer">
-                    <a href="#datenschutz" class="cookie-link" data-i18n="cookie.privacy">Datenschutzerklärung</a>
+                    <a href="/en/privacy.html" class="cookie-link" data-i18n="cookie.privacy">Privacy Policy</a>
                     <span class="cookie-divider">|</span>
-                    <a href="#impressum" class="cookie-link" data-i18n="cookie.imprint">Impressum</a>
+                    <a href="/en/legal.html" class="cookie-link" data-i18n="cookie.imprint">Legal Notice</a>
                 </div>
             </div>
         </div>
@@ -5861,7 +5859,7 @@
                 // Focus management for accessibility
                 const acceptBtn = document.getElementById('cookie-accept');
                 if (acceptBtn) {
-                    setTimeout(() => acceptBtn.focus(), 100);
+                    setTimeout(() => acceptBtn.focus({ preventScroll: true }), 100);
                 }
             }
         }
