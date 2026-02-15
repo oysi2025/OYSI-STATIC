@@ -88,7 +88,7 @@ oysi-static/
 
 ### URL-Struktur (Stand: Februar 2026)
 
-**Root** → 302 Redirect zu `/de/`
+**Root** → 301 Redirect zu `/de/`
 
 | Seite | DE | FR | EN |
 |-------|----|----|-----|
@@ -121,8 +121,10 @@ Alte URLs werden automatisch auf neue umgeleitet:
 - 3 Case Studies: Chemiehandel, Labor & Produktion, Logistik & Gefahrgut
 - Schema.org: ItemList mit 3 Articles
 
-**seo-block.html** – Pillar Page (in Arbeit)
-- Geplant: REACH Compliance Guide 2026
+**seo-block.html** – REACH Compliance Guide 2026 (Pillar Page)
+- Umfassender Guide zu REACH, CLP/GHS, ADR, DPP
+- Article + FAQPage + Speakable Schema
+- Stärkstes Asset für generischen organischen Traffic
 
 ### Datenschutzseite (Stand: 31. Januar 2026)
 
@@ -146,7 +148,7 @@ Vollständige DSGVO-konforme Datenschutzerklärung mit 7 Abschnitten:
 | `oysi.gmbh/fr/` | `public/fr/index.html` | `oysi.gmbh/fr/` |
 | `oysi.gmbh/en/` | `public/en/index.html` | `oysi.gmbh/en/` |
 
-**Hinweis:** Unterseiten (about, services, etc.) sind aktuell nur auf Deutsch. i18n kann später ergänzt werden.
+**Hinweis:** Alle 10 Seiten existieren in DE, FR und EN (30 HTML-Dateien total).
 
 **WICHTIG:** Nach Änderungen an `index.html`:
 ```bash
@@ -783,6 +785,35 @@ Die deutsche Version (`index.html`) verwendet KEIN client-seitiges i18n mehr - d
 - Client-seitiges i18n auf deutscher Hauptseite deaktiviert
 - Jede Sprache hat nun dedizierte HTML-Datei mit nativen Inhalten
 - Language-Switcher verlinkt direkt auf `/`, `/fr/`, `/en/`
+
+---
+
+### 15. Februar 2026 - SEO-Optimierung (GSC-basiert)
+
+**Maßnahme 1: Sitemap & Phantom-URL Cleanup**
+- Root Redirect 302→301 (permanent)
+- nginx 410 Gone für `/index.php` und `/archive/`
+- robots.txt: Explizite Allow/Disallow statt offener `Allow: /`
+- Duplicate FAQPage Microdata von faq.html entfernt (nur JSON-LD bleibt)
+
+**Maßnahme 2: Canonical-Konsolidierung**
+- JS Canonical-Bug auf Homepages behoben (DE canonical zeigte auf `/` statt `/de/`)
+
+**Maßnahme 3: Title & Meta-Description**
+- Alle 24 Seiten keyword-first optimiert
+- CTR-Trigger in Meta-Descriptions
+
+**Maßnahme 4: DPP-Seite für "oysi qr code" optimiert**
+- H1 enthält jetzt "QR-Code" (DE/FR/EN)
+- SoftwareApplication Schema auf allen 3 DPP-Seiten hinzugefügt
+- OG-Titles und WebPage-Schema mit QR-Code-Bezug
+
+**Maßnahme 5: Interne Verlinkung & Keyword-Strategie**
+- Footer-Navigation auf allen 24 Seiten standardisiert (7 Links statt 4)
+- Tote Links entfernt (`/blog/`, `/partner/`)
+- Homepage: Interner Link zu `/de/dpp.html` in DPP-Sektion
+- EN/FR Homepages: Nav-Link zu REACH Guide statt totem `/blog/`
+- EN/FR Footer: Redirect-Pfade (`/about/`, `/legal/`) durch korrekte Sprachpfade ersetzt
 
 ---
 

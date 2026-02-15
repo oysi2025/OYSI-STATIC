@@ -46,6 +46,22 @@ img.save('photo.webp', 'WEBP', quality=85)
 
 **Lösung:** Cache-Busting-Parameter verwenden (`?v=2`).
 
+### 2026-02-15: Docker Volume Mount Caching bei nginx.conf
+
+**Problem:** Nach Änderung von nginx.conf und `nginx -s reload` im Container wurden die alten Regeln weiterhin angewendet.
+
+**Ursache:** Docker bind mounts cachen die Datei zum Zeitpunkt der Container-Erstellung. Ein `nginx -s reload` liest die gecachte Version.
+
+**Lösung:** Immer `docker compose up -d --force-recreate site-vitrine` statt nur `nginx -s reload` verwenden.
+
+### 2026-02-15: Duplicate Microdata + JSON-LD Schema
+
+**Problem:** GSC meldete "Duplicate field FAQPage" auf faq.html.
+
+**Ursache:** Sowohl Microdata (`<html itemtype="FAQPage">`) als auch JSON-LD `@type: FAQPage` waren gleichzeitig aktiv.
+
+**Lösung:** Microdata vom `<html>` Tag entfernen, nur JSON-LD verwenden. JSON-LD ist der von Google bevorzugte Ansatz.
+
 ---
 
 ## Patterns spécifiques à oysi-static
