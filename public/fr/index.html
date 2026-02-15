@@ -791,9 +791,7 @@
             color: var(--text-secondary);
             line-height: 1.6;
             overflow-x: hidden;
-            /* Performance: Enable GPU compositing */
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
+            /* GPU compositing removed: breaks position:fixed on cookie banner */
         }
 
         /* ============================================
@@ -5294,9 +5292,9 @@
                 </div>
 
                 <div class="cookie-banner-footer">
-                    <a href="#datenschutz" class="cookie-link" data-i18n="cookie.privacy">Datenschutzerklärung</a>
+                    <a href="/fr/privacy.html" class="cookie-link" data-i18n="cookie.privacy">Politique de confidentialité</a>
                     <span class="cookie-divider">|</span>
-                    <a href="#impressum" class="cookie-link" data-i18n="cookie.imprint">Impressum</a>
+                    <a href="/fr/legal.html" class="cookie-link" data-i18n="cookie.imprint">Mentions légales</a>
                 </div>
             </div>
         </div>
@@ -5859,7 +5857,7 @@
                 // Focus management for accessibility
                 const acceptBtn = document.getElementById('cookie-accept');
                 if (acceptBtn) {
-                    setTimeout(() => acceptBtn.focus(), 100);
+                    setTimeout(() => acceptBtn.focus({ preventScroll: true }), 100);
                 }
             }
         }
