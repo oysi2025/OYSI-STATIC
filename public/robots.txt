@@ -1,6 +1,24 @@
 # robots.txt for oysi.gmbh
 User-agent: *
-Allow: /
+Allow: /de/
+Allow: /fr/
+Allow: /en/
+Allow: /sitemap.xml
+
+# Block non-canonical paths (phantom URLs indexed by Google)
+Disallow: /index.php
+Disallow: /contact/
+Disallow: /faq/
+Disallow: /partner/
+Disallow: /privacy/
+Disallow: /legal/
+Disallow: /services/
+Disallow: /about/
+Disallow: /blog/
+Disallow: /dental/
+Disallow: /archive/
+
+# Block API
 Disallow: /api/
 
 Sitemap: https://oysi.gmbh/sitemap.xml
