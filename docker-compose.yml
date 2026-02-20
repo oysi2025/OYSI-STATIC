@@ -16,7 +16,7 @@ x-defaults: &service-defaults
 services:
   site-vitrine:
     <<: *service-defaults
-    image: nginx:1.28-alpine
+    image: nginx:1.29.5-alpine
     container_name: oysi_static
     environment:
       - TZ=Europe/Berlin
